@@ -1,0 +1,2539 @@
+<!-- Design System -->
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Portfolio - I build digital experiences that matter</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Noto+Serif:wght@400;700&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-container": "#6b342d",
+                        "surface-container-highest": "#e1e3e4",
+                        "on-error": "#ffffff",
+                        "on-primary-fixed": "#002117",
+                        "on-tertiary": "#ffffff",
+                        "inverse-surface": "#2e3132",
+                        "surface-tint": "#2b6954",
+                        "on-secondary-fixed": "#141b2b",
+                        "background": "#f8f9fa",
+                        "on-primary-container": "#80bea6",
+                        "tertiary-fixed": "#ffdad5",
+                        "secondary-fixed": "#dce2f7",
+                        "primary-fixed": "#b0f0d6",
+                        "on-surface": "#191c1d",
+                        "surface-container-low": "#f3f4f5",
+                        "outline": "#707974",
+                        "tertiary-fixed-dim": "#ffb4a9",
+                        "on-primary-fixed-variant": "#0b513d",
+                        "error": "#ba1a1a",
+                        "on-tertiary-fixed-variant": "#6e372f",
+                        "surface-variant": "#e1e3e4",
+                        "on-tertiary-container": "#ea9e93",
+                        "surface-bright": "#f8f9fa",
+                        "secondary-fixed-dim": "#c0c6db",
+                        "on-error-container": "#93000a",
+                        "secondary": "#575e70",
+                        "on-secondary": "#ffffff",
+                        "outline-variant": "#bfc9c3",
+                        "error-container": "#ffdad6",
+                        "inverse-primary": "#95d3ba",
+                        "on-primary": "#ffffff",
+                        "inverse-on-surface": "#f0f1f2",
+                        "surface-dim": "#d9dadb",
+                        "primary-container": "#064e3b",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-fixed-dim": "#95d3ba",
+                        "on-secondary-fixed-variant": "#404758",
+                        "surface": "#f8f9fa",
+                        "on-tertiary-fixed": "#380d08",
+                        "surface-container-high": "#e7e8e9",
+                        "secondary-container": "#d9dff5",
+                        "on-background": "#191c1d",
+                        "on-secondary-container": "#5c6274",
+                        "surface-container": "#edeeef",
+                        "primary": "#003527",
+                        "tertiary": "#4f1f19",
+                        "on-surface-variant": "#404944"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-max-width": "1200px",
+                        "stack-lg": "80px",
+                        "gutter": "32px",
+                        "unit": "8px",
+                        "stack-sm": "16px",
+                        "margin-x": "64px",
+                        "stack-md": "32px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Noto Serif"],
+                        "label-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "body-lg": ["Noto Serif"],
+                        "label-lg": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "display-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "label-md": ["12px", { "lineHeight": "1", "fontWeight": "500" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "headline-md": ["24px", { "lineHeight": "1.4", "fontWeight": "600" }],
+                        "body-lg": ["20px", { "lineHeight": "1.7", "fontWeight": "400" }],
+                        "label-lg": ["14px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "display-lg": ["64px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "display-md": ["48px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700" }]
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .stack-lg {
+            margin-bottom: 80px;
+        }
+
+        .quiet-luxury-shadow {
+            box-shadow: 0 20px 50px -12px rgba(0, 53, 39, 0.06);
+        }
+    </style>
+</head>
+
+<body class="bg-surface font-body-md text-on-surface antialiased">
+    <!-- TopNavBar -->
+    <nav
+        class="fixed top-0 w-full z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-100 dark:border-slate-800 shadow-sm font-inter tracking-tight">
+        <div class="flex justify-between items-center h-20 px-8 max-w-7xl mx-auto">
+            <div class="text-xl font-bold text-emerald-900 dark:text-emerald-50">Portfolio</div>
+            <div class="hidden md:flex items-center space-x-8">
+                <a class="text-emerald-700 dark:text-emerald-400 border-b-2 border-emerald-700 pb-1 font-label-lg text-label-lg"
+                    href="#">Home</a>
+                <a class="text-slate-600 dark:text-slate-400 hover:text-emerald-800 dark:hover:text-emerald-200 transition-colors font-label-lg text-label-lg"
+                    href="#">About</a>
+                <a class="text-slate-600 dark:text-slate-400 hover:text-emerald-800 dark:hover:text-emerald-200 transition-colors font-label-lg text-label-lg"
+                    href="#">Projects</a>
+                <a class="text-slate-600 dark:text-slate-400 hover:text-emerald-800 dark:hover:text-emerald-200 transition-colors font-label-lg text-label-lg"
+                    href="#">Contact</a>
+            </div>
+            <button
+                class="bg-primary text-on-primary px-6 py-2.5 rounded-full font-label-lg text-label-lg hover:opacity-90 active:scale-95 transition-all duration-200">
+                Let's Talk
+            </button>
+        </div>
+    </nav>
+    <main class="pt-20">
+        <!-- Hero Section -->
+        <section class="max-w-7xl mx-auto px-8 py-24 flex flex-col md:flex-row items-center gap-16 stack-lg">
+            <div class="flex-1 space-y-8 text-left">
+                <div
+                    class="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-primary-fixed text-on-primary-fixed-variant font-label-lg text-label-lg uppercase tracking-widest">
+                    <span class="material-symbols-outlined text-[16px]"
+                        style="font-variation-settings: 'FILL' 1;">stars</span>
+                    Available for Projects
+                </div>
+                <h1 class="font-display-lg text-display-lg text-primary max-w-2xl leading-none">
+                    I build digital experiences that matter
+                </h1>
+                <p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl">
+                    A multidisciplinary designer and developer crafting intentional, high-performance interfaces for
+                    brands that value aesthetic precision and functional excellence.
+                </p>
+                <div class="flex items-center gap-6 pt-4">
+                    <button
+                        class="bg-primary text-on-primary px-8 py-4 rounded-xl font-label-lg text-label-lg flex items-center gap-2 quiet-luxury-shadow hover:translate-y-[-2px] transition-all">
+                        View My Work
+                        <span class="material-symbols-outlined">arrow_forward</span>
+                    </button>
+                    <button
+                        class="border border-outline text-on-surface px-8 py-4 rounded-xl font-label-lg text-label-lg hover:bg-surface-container-low transition-all">
+                        The Process
+                    </button>
+                </div>
+            </div>
+            <div class="flex-1 relative">
+                <div
+                    class="aspect-[4/5] w-full max-w-md mx-auto rounded-2xl overflow-hidden quiet-luxury-shadow border-[12px] border-white">
+                    <img alt="Professional portrait" class="w-full h-full object-cover"
+                        data-alt="Professional studio portrait of a confident man in a dark turtleneck against a neutral gray background with cinematic soft lighting"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuDi2lDWqHTo9KOUDRGWb8RpoLdKl9IuM7F0CpkcHZrymqBA9oSAN5IHKJDHhc8ku3IJ1HYnXv8ZgzfBQxxHEWeftdJC84M6CSyGsCQdIdvEf9-SuvzPX5IXc9HiMRsKGdjSQQe0AG1M6LfWUbvGxLeQcMFnMyRQc-BT92x959KHV7ijSXe7PFh1HfjdEXt-OvutcHyYn3TQs_5so7TBpl7SWAmCR4GKbCfyfhngpiSyTZoSuPID2Tz3njq1PB0jblEKyqdnJoljNw" />
+                </div>
+                <!-- Decorative elements -->
+                <div class="absolute -bottom-6 -left-6 w-32 h-32 bg-secondary-container rounded-full -z-10 opacity-50">
+                </div>
+                <div class="absolute -top-6 -right-6 w-24 h-24 bg-primary-fixed rounded-full -z-10 opacity-30"></div>
+            </div>
+        </section>
+        <!-- Featured Expertise / Bento Style -->
+        <section class="max-w-7xl mx-auto px-8 stack-lg">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+                <!-- Large Card -->
+                <div class="md:col-span-8 bg-white p-12 rounded-2xl quiet-luxury-shadow border border-slate-50">
+                    <div class="flex flex-col h-full justify-between gap-12">
+                        <div>
+                            <span
+                                class="font-label-md text-label-md text-secondary uppercase tracking-widest mb-4 block">Product
+                                Design</span>
+                            <h2 class="font-headline-lg text-headline-lg text-primary mb-6">User-centric systems built
+                                for scale and clarity.</h2>
+                            <p class="font-body-md text-body-md text-on-surface-variant max-w-lg">I specialize in
+                                creating cohesive design systems that bridge the gap between complex functionality and
+                                effortless user experience.</p>
+                        </div>
+                        <div class="flex gap-3">
+                            <span
+                                class="bg-surface-container-low px-4 py-2 rounded-full font-label-md text-label-md text-on-surface-variant">Figma</span>
+                            <span
+                                class="bg-surface-container-low px-4 py-2 rounded-full font-label-md text-label-md text-on-surface-variant">System
+                                Architecture</span>
+                            <span
+                                class="bg-surface-container-low px-4 py-2 rounded-full font-label-md text-label-md text-on-surface-variant">UX
+                                Research</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Small Card -->
+                <div
+                    class="md:col-span-4 bg-primary-container p-8 rounded-2xl quiet-luxury-shadow text-on-primary-container flex flex-col justify-center text-center">
+                    <span class="material-symbols-outlined text-4xl mb-4"
+                        style="font-variation-settings: 'FILL' 1;">code</span>
+                    <h3 class="font-headline-md text-headline-md mb-2">Development</h3>
+                    <p class="font-body-md text-body-md opacity-90">Clean, semantic code using the latest frameworks to
+                        ensure speed and stability.</p>
+                </div>
+                <!-- Three smaller cards -->
+                <div class="md:col-span-4 bg-white p-8 rounded-2xl quiet-luxury-shadow border border-slate-50">
+                    <span class="material-symbols-outlined text-primary mb-4">branding_watermark</span>
+                    <h4 class="font-headline-md text-headline-md mb-2">Branding</h4>
+                    <p class="font-body-md text-body-md text-on-surface-variant">Defining visual identities that
+                        resonate with premium audiences.</p>
+                </div>
+                <div class="md:col-span-4 bg-white p-8 rounded-2xl quiet-luxury-shadow border border-slate-50">
+                    <span class="material-symbols-outlined text-primary mb-4">analytics</span>
+                    <h4 class="font-headline-md text-headline-md mb-2">Strategy</h4>
+                    <p class="font-body-md text-body-md text-on-surface-variant">Aligning business goals with creative
+                        execution for impact.</p>
+                </div>
+                <div class="md:col-span-4 bg-white p-8 rounded-2xl quiet-luxury-shadow border border-slate-50">
+                    <span class="material-symbols-outlined text-primary mb-4">auto_awesome</span>
+                    <h4 class="font-headline-md text-headline-md mb-2">Creative Direction</h4>
+                    <p class="font-body-md text-body-md text-on-surface-variant">Leading design teams to deliver
+                        world-class digital products.</p>
+                </div>
+            </div>
+        </section>
+        <!-- Selected Case Studies -->
+        <section class="max-w-7xl mx-auto px-8 stack-lg">
+            <div class="flex justify-between items-end mb-12">
+                <div>
+                    <h2 class="font-display-md text-display-md text-primary">Selected Projects</h2>
+                    <p class="font-body-md text-body-md text-on-surface-variant mt-2">A collection of works defined by
+                        purpose and performance.</p>
+                </div>
+                <a class="font-label-lg text-label-lg text-primary flex items-center gap-2 hover:underline" href="#">
+                    View Portfolio Archive
+                    <span class="material-symbols-outlined text-[18px]">open_in_new</span>
+                </a>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <!-- Project Card 1 -->
+                <div class="group cursor-pointer">
+                    <div
+                        class="aspect-video w-full rounded-2xl overflow-hidden mb-6 bg-surface-container transition-all group-hover:scale-[1.01] quiet-luxury-shadow">
+                        <img alt="SaaS Platform Design"
+                            class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
+                            data-alt="Modern desktop interface for a financial analytics dashboard with clean typography and subtle teal accents on a dark background"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuD2Kqq9Roksk4jGg5SJD59W1AeaxIHbkBFm4UXddiaLQ7_t2Sl6KV-_dWlloB_O9yt6UK9ktAzY0d7mbUufhSAOPqXiTLCeJAsevvkC_NM6rF9bOX8KG9gUVnB6_1CsrMmQYZmfaktx6I2WP_MSQuAN5DYkyHuXXICdV_nJNwahgf0vEdwXaOS7yXSrO9weT2v2jPFB4Go-btI5E9FXi69z7XmLEZHpfCAvDXnIkEp62_eCPqGeeStbUK5-V7To1vd_qEB1j72BjA" />
+                    </div>
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="font-headline-md text-headline-md text-primary">Fintech Dashboard</h3>
+                            <p class="font-body-md text-body-md text-on-surface-variant mt-1">SaaS Interface &amp; Brand
+                                Identity</p>
+                        </div>
+                        <span
+                            class="font-label-md text-label-md text-secondary border border-outline-variant px-3 py-1 rounded-full uppercase">2023</span>
+                    </div>
+                </div>
+                <!-- Project Card 2 -->
+                <div class="group cursor-pointer">
+                    <div
+                        class="aspect-video w-full rounded-2xl overflow-hidden mb-6 bg-surface-container transition-all group-hover:scale-[1.01] quiet-luxury-shadow">
+                        <img alt="Luxury Watch Landing Page"
+                            class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
+                            data-alt="Elegant product showcase for a high-end watch with dramatic lighting, deep shadows, and premium white space"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuADrCzgsNSzw2HCZ02mixarAfV-Qy_aSXvH6gi40tdrqeJb8SCiq8sjH_Cuin5Nko1gOi9mi6rLdnFy9O1FBDAQyZLN8ZUfRoOjOEZubNsxQ9qtjVINhWdyQxDdSo3R8QCmNbta5i4ofyFRLAkFSJK_eiYYdGg8QuxGjDKIvEkPEFD-V0hAV55YbYxI2qH6yGa9xq9ayBKrXm1fphpKC_Ce5Z6VelcUMh-fnRS_cq1DwBUUwe3vXwLaeOtZ2S3Wk8KESp_6Ql3U0A" />
+                    </div>
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="font-headline-md text-headline-md text-primary">Aura Timepieces</h3>
+                            <p class="font-body-md text-body-md text-on-surface-variant mt-1">E-commerce Experience</p>
+                        </div>
+                        <span
+                            class="font-label-md text-label-md text-secondary border border-outline-variant px-3 py-1 rounded-full uppercase">2024</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- CTA Section -->
+        <section class="max-w-7xl mx-auto px-8 mb-20">
+            <div class="bg-surface-container-high rounded-[32px] p-16 text-center space-y-8 relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-96 h-96 bg-primary-fixed/20 blur-3xl -z-10 rounded-full"></div>
+                <h2 class="font-display-md text-display-md text-primary">Have a project in mind?</h2>
+                <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto">
+                    I’m currently accepting new collaborations for Q3 2024. Let’s build something that stands the test
+                    of time.
+                </p>
+                <div class="pt-4">
+                    <button
+                        class="bg-primary text-on-primary px-12 py-5 rounded-full font-label-lg text-label-lg shadow-xl hover:bg-primary/90 transition-all">
+                        Schedule a Consultation
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- Footer -->
+    <footer
+        class="w-full py-12 border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 font-inter text-sm antialiased mt-20">
+        <div class="flex flex-col md:flex-row justify-between items-center px-8 max-w-7xl mx-auto">
+            <div class="font-semibold text-emerald-900 dark:text-emerald-50 mb-6 md:mb-0">Portfolio</div>
+            <div class="flex gap-8 mb-6 md:mb-0">
+                <a class="text-slate-500 dark:text-slate-400 hover:text-emerald-600 dark:hover:text-emerald-300 transition-colors"
+                    href="#">LinkedIn</a>
+                <a class="text-slate-500 dark:text-slate-400 hover:text-emerald-600 dark:hover:text-emerald-300 transition-colors"
+                    href="#">GitHub</a>
+                <a class="text-slate-500 dark:text-slate-400 hover:text-emerald-600 dark:hover:text-emerald-300 transition-colors"
+                    href="#">Dribbble</a>
+                <a class="text-slate-500 dark:text-slate-400 hover:text-emerald-600 dark:hover:text-emerald-300 transition-colors"
+                    href="#">Email</a>
+            </div>
+            <p class="text-slate-500 dark:text-slate-400">© 2024 Portfolio. Built with precision.</p>
+        </div>
+    </footer>
+</body>
+
+</html>
+
+<!-- 메인 홈 -->
+<!DOCTYPE html>
+
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>About Me | Portfolio</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Noto+Serif:ital,wght@0,400;0,700;1,400&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-container": "#6b342d",
+                        "surface-container-highest": "#e1e3e4",
+                        "on-error": "#ffffff",
+                        "on-primary-fixed": "#002117",
+                        "on-tertiary": "#ffffff",
+                        "inverse-surface": "#2e3132",
+                        "surface-tint": "#2b6954",
+                        "on-secondary-fixed": "#141b2b",
+                        "background": "#f8f9fa",
+                        "on-primary-container": "#80bea6",
+                        "tertiary-fixed": "#ffdad5",
+                        "secondary-fixed": "#dce2f7",
+                        "primary-fixed": "#b0f0d6",
+                        "on-surface": "#191c1d",
+                        "surface-container-low": "#f3f4f5",
+                        "outline": "#707974",
+                        "tertiary-fixed-dim": "#ffb4a9",
+                        "on-primary-fixed-variant": "#0b513d",
+                        "error": "#ba1a1a",
+                        "on-tertiary-fixed-variant": "#6e372f",
+                        "surface-variant": "#e1e3e4",
+                        "on-tertiary-container": "#ea9e93",
+                        "surface-bright": "#f8f9fa",
+                        "secondary-fixed-dim": "#c0c6db",
+                        "on-error-container": "#93000a",
+                        "secondary": "#575e70",
+                        "on-secondary": "#ffffff",
+                        "outline-variant": "#bfc9c3",
+                        "error-container": "#ffdad6",
+                        "inverse-primary": "#95d3ba",
+                        "on-primary": "#ffffff",
+                        "inverse-on-surface": "#f0f1f2",
+                        "surface-dim": "#d9dadb",
+                        "primary-container": "#064e3b",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-fixed-dim": "#95d3ba",
+                        "on-secondary-fixed-variant": "#404758",
+                        "surface": "#f8f9fa",
+                        "on-tertiary-fixed": "#380d08",
+                        "surface-container-high": "#e7e8e9",
+                        "secondary-container": "#d9dff5",
+                        "on-background": "#191c1d",
+                        "on-secondary-container": "#5c6274",
+                        "surface-container": "#edeeef",
+                        "primary": "#003527",
+                        "tertiary": "#4f1f19",
+                        "on-surface-variant": "#404944"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-max-width": "1200px",
+                        "stack-lg": "80px",
+                        "gutter": "32px",
+                        "unit": "8px",
+                        "stack-sm": "16px",
+                        "margin-x": "64px",
+                        "stack-md": "32px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Noto Serif"],
+                        "label-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "body-lg": ["Noto Serif"],
+                        "label-lg": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "display-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "label-md": ["12px", { "lineHeight": "1", "fontWeight": "500" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "headline-md": ["24px", { "lineHeight": "1.4", "fontWeight": "600" }],
+                        "body-lg": ["20px", { "lineHeight": "1.7", "fontWeight": "400" }],
+                        "label-lg": ["14px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "display-lg": ["64px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "display-md": ["48px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700" }]
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .skill-chip {
+            background-color: #ECFDF5;
+            color: #064e3b;
+        }
+    </style>
+</head>
+
+<body class="bg-background text-on-background font-body-md selection:bg-primary-fixed selection:text-on-primary-fixed">
+    <!-- TopNavBar -->
+    <nav
+        class="fixed top-0 w-full z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-100 dark:border-slate-800 shadow-sm">
+        <div class="flex justify-between items-center h-20 px-8 max-w-7xl mx-auto font-inter tracking-tight">
+            <span class="text-xl font-bold text-emerald-900 dark:text-emerald-50">Portfolio</span>
+            <div class="hidden md:flex space-x-8">
+                <a class="text-slate-600 dark:text-slate-400 hover:text-emerald-800 dark:hover:text-emerald-200 transition-colors"
+                    href="#">Home</a>
+                <a class="text-emerald-700 dark:text-emerald-400 border-b-2 border-emerald-700 pb-1" href="#">About</a>
+                <a class="text-slate-600 dark:text-slate-400 hover:text-emerald-800 dark:hover:text-emerald-200 transition-colors"
+                    href="#">Projects</a>
+                <a class="text-slate-600 dark:text-slate-400 hover:text-emerald-800 dark:hover:text-emerald-200 transition-colors"
+                    href="#">Contact</a>
+            </div>
+            <button
+                class="bg-primary text-white px-6 py-2 rounded font-label-lg hover:opacity-90 active:scale-95 transition-all">Let's
+                Talk</button>
+        </div>
+    </nav>
+    <main class="pt-32 pb-20">
+        <!-- Hero / Intro Section -->
+        <section class="max-w-7xl mx-auto px-8 mb-[80px]">
+            <div class="grid grid-cols-12 gap-8 items-end">
+                <div class="col-span-12 md:col-span-7">
+                    <span class="font-label-lg text-secondary uppercase tracking-widest mb-4 block">Designer &amp;
+                        Engineer</span>
+                    <h1 class="font-display-lg text-primary mb-6">Crafting digital experiences with precision.</h1>
+                    <p class="font-body-lg text-on-surface-variant max-w-2xl">
+                        I am a multidisciplinary designer based in New York, focused on building functional, beautiful
+                        interfaces that stand the test of time.
+                    </p>
+                </div>
+                <div
+                    class="col-span-12 md:col-span-5 aspect-square relative overflow-hidden rounded-xl shadow-2xl shadow-primary/5">
+                    <img alt="Portrait of the designer"
+                        class="object-cover w-full h-full grayscale hover:grayscale-0 transition-all duration-700"
+                        data-alt="Close-up professional portrait of a designer in a minimalist studio setting with soft natural window lighting and a neutral background"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtlElQg06Qlti2lSVwJHy0O1ojj1k5NaVw3yetlH3ARXDyMGrALv6fmLhS60LGibFT8GE4AKRAKbvF-65r9jY-u7lTagYgPYWeUd47kjApNd6Fxgm-4PhvIuTLc5IJkKoHpStU07TuDqog9huVP6tf1l_OtQxjVzRzfk2NpuS_ZOl1Rtqcl7sxQII-qnjuLJLWA693png_NmsAnUaS1XcSJ9joEHQucyYhO1Gx2eg-LnMCZnVVOncbClYWjxL0R4_CqotBI1cRJA" />
+                </div>
+            </div>
+        </section>
+        <!-- My Story Section -->
+        <section class="max-w-7xl mx-auto px-8 mb-[80px]">
+            <div class="grid grid-cols-12 gap-8">
+                <div class="col-span-12 md:col-span-4">
+                    <h2 class="font-headline-lg text-primary sticky top-32">My Story</h2>
+                </div>
+                <div class="col-span-12 md:col-span-8 space-y-8">
+                    <p class="font-body-lg text-on-surface leading-relaxed">
+                        My journey began at the intersection of logic and aesthetics. With a background in computer
+                        science and a lifelong passion for editorial design, I found my niche in creating design systems
+                        that bridge the gap between creative vision and technical feasibility.
+                    </p>
+                    <p class="font-body-lg text-on-surface leading-relaxed">
+                        Over the past eight years, I've collaborated with startups and Fortune 500 companies alike,
+                        helping them translate complex problems into intuitive user journeys. I believe that good design
+                        is quiet—it works seamlessly in the background, empowering the user without demanding constant
+                        attention.
+                    </p>
+                    <div class="grid grid-cols-2 gap-8 pt-8 border-t border-outline-variant">
+                        <div>
+                            <span class="font-label-lg text-secondary block mb-2">Location</span>
+                            <span class="font-headline-md text-on-surface">New York City, NY</span>
+                        </div>
+                        <div>
+                            <span class="font-label-lg text-secondary block mb-2">Availability</span>
+                            <span class="font-headline-md text-on-surface">Open for Q4 Projects</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Skills Area (Bento Grid Style) -->
+        <section class="max-w-7xl mx-auto px-8 mb-[80px]">
+            <h2 class="font-headline-lg text-primary mb-12">Expertise</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- UI/UX Design -->
+                <div
+                    class="bg-surface-container p-8 rounded-xl border border-outline-variant/30 hover:border-primary/30 transition-all group">
+                    <span
+                        class="material-symbols-outlined text-4xl text-primary mb-6 group-hover:scale-110 transition-transform block"
+                        data-icon="web_layers">layers</span>
+                    <h3 class="font-headline-md mb-4">UI/UX Design</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-chip px-3 py-1 rounded-full font-label-md">Figma</span>
+                        <span class="skill-chip px-3 py-1 rounded-full font-label-md">Prototyping</span>
+                        <span class="skill-chip px-3 py-1 rounded-full font-label-md">Design Systems</span>
+                    </div>
+                </div>
+                <!-- Development -->
+                <div
+                    class="bg-surface-container p-8 rounded-xl border border-outline-variant/30 hover:border-primary/30 transition-all group">
+                    <span
+                        class="material-symbols-outlined text-4xl text-primary mb-6 group-hover:scale-110 transition-transform block"
+                        data-icon="code">code</span>
+                    <h3 class="font-headline-md mb-4">Engineering</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-chip px-3 py-1 rounded-full font-label-md">React</span>
+                        <span class="skill-chip px-3 py-1 rounded-full font-label-md">Tailwind CSS</span>
+                        <span class="skill-chip px-3 py-1 rounded-full font-label-md">TypeScript</span>
+                    </div>
+                </div>
+                <!-- Strategy -->
+                <div
+                    class="bg-surface-container p-8 rounded-xl border border-outline-variant/30 hover:border-primary/30 transition-all group">
+                    <span
+                        class="material-symbols-outlined text-4xl text-primary mb-6 group-hover:scale-110 transition-transform block"
+                        data-icon="auto_awesome">auto_awesome</span>
+                    <h3 class="font-headline-md mb-4">Product Strategy</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-chip px-3 py-1 rounded-full font-label-md">User Research</span>
+                        <span class="skill-chip px-3 py-1 rounded-full font-label-md">A/B Testing</span>
+                        <span class="skill-chip px-3 py-1 rounded-full font-label-md">Workshops</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Experience Timeline -->
+        <section class="max-w-7xl mx-auto px-8 mb-[80px]">
+            <div class="grid grid-cols-12 gap-8">
+                <div class="col-span-12 md:col-span-4">
+                    <h2 class="font-headline-lg text-primary">Experience</h2>
+                </div>
+                <div class="col-span-12 md:col-span-8">
+                    <div class="space-y-12">
+                        <!-- Item 1 -->
+                        <div class="relative pl-8 border-l border-emerald-900/10">
+                            <div class="absolute -left-[5px] top-0 w-2 h-2 bg-primary rounded-full"></div>
+                            <div class="flex flex-col md:flex-row md:justify-between mb-2">
+                                <h3 class="font-headline-md text-on-surface">Senior Product Designer</h3>
+                                <span class="font-label-lg text-secondary">2021 — Present</span>
+                            </div>
+                            <span class="font-label-md text-primary uppercase tracking-wider mb-4 block">Studio
+                                Alpha</span>
+                            <p class="font-body-md text-on-surface-variant">
+                                Leading the design of core features for a global FinTech platform. Managing a team of 4
+                                designers and collaborating closely with engineering to ship high-impact features used
+                                by millions.
+                            </p>
+                        </div>
+                        <!-- Item 2 -->
+                        <div class="relative pl-8 border-l border-emerald-900/10">
+                            <div class="absolute -left-[5px] top-0 w-2 h-2 bg-outline-variant rounded-full"></div>
+                            <div class="flex flex-col md:flex-row md:justify-between mb-2">
+                                <h3 class="font-headline-md text-on-surface">UI Designer</h3>
+                                <span class="font-label-lg text-secondary">2018 — 2021</span>
+                            </div>
+                            <span class="font-label-md text-primary uppercase tracking-wider mb-4 block">Design
+                                Co.</span>
+                            <p class="font-body-md text-on-surface-variant">
+                                Developed comprehensive design systems for Fortune 500 clients. Focused on accessibility
+                                and component-driven architecture in React.
+                            </p>
+                        </div>
+                        <!-- Item 3 -->
+                        <div class="relative pl-8 border-l border-emerald-900/10">
+                            <div class="absolute -left-[5px] top-0 w-2 h-2 bg-outline-variant rounded-full"></div>
+                            <div class="flex flex-col md:flex-row md:justify-between mb-2">
+                                <h3 class="font-headline-md text-on-surface">Junior Front-end Developer</h3>
+                                <span class="font-label-lg text-secondary">2016 — 2018</span>
+                            </div>
+                            <span class="font-label-md text-primary uppercase tracking-wider mb-4 block">Creative
+                                Labs</span>
+                            <p class="font-body-md text-on-surface-variant">
+                                Implemented pixel-perfect interfaces for award-winning marketing agencies. Specialized
+                                in CSS animations and responsive layouts.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- Footer -->
+    <footer
+        class="bg-white dark:bg-slate-950 w-full py-12 border-t border-slate-200 dark:border-slate-800 font-inter text-sm antialiased">
+        <div class="flex flex-col md:flex-row justify-between items-center px-8 max-w-7xl mx-auto">
+            <div class="mb-6 md:mb-0">
+                <span class="font-semibold text-emerald-900 dark:text-emerald-50 block mb-2">Portfolio</span>
+                <p class="text-slate-500 dark:text-slate-400">© 2024 Portfolio. Built with precision.</p>
+            </div>
+            <div class="flex space-x-8">
+                <a class="text-slate-500 dark:text-slate-400 hover:text-emerald-600 dark:hover:text-emerald-300 transition-colors"
+                    href="#">LinkedIn</a>
+                <a class="text-slate-500 dark:text-slate-400 hover:text-emerald-600 dark:hover:text-emerald-300 transition-colors"
+                    href="#">GitHub</a>
+                <a class="text-slate-500 dark:text-slate-400 hover:text-emerald-600 dark:hover:text-emerald-300 transition-colors"
+                    href="#">Dribbble</a>
+                <a class="text-slate-500 dark:text-slate-400 hover:text-emerald-600 dark:hover:text-emerald-300 transition-colors"
+                    href="#">Email</a>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
+
+<!-- 소개 (About) -->
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Noto+Serif:wght@400;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-container": "#6b342d",
+                        "surface-container-highest": "#e1e3e4",
+                        "on-error": "#ffffff",
+                        "on-primary-fixed": "#002117",
+                        "on-tertiary": "#ffffff",
+                        "inverse-surface": "#2e3132",
+                        "surface-tint": "#2b6954",
+                        "on-secondary-fixed": "#141b2b",
+                        "background": "#f8f9fa",
+                        "on-primary-container": "#80bea6",
+                        "tertiary-fixed": "#ffdad5",
+                        "secondary-fixed": "#dce2f7",
+                        "primary-fixed": "#b0f0d6",
+                        "on-surface": "#191c1d",
+                        "surface-container-low": "#f3f4f5",
+                        "outline": "#707974",
+                        "tertiary-fixed-dim": "#ffb4a9",
+                        "on-primary-fixed-variant": "#0b513d",
+                        "error": "#ba1a1a",
+                        "on-tertiary-fixed-variant": "#6e372f",
+                        "surface-variant": "#e1e3e4",
+                        "on-tertiary-container": "#ea9e93",
+                        "surface-bright": "#f8f9fa",
+                        "secondary-fixed-dim": "#c0c6db",
+                        "on-error-container": "#93000a",
+                        "secondary": "#575e70",
+                        "on-secondary": "#ffffff",
+                        "outline-variant": "#bfc9c3",
+                        "error-container": "#ffdad6",
+                        "inverse-primary": "#95d3ba",
+                        "on-primary": "#ffffff",
+                        "inverse-on-surface": "#f0f1f2",
+                        "surface-dim": "#d9dadb",
+                        "primary-container": "#064e3b",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-fixed-dim": "#95d3ba",
+                        "on-secondary-fixed-variant": "#404758",
+                        "surface": "#f8f9fa",
+                        "on-tertiary-fixed": "#380d08",
+                        "surface-container-high": "#e7e8e9",
+                        "secondary-container": "#d9dff5",
+                        "on-background": "#191c1d",
+                        "on-secondary-container": "#5c6274",
+                        "surface-container": "#edeeef",
+                        "primary": "#003527",
+                        "tertiary": "#4f1f19",
+                        "on-surface-variant": "#404944"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-max-width": "1200px",
+                        "stack-lg": "80px",
+                        "gutter": "32px",
+                        "unit": "8px",
+                        "stack-sm": "16px",
+                        "margin-x": "64px",
+                        "stack-md": "32px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Noto Serif"],
+                        "label-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "body-lg": ["Noto Serif"],
+                        "label-lg": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "display-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "label-md": ["12px", { "lineHeight": "1", "fontWeight": "500" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "headline-md": ["24px", { "lineHeight": "1.4", "fontWeight": "600" }],
+                        "body-lg": ["20px", { "lineHeight": "1.7", "fontWeight": "400" }],
+                        "label-lg": ["14px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "display-lg": ["64px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "display-md": ["48px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700" }]
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .quiet-luxury-shadow {
+            box-shadow: 0 10px 40px -10px rgba(43, 105, 84, 0.06);
+        }
+    </style>
+</head>
+
+<body class="bg-background text-on-background selection:bg-primary-fixed selection:text-on-primary-fixed">
+    <!-- TopNavBar -->
+    <nav class="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-slate-100 shadow-sm">
+        <div class="flex justify-between items-center h-20 px-8 max-w-7xl mx-auto">
+            <div class="text-xl font-bold text-emerald-900 font-headline-md">Portfolio</div>
+            <div class="hidden md:flex items-center gap-8">
+                <a class="text-slate-600 hover:text-emerald-800 transition-colors font-label-lg" href="#">Home</a>
+                <a class="text-slate-600 hover:text-emerald-800 transition-colors font-label-lg" href="#">About</a>
+                <a class="text-slate-600 hover:text-emerald-800 transition-colors font-label-lg" href="#">Projects</a>
+                <a class="text-emerald-700 border-b-2 border-emerald-700 pb-1 font-label-lg" href="#">Contact</a>
+            </div>
+            <button
+                class="bg-primary-container text-on-primary-container px-6 py-2.5 rounded-full font-label-lg hover:scale-95 transition-all duration-300">
+                Let's Talk
+            </button>
+        </div>
+    </nav>
+    <main class="pt-40 pb-20 px-8 max-w-7xl mx-auto">
+        <!-- Header Section -->
+        <header class="mb-20 text-left">
+            <h1 class="font-display-md text-primary mb-4">Get in touch.</h1>
+            <p class="font-body-lg text-secondary max-w-2xl">
+                Have a project in mind or just want to say hello? I'm always open to discussing new opportunities and
+                creative collaborations.
+            </p>
+        </header>
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+            <!-- Contact Details Column (Asymmetric Layout) -->
+            <div class="lg:col-span-4 space-y-12">
+                <div class="space-y-8">
+                    <div class="group">
+                        <p class="font-label-lg text-outline mb-2 uppercase tracking-widest">Email</p>
+                        <a class="font-headline-md text-primary hover:text-on-primary-container transition-colors"
+                            href="mailto:hello@portfolio.design">
+                            hello@portfolio.design
+                        </a>
+                    </div>
+                    <div class="group">
+                        <p class="font-label-lg text-outline mb-2 uppercase tracking-widest">Phone</p>
+                        <p class="font-headline-md text-primary">+1 (555) 000-0000</p>
+                    </div>
+                    <div class="group">
+                        <p class="font-label-lg text-outline mb-2 uppercase tracking-widest">Location</p>
+                        <p class="font-headline-md text-primary">San Francisco, CA</p>
+                    </div>
+                </div>
+                <div class="pt-8 border-t border-outline-variant/30">
+                    <p class="font-label-lg text-outline mb-6 uppercase tracking-widest">Social Presence</p>
+                    <div class="flex gap-6">
+                        <a class="w-12 h-12 rounded-full border border-outline-variant flex items-center justify-center text-primary hover:bg-primary-fixed hover:border-primary-fixed transition-all duration-300"
+                            href="#">
+                            <span class="material-symbols-outlined">link</span>
+                        </a>
+                        <a class="w-12 h-12 rounded-full border border-outline-variant flex items-center justify-center text-primary hover:bg-primary-fixed hover:border-primary-fixed transition-all duration-300"
+                            href="#">
+                            <span class="material-symbols-outlined">code</span>
+                        </a>
+                        <a class="w-12 h-12 rounded-full border border-outline-variant flex items-center justify-center text-primary hover:bg-primary-fixed hover:border-primary-fixed transition-all duration-300"
+                            href="#">
+                            <span class="material-symbols-outlined">alternate_email</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="relative overflow-hidden rounded-xl aspect-[4/3] quiet-luxury-shadow">
+                    <img class="w-full h-full object-cover"
+                        data-alt="Modern minimalist office space with floor-to-ceiling windows, warm wooden accents, and soft morning sunlight"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuD2kIZEaMRKmW_wCs7AIKwIjlgFa0nL9YHc3rDEhJFi0uSijjxoBalJYZzBO5IQuyAN8nNix2oUXeaiAF_pskVNfwBLmDzTK1WpVwugVCbhryiR0CobWjW9gMDMCLj2GdtL3Kcn9KHHLmaR87XQUhwAgZq_Gq4tHcl5uxtuUJ1DeCtgEIJVuORdfM0eYtaoOJOHhfoRV4utiT6IU1n2j1QETnaUbHU7YOYZI8Xnq_TMiWi4oM-fEP03sAG7cQQ_VnspXokUU240wQ" />
+                    <div class="absolute inset-0 bg-primary/5"></div>
+                </div>
+            </div>
+            <!-- Contact Form Column -->
+            <div class="lg:col-span-8 bg-surface-container-lowest p-10 lg:p-16 rounded-xl quiet-luxury-shadow">
+                <form class="space-y-10">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                        <div class="relative group">
+                            <label
+                                class="font-label-lg text-outline mb-2 block transition-colors group-focus-within:text-primary"
+                                for="name">Name</label>
+                            <input
+                                class="w-full bg-transparent border-0 border-b border-outline-variant px-0 py-3 focus:ring-0 focus:border-primary text-body-md transition-all"
+                                id="name" name="name" placeholder="Jane Doe" type="text" />
+                        </div>
+                        <div class="relative group">
+                            <label
+                                class="font-label-lg text-outline mb-2 block transition-colors group-focus-within:text-primary"
+                                for="email">Email Address</label>
+                            <input
+                                class="w-full bg-transparent border-0 border-b border-outline-variant px-0 py-3 focus:ring-0 focus:border-primary text-body-md transition-all"
+                                id="email" name="email" placeholder="jane@example.com" type="email" />
+                        </div>
+                    </div>
+                    <div class="relative group">
+                        <label
+                            class="font-label-lg text-outline mb-2 block transition-colors group-focus-within:text-primary"
+                            for="message">Your Message</label>
+                        <textarea
+                            class="w-full bg-transparent border-0 border-b border-outline-variant px-0 py-3 focus:ring-0 focus:border-primary text-body-md transition-all resize-none"
+                            id="message" name="message" placeholder="Tell me about your project..." rows="5"></textarea>
+                    </div>
+                    <div class="pt-6">
+                        <button
+                            class="group flex items-center gap-4 bg-primary text-on-primary px-10 py-5 rounded-lg font-label-lg hover:bg-primary-container transition-all duration-300"
+                            type="submit">
+                            Send Message
+                            <span
+                                class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+    <!-- Footer -->
+    <footer class="w-full py-12 border-t border-slate-200 mt-20">
+        <div class="flex flex-col md:flex-row justify-between items-center px-8 max-w-7xl mx-auto text-sm font-inter">
+            <div class="font-semibold text-emerald-900 mb-4 md:mb-0">© 2024 Portfolio. Built with precision.</div>
+            <div class="flex gap-8">
+                <a class="text-slate-500 hover:text-emerald-600 transition-colors" href="#">LinkedIn</a>
+                <a class="text-slate-500 hover:text-emerald-600 transition-colors" href="#">GitHub</a>
+                <a class="text-slate-500 hover:text-emerald-600 transition-colors" href="#">Dribbble</a>
+                <a class="text-slate-500 hover:text-emerald-600 transition-colors" href="#">Email</a>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
+
+<!-- 연락처 (Contact) -->
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Noto+Serif:wght@400;700&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-container": "#6b342d",
+                        "surface-container-highest": "#e1e3e4",
+                        "on-error": "#ffffff",
+                        "on-primary-fixed": "#002117",
+                        "on-tertiary": "#ffffff",
+                        "inverse-surface": "#2e3132",
+                        "surface-tint": "#2b6954",
+                        "on-secondary-fixed": "#141b2b",
+                        "background": "#f8f9fa",
+                        "on-primary-container": "#80bea6",
+                        "tertiary-fixed": "#ffdad5",
+                        "secondary-fixed": "#dce2f7",
+                        "primary-fixed": "#b0f0d6",
+                        "on-surface": "#191c1d",
+                        "surface-container-low": "#f3f4f5",
+                        "outline": "#707974",
+                        "tertiary-fixed-dim": "#ffb4a9",
+                        "on-primary-fixed-variant": "#0b513d",
+                        "error": "#ba1a1a",
+                        "on-tertiary-fixed-variant": "#6e372f",
+                        "surface-variant": "#e1e3e4",
+                        "on-tertiary-container": "#ea9e93",
+                        "surface-bright": "#f8f9fa",
+                        "secondary-fixed-dim": "#c0c6db",
+                        "on-error-container": "#93000a",
+                        "secondary": "#575e70",
+                        "on-secondary": "#ffffff",
+                        "outline-variant": "#bfc9c3",
+                        "error-container": "#ffdad6",
+                        "inverse-primary": "#95d3ba",
+                        "on-primary": "#ffffff",
+                        "inverse-on-surface": "#f0f1f2",
+                        "surface-dim": "#d9dadb",
+                        "primary-container": "#064e3b",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-fixed-dim": "#95d3ba",
+                        "on-secondary-fixed-variant": "#404758",
+                        "surface": "#f8f9fa",
+                        "on-tertiary-fixed": "#380d08",
+                        "surface-container-high": "#e7e8e9",
+                        "secondary-container": "#d9dff5",
+                        "on-background": "#191c1d",
+                        "on-secondary-container": "#5c6274",
+                        "surface-container": "#edeeef",
+                        "primary": "#003527",
+                        "tertiary": "#4f1f19",
+                        "on-surface-variant": "#404944"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-max-width": "1200px",
+                        "stack-lg": "80px",
+                        "gutter": "32px",
+                        "unit": "8px",
+                        "stack-sm": "16px",
+                        "margin-x": "64px",
+                        "stack-md": "32px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Noto Serif"],
+                        "label-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "body-lg": ["Noto Serif"],
+                        "label-lg": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "display-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "label-md": ["12px", { "lineHeight": "1", "fontWeight": "500" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "headline-md": ["24px", { "lineHeight": "1.4", "fontWeight": "600" }],
+                        "body-lg": ["20px", { "lineHeight": "1.7", "fontWeight": "400" }],
+                        "label-lg": ["14px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "display-lg": ["64px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "display-md": ["48px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .project-card-shadow {
+            box-shadow: 0 10px 40px -10px rgba(0, 53, 39, 0.06);
+        }
+
+        .project-card-shadow:hover {
+            box-shadow: 0 20px 50px -12px rgba(0, 53, 39, 0.12);
+        }
+    </style>
+</head>
+
+<body class="bg-background text-on-background font-body-md selection:bg-primary-fixed selection:text-on-primary-fixed">
+    <!-- TopNavBar -->
+    <header
+        class="fixed top-0 w-full z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-100 dark:border-slate-800 shadow-sm">
+        <nav class="flex justify-between items-center h-20 px-8 max-w-7xl mx-auto font-inter tracking-tight">
+            <div class="text-xl font-bold text-emerald-900 dark:text-emerald-50">Portfolio</div>
+            <div class="hidden md:flex items-center space-x-8">
+                <a class="text-slate-600 dark:text-slate-400 hover:text-emerald-800 dark:hover:text-emerald-200 transition-colors"
+                    href="#">Home</a>
+                <a class="text-slate-600 dark:text-slate-400 hover:text-emerald-800 dark:hover:text-emerald-200 transition-colors"
+                    href="#">About</a>
+                <a class="text-emerald-700 dark:text-emerald-400 border-b-2 border-emerald-700 pb-1"
+                    href="#">Projects</a>
+                <a class="text-slate-600 dark:text-slate-400 hover:text-emerald-800 dark:hover:text-emerald-200 transition-colors"
+                    href="#">Contact</a>
+            </div>
+            <button
+                class="bg-primary text-on-primary px-6 py-2.5 rounded-full font-label-lg hover:opacity-90 active:scale-95 transition-all duration-300">
+                Let's Talk
+            </button>
+        </nav>
+    </header>
+    <main class="pt-32 pb-20">
+        <!-- Header Section -->
+        <section class="max-w-7xl mx-auto px-8 mb-20">
+            <div class="max-w-2xl">
+                <h1 class="font-display-md text-display-md text-primary mb-6">Selected Works</h1>
+                <p class="font-body-lg text-body-lg text-on-surface-variant">
+                    A curated collection of digital experiences, focusing on precision, functionality, and aesthetic
+                    excellence. Each project represents a unique challenge solved through intentional design.
+                </p>
+            </div>
+        </section>
+        <!-- Projects Grid -->
+        <section class="max-w-7xl mx-auto px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project Card 1 -->
+                <div
+                    class="group bg-surface-container-lowest rounded-xl overflow-hidden project-card-shadow transition-all duration-500 hover:-translate-y-2 flex flex-col">
+                    <div class="aspect-[4/3] overflow-hidden relative">
+                        <img alt="Data Dashboard"
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                            data-alt="Modern data visualization dashboard with clean typography, emerald green accents, and professional dark interface on a sleek monitor"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuAoUbAujoUDSN-Lq49FMOWJxWH6KnofaLWzY7DYb68ekeCotByPQRTfd8RacjlCxoGS-1FQdFmKqNnC_xijGSkB2NWAbzM3PKnOZrx28BMpQiTgNxIK3AcNHOY9EF-4BXXa_mQCPDYEHQepUpBPPUTv3GQnnTFclWkXb_FTUdMJxwKw_dN3EPN5K3J7QGeU37tKk6rxkEw9mBz22SC9mFRDRkbBzA2r70Ytm27h4pi0qCo0cPi9PleYAvVNYcnbqcp1O4C77KosYA" />
+                        <div
+                            class="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                        </div>
+                    </div>
+                    <div class="p-8 flex-grow">
+                        <div class="flex gap-2 mb-4">
+                            <span
+                                class="px-3 py-1 bg-primary-fixed text-on-primary-fixed-variant font-label-md text-label-md rounded-full">FinTech</span>
+                            <span
+                                class="px-3 py-1 bg-surface-container-high text-on-surface-variant font-label-md text-label-md rounded-full">SaaS</span>
+                        </div>
+                        <h3 class="font-headline-md text-headline-md text-primary mb-3">Lumina Analytics</h3>
+                        <p class="font-body-md text-body-md text-on-surface-variant mb-6">
+                            A high-performance data visualization platform designed for real-time market analysis and
+                            institutional trading.
+                        </p>
+                        <a class="inline-flex items-center gap-2 font-label-lg text-label-lg text-primary group/link"
+                            href="#">
+                            View Details
+                            <span
+                                class="material-symbols-outlined transition-transform duration-300 group-hover/link:translate-x-1"
+                                data-icon="arrow_forward">arrow_forward</span>
+                        </a>
+                    </div>
+                </div>
+                <!-- Project Card 2 -->
+                <div
+                    class="group bg-surface-container-lowest rounded-xl overflow-hidden project-card-shadow transition-all duration-500 hover:-translate-y-2 flex flex-col">
+                    <div class="aspect-[4/3] overflow-hidden relative">
+                        <img alt="Editorial Site"
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                            data-alt="Editorial website layout on a tablet showing elegant serif typography, large whitespace, and high-fashion black and white photography"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuAorMq767nn_VJjrKNFMqRJ2eSS4JwCgo6fAld6pDP7b2BtdHAC2u6MYiv8gv1wWQh_GiWALPHzCMMiKRhH9aZft052NlOkN5vT8HCriJFBIoz2X1rJi33PpT0ZEzij5ibg8_BdS9ZMr4hjCP1kObQIZTuVJIm8hFIdgV5PuxTvb4yhc3IGYAdXqA632YRVRwwWvf0LqwvKStMs9eNE3B2BJRk1N3q9cRJu8749yw6wpZH553H9yEuszGlTVzfqoCDymN-_UI5RQg" />
+                        <div
+                            class="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                        </div>
+                    </div>
+                    <div class="p-8 flex-grow">
+                        <div class="flex gap-2 mb-4">
+                            <span
+                                class="px-3 py-1 bg-primary-fixed text-on-primary-fixed-variant font-label-md text-label-md rounded-full">Design</span>
+                            <span
+                                class="px-3 py-1 bg-surface-container-high text-on-surface-variant font-label-md text-label-md rounded-full">Editorial</span>
+                        </div>
+                        <h3 class="font-headline-md text-headline-md text-primary mb-3">The Narrative</h3>
+                        <p class="font-body-md text-body-md text-on-surface-variant mb-6">
+                            A digital journal exploring the intersection of minimalist architecture and sustainable
+                            living through long-form content.
+                        </p>
+                        <a class="inline-flex items-center gap-2 font-label-lg text-label-lg text-primary group/link"
+                            href="#">
+                            View Details
+                            <span
+                                class="material-symbols-outlined transition-transform duration-300 group-hover/link:translate-x-1"
+                                data-icon="arrow_forward">arrow_forward</span>
+                        </a>
+                    </div>
+                </div>
+                <!-- Project Card 3 -->
+                <div
+                    class="group bg-surface-container-lowest rounded-xl overflow-hidden project-card-shadow transition-all duration-500 hover:-translate-y-2 flex flex-col">
+                    <div class="aspect-[4/3] overflow-hidden relative">
+                        <img alt="Mobile App"
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                            data-alt="Clean mobile app interface on a smartphone with soft shadows, organic shapes, and a palette of muted emerald and slate tones"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtpa79quM2p8omZx2zffSfjs5M4kRJdD72Zk5XASpBNDYi3ioj4S_xVAdRr7cgUujLyNKS0lnwYCnq4e0UXEsG7Z6f5GGtVa2cIBJ63QoYWJA5QhBYl2XJaQrElQfWW-o6P2JOeFZia4ev98pHukA391YyhzXMqjQWHlE25_OkNygBL2vA5ilp9nit4biN47Oyr_If7XgKSlktyt1r1blZYHI01lnuieIZ0-jSalTpwB4mjSFtSYEYch4337eTlLqjSyhUMKLEaQ" />
+                        <div
+                            class="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                        </div>
+                    </div>
+                    <div class="p-8 flex-grow">
+                        <div class="flex gap-2 mb-4">
+                            <span
+                                class="px-3 py-1 bg-primary-fixed text-on-primary-fixed-variant font-label-md text-label-md rounded-full">iOS</span>
+                            <span
+                                class="px-3 py-1 bg-surface-container-high text-on-surface-variant font-label-md text-label-md rounded-full">Lifestyle</span>
+                        </div>
+                        <h3 class="font-headline-md text-headline-md text-primary mb-3">Zenith Wellness</h3>
+                        <p class="font-body-md text-body-md text-on-surface-variant mb-6">
+                            A mindfulness and productivity application that uses biometric data to suggest optimal focus
+                            periods for creative professionals.
+                        </p>
+                        <a class="inline-flex items-center gap-2 font-label-lg text-label-lg text-primary group/link"
+                            href="#">
+                            View Details
+                            <span
+                                class="material-symbols-outlined transition-transform duration-300 group-hover/link:translate-x-1"
+                                data-icon="arrow_forward">arrow_forward</span>
+                        </a>
+                    </div>
+                </div>
+                <!-- Project Card 4 -->
+                <div
+                    class="group bg-surface-container-lowest rounded-xl overflow-hidden project-card-shadow transition-all duration-500 hover:-translate-y-2 flex flex-col">
+                    <div class="aspect-[4/3] overflow-hidden relative">
+                        <img alt="E-commerce Experience"
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                            data-alt="Luxury e-commerce website product page showing high-end leather goods with dramatic lighting and refined typography"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuANVc1tr1bxMIRx3fFHxM6O0xw6fxZsyFAi-xH7os1WNlwHoNssTK4ua-z5oPS6ohyltJHeauaGkAJVrPnDcvEnTcQi-TVFAyFzlbDcVJwvIZHAZR5mfYId7kYaiXFYrzGzVHdXbmoc4bruh-lZke2O2Ar-2nYACvyXJOGqX9mT-500q40GromaVAAvfnApruisekoZYrwftQAPhyfDRtmxbBlBxWkZxYGhJ_HnVwogC8BWMQzDAIVwcYGOiwhqRQPw8EmVRnr_Ng" />
+                        <div
+                            class="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                        </div>
+                    </div>
+                    <div class="p-8 flex-grow">
+                        <div class="flex gap-2 mb-4">
+                            <span
+                                class="px-3 py-1 bg-primary-fixed text-on-primary-fixed-variant font-label-md text-label-md rounded-full">Commerce</span>
+                            <span
+                                class="px-3 py-1 bg-surface-container-high text-on-surface-variant font-label-md text-label-md rounded-full">UI/UX</span>
+                        </div>
+                        <h3 class="font-headline-md text-headline-md text-primary mb-3">Arlo Atelier</h3>
+                        <p class="font-body-md text-body-md text-on-surface-variant mb-6">
+                            An immersive digital storefront for an artisanal leather goods brand, focusing on
+                            high-definition texture previews and storytelling.
+                        </p>
+                        <a class="inline-flex items-center gap-2 font-label-lg text-label-lg text-primary group/link"
+                            href="#">
+                            View Details
+                            <span
+                                class="material-symbols-outlined transition-transform duration-300 group-hover/link:translate-x-1"
+                                data-icon="arrow_forward">arrow_forward</span>
+                        </a>
+                    </div>
+                </div>
+                <!-- Project Card 5 -->
+                <div
+                    class="group bg-surface-container-lowest rounded-xl overflow-hidden project-card-shadow transition-all duration-500 hover:-translate-y-2 flex flex-col">
+                    <div class="aspect-[4/3] overflow-hidden relative">
+                        <img alt="Developer Tool"
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                            data-alt="Software code on a screen with syntax highlighting in emerald and slate colors, clean and professional development environment"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBQOd0hXBJ1VRxNgKGUVXho4cohZrPV8azyHrZAimsiposcgMrg3AisQx6UmJG_VkiLEh3w51ELAd8Tm8Px_l7xI_ohoIdhO84PtjqnabZAjIUPFkjER63FIkSPMBvA8v3fD4on8Vj2qDOFRwq0AjsWKY4F3mi9ebFkWlIV0RzQhexcczbcjHs7bxwePLJG-ex0OgpZFncwYq57aQgGvuSiG7ei3_3zJXDcrPz5TVD867QLvj2zenEht_2sUyg92oh3qGeXJiIR9Q" />
+                        <div
+                            class="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                        </div>
+                    </div>
+                    <div class="p-8 flex-grow">
+                        <div class="flex gap-2 mb-4">
+                            <span
+                                class="px-3 py-1 bg-primary-fixed text-on-primary-fixed-variant font-label-md text-label-md rounded-full">DevTools</span>
+                            <span
+                                class="px-3 py-1 bg-surface-container-high text-on-surface-variant font-label-md text-label-md rounded-full">B2B</span>
+                        </div>
+                        <h3 class="font-headline-md text-headline-md text-primary mb-3">Nexus CLI</h3>
+                        <p class="font-body-md text-body-md text-on-surface-variant mb-6">
+                            A command-line interface and documentation suite for cloud infrastructure management,
+                            optimizing developer workflows.
+                        </p>
+                        <a class="inline-flex items-center gap-2 font-label-lg text-label-lg text-primary group/link"
+                            href="#">
+                            View Details
+                            <span
+                                class="material-symbols-outlined transition-transform duration-300 group-hover/link:translate-x-1"
+                                data-icon="arrow_forward">arrow_forward</span>
+                        </a>
+                    </div>
+                </div>
+                <!-- Project Card 6 -->
+                <div
+                    class="group bg-surface-container-lowest rounded-xl overflow-hidden project-card-shadow transition-all duration-500 hover:-translate-y-2 flex flex-col">
+                    <div class="aspect-[4/3] overflow-hidden relative">
+                        <img alt="Corporate Identity"
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                            data-alt="Branding collateral including stationery and business cards with a minimalist emerald green logo and premium paper textures"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuA3_uPU_Wy14zRLvnPu8QGj4BzjA3ljZH7TKk-CUHtH5GOBPSuG3tFTWG4rsX5Yv-9Yc9SOGRTBY2BN9E_mdfMmLfLNYjbuUhexE4vFNW6m9d0VBU11NwdrlxK4bCTqsXKeZ4G5A3YZhk1L-buRs7fxQrFLS8nPyWCocvsdF3NkkG7VHLtNEpikxq5aB6hw1e27Kl8Tvw--SZnnQfUe18EWipxSxjcWvc-l2DuKLsmG-qay6xPDLb0gBvMTRTTZlhyq0SrJExi_zw" />
+                        <div
+                            class="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                        </div>
+                    </div>
+                    <div class="p-8 flex-grow">
+                        <div class="flex gap-2 mb-4">
+                            <span
+                                class="px-3 py-1 bg-primary-fixed text-on-primary-fixed-variant font-label-md text-label-md rounded-full">Branding</span>
+                            <span
+                                class="px-3 py-1 bg-surface-container-high text-on-surface-variant font-label-md text-label-md rounded-full">Identity</span>
+                        </div>
+                        <h3 class="font-headline-md text-headline-md text-primary mb-3">Vanguard Systems</h3>
+                        <p class="font-body-md text-body-md text-on-surface-variant mb-6">
+                            Complete brand identity and visual language overhaul for a global cybersecurity firm
+                            emphasizing trust and technical precision.
+                        </p>
+                        <a class="inline-flex items-center gap-2 font-label-lg text-label-lg text-primary group/link"
+                            href="#">
+                            View Details
+                            <span
+                                class="material-symbols-outlined transition-transform duration-300 group-hover/link:translate-x-1"
+                                data-icon="arrow_forward">arrow_forward</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- CTA Section -->
+        <section class="max-w-7xl mx-auto px-8 mt-32 text-center">
+            <div class="bg-primary-container p-16 rounded-2xl">
+                <h2 class="font-display-md text-display-md text-on-primary-container mb-6">Have a project in mind?</h2>
+                <p class="font-body-lg text-body-lg text-on-primary-container/80 mb-10 max-w-xl mx-auto">
+                    I'm currently accepting new opportunities for the upcoming quarter. Let's build something
+                    exceptional together.
+                </p>
+                <button
+                    class="bg-white text-primary px-10 py-4 rounded-full font-label-lg text-label-lg hover:bg-surface-container transition-colors active:scale-95 duration-200">
+                    Get In Touch
+                </button>
+            </div>
+        </section>
+    </main>
+    <!-- Footer -->
+    <footer class="w-full py-12 border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
+        <div
+            class="flex flex-col md:flex-row justify-between items-center px-8 max-w-7xl mx-auto font-inter text-sm antialiased">
+            <div class="font-semibold text-emerald-900 dark:text-emerald-50 mb-6 md:mb-0">Portfolio</div>
+            <div class="flex space-x-8 mb-6 md:mb-0 text-slate-500 dark:text-slate-400">
+                <a class="hover:text-emerald-600 dark:hover:text-emerald-300 transition-colors" href="#">LinkedIn</a>
+                <a class="hover:text-emerald-600 dark:hover:text-emerald-300 transition-colors" href="#">GitHub</a>
+                <a class="hover:text-emerald-600 dark:hover:text-emerald-300 transition-colors" href="#">Dribbble</a>
+                <a class="hover:text-emerald-600 dark:hover:text-emerald-300 transition-colors" href="#">Email</a>
+            </div>
+            <div class="text-slate-500 dark:text-slate-400">
+                © 2024 Portfolio. Built with precision.
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
+
+<!-- 포트폴리오 (Projects) -->
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Portfolio - I build digital experiences that matter</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Noto+Serif:wght@400;700&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-container": "#6b342d",
+                        "surface-container-highest": "#e1e3e4",
+                        "on-error": "#ffffff",
+                        "on-primary-fixed": "#002117",
+                        "on-tertiary": "#ffffff",
+                        "inverse-surface": "#2e3132",
+                        "surface-tint": "#2b6954",
+                        "on-secondary-fixed": "#141b2b",
+                        "background": "#f8f9fa",
+                        "on-primary-container": "#80bea6",
+                        "tertiary-fixed": "#ffdad5",
+                        "secondary-fixed": "#dce2f7",
+                        "primary-fixed": "#b0f0d6",
+                        "on-surface": "#191c1d",
+                        "surface-container-low": "#f3f4f5",
+                        "outline": "#707974",
+                        "tertiary-fixed-dim": "#ffb4a9",
+                        "on-primary-fixed-variant": "#0b513d",
+                        "error": "#ba1a1a",
+                        "on-tertiary-fixed-variant": "#6e372f",
+                        "surface-variant": "#e1e3e4",
+                        "on-tertiary-container": "#ea9e93",
+                        "surface-bright": "#f8f9fa",
+                        "secondary-fixed-dim": "#c0c6db",
+                        "on-error-container": "#93000a",
+                        "secondary": "#575e70",
+                        "on-secondary": "#ffffff",
+                        "outline-variant": "#bfc9c3",
+                        "error-container": "#ffdad6",
+                        "inverse-primary": "#95d3ba",
+                        "on-primary": "#ffffff",
+                        "inverse-on-surface": "#f0f1f2",
+                        "surface-dim": "#d9dadb",
+                        "primary-container": "#064e3b",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-fixed-dim": "#95d3ba",
+                        "on-secondary-fixed-variant": "#404758",
+                        "surface": "#f8f9fa",
+                        "on-tertiary-fixed": "#380d08",
+                        "surface-container-high": "#e7e8e9",
+                        "secondary-container": "#d9dff5",
+                        "on-background": "#191c1d",
+                        "on-secondary-container": "#5c6274",
+                        "surface-container": "#edeeef",
+                        "primary": "#003527",
+                        "tertiary": "#4f1f19",
+                        "on-surface-variant": "#404944"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-max-width": "1200px",
+                        "stack-lg": "80px",
+                        "gutter": "32px",
+                        "unit": "8px",
+                        "stack-sm": "16px",
+                        "margin-x": "64px",
+                        "stack-md": "32px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Noto Serif"],
+                        "label-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "body-lg": ["Noto Serif"],
+                        "label-lg": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "display-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "label-md": ["12px", { "lineHeight": "1", "fontWeight": "500" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "headline-md": ["24px", { "lineHeight": "1.4", "fontWeight": "600" }],
+                        "body-lg": ["20px", { "lineHeight": "1.7", "fontWeight": "400" }],
+                        "label-lg": ["14px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "display-lg": ["64px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "display-md": ["48px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700" }]
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .stack-lg {
+            margin-bottom: 80px;
+        }
+
+        .quiet-luxury-shadow {
+            box-shadow: 0 20px 50px -12px rgba(0, 53, 39, 0.06);
+        }
+    </style>
+</head>
+
+<body class="bg-surface font-body-md text-on-surface antialiased">
+    <!-- TopNavBar -->
+    <nav
+        class="fixed top-0 w-full z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-100 dark:border-slate-800 shadow-sm font-inter tracking-tight">
+        <div class="flex justify-between items-center h-20 px-8 max-w-7xl mx-auto">
+            <div class="text-xl font-bold text-emerald-900 dark:text-emerald-50">Portfolio</div>
+            <div class="hidden md:flex items-center space-x-8">
+                <a class="text-emerald-700 dark:text-emerald-400 border-b-2 border-emerald-700 pb-1 font-label-lg text-label-lg"
+                    href="#">홈</a>
+                <a class="text-slate-600 dark:text-slate-400 hover:text-emerald-800 dark:hover:text-emerald-200 transition-colors font-label-lg text-label-lg"
+                    href="#">소개</a>
+                <a class="text-slate-600 dark:text-slate-400 hover:text-emerald-800 dark:hover:text-emerald-200 transition-colors font-label-lg text-label-lg"
+                    href="#">프로젝트</a>
+                <a class="text-slate-600 dark:text-slate-400 hover:text-emerald-800 dark:hover:text-emerald-200 transition-colors font-label-lg text-label-lg"
+                    href="#">연락처</a>
+            </div>
+            <button
+                class="bg-primary text-on-primary px-6 py-2.5 rounded-full font-label-lg text-label-lg hover:opacity-90 active:scale-95 transition-all duration-200">문의하기</button>
+        </div>
+    </nav>
+    <main class="pt-20">
+        <!-- Hero Section -->
+        <section class="max-w-7xl mx-auto px-8 py-24 flex flex-col md:flex-row items-center gap-16 stack-lg">
+            <div class="flex-1 space-y-8 text-left">
+                <div
+                    class="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-primary-fixed text-on-primary-fixed-variant font-label-lg text-label-lg uppercase tracking-widest">
+                    <span class="material-symbols-outlined text-[16px]"
+                        style="font-variation-settings: 'FILL' 1;">stars</span>
+                    프로젝트 의뢰 가능</div>
+                <h1 class="font-display-lg text-display-lg text-primary max-w-2xl leading-none">가치 있는 디지털 경험을 만듭니다</h1>
+                <p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl">심미적 정밀함과 기능적 우수성을 가치 있게 생각하는 브랜드들을
+                    위해 의도적이고 높은 성능의 인터페이스를 제작하는 다학제적 디자이너 겸 개발자입니다.</p>
+                <div class="flex items-center gap-6 pt-4">
+                    <button
+                        class="bg-primary text-on-primary px-8 py-4 rounded-xl font-label-lg text-label-lg flex items-center gap-2 quiet-luxury-shadow hover:translate-y-[-2px] transition-all">작업물
+                        보기
+                        <span class="material-symbols-outlined">arrow_forward</span></button>
+                    <button
+                        class="border border-outline text-on-surface px-8 py-4 rounded-xl font-label-lg text-label-lg hover:bg-surface-container-low transition-all">프로세스</button>
+                </div>
+            </div>
+            <div class="flex-1 relative">
+                <div
+                    class="aspect-[4/5] w-full max-w-md mx-auto rounded-2xl overflow-hidden quiet-luxury-shadow border-[12px] border-white">
+                    <img alt="Professional portrait" class="w-full h-full object-cover"
+                        data-alt="Professional studio portrait of a confident man in a dark turtleneck against a neutral gray background with cinematic soft lighting"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuDi2lDWqHTo9KOUDRGWb8RpoLdKl9IuM7F0CpkcHZrymqBA9oSAN5IHKJDHhc8ku3IJ1HYnXv8ZgzfBQxxHEWeftdJC84M6CSyGsCQdIdvEf9-SuvzPX5IXc9HiMRsKGdjSQQe0AG1M6LfWUbvGxLeQcMFnMyRQc-BT92x959KHV7ijSXe7PFh1HfjdEXt-OvutcHyYn3TQs_5so7TBpl7SWAmCR4GKbCfyfhngpiSyTZoSuPID2Tz3njq1PB0jblEKyqdnJoljNw" />
+                </div>
+                <!-- Decorative elements -->
+                <div class="absolute -bottom-6 -left-6 w-32 h-32 bg-secondary-container rounded-full -z-10 opacity-50">
+                </div>
+                <div class="absolute -top-6 -right-6 w-24 h-24 bg-primary-fixed rounded-full -z-10 opacity-30"></div>
+            </div>
+        </section>
+        <!-- Featured Expertise / Bento Style -->
+        <section class="max-w-7xl mx-auto px-8 stack-lg">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+                <!-- Large Card -->
+                <div class="md:col-span-8 bg-white p-12 rounded-2xl quiet-luxury-shadow border border-slate-50">
+                    <div class="flex flex-col h-full justify-between gap-12">
+                        <div>
+                            <span
+                                class="font-label-md text-label-md text-secondary uppercase tracking-widest mb-4 block">프로덕트
+                                디자인</span>
+                            <h2 class="font-headline-lg text-headline-lg text-primary mb-6">확장성과 명확성을 위해 구축된 사용자 중심 시스템.
+                            </h2>
+                            <p class="font-body-md text-body-md text-on-surface-variant max-w-lg">복잡한 기능과 손쉬운 사용자 경험 사이의
+                                간극을 메우는 응집력 있는 디자인 시스템 제작을 전문으로 합니다.</p>
+                        </div>
+                        <div class="flex gap-3">
+                            <span
+                                class="bg-surface-container-low px-4 py-2 rounded-full font-label-md text-label-md text-on-surface-variant">피그마</span>
+                            <span
+                                class="bg-surface-container-low px-4 py-2 rounded-full font-label-md text-label-md text-on-surface-variant">시스템
+                                아키텍처</span>
+                            <span
+                                class="bg-surface-container-low px-4 py-2 rounded-full font-label-md text-label-md text-on-surface-variant">UX
+                                리서치</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Small Card -->
+                <div
+                    class="md:col-span-4 bg-primary-container p-8 rounded-2xl quiet-luxury-shadow text-on-primary-container flex flex-col justify-center text-center">
+                    <span class="material-symbols-outlined text-4xl mb-4"
+                        style="font-variation-settings: 'FILL' 1;">code</span>
+                    <h3 class="font-headline-md text-headline-md mb-2">개발</h3>
+                    <p class="font-body-md text-body-md opacity-90">속도와 안정성을 보장하기 위해 최신 프레임워크를 사용한 깔끔하고 시맨틱한 코드.</p>
+                </div>
+                <!-- Three smaller cards -->
+                <div class="md:col-span-4 bg-white p-8 rounded-2xl quiet-luxury-shadow border border-slate-50">
+                    <span class="material-symbols-outlined text-primary mb-4">branding_watermark</span>
+                    <h4 class="font-headline-md text-headline-md mb-2">브랜딩</h4>
+                    <p class="font-body-md text-body-md text-on-surface-variant">Defining visual identities that
+                        resonate with premium audiences.</p>
+                </div>
+                <div class="md:col-span-4 bg-white p-8 rounded-2xl quiet-luxury-shadow border border-slate-50">
+                    <span class="material-symbols-outlined text-primary mb-4">analytics</span>
+                    <h4 class="font-headline-md text-headline-md mb-2">전략</h4>
+                    <p class="font-body-md text-body-md text-on-surface-variant">Aligning business goals with creative
+                        execution for impact.</p>
+                </div>
+                <div class="md:col-span-4 bg-white p-8 rounded-2xl quiet-luxury-shadow border border-slate-50">
+                    <span class="material-symbols-outlined text-primary mb-4">auto_awesome</span>
+                    <h4 class="font-headline-md text-headline-md mb-2">크리에이티브 디렉션</h4>
+                    <p class="font-body-md text-body-md text-on-surface-variant">Leading design teams to deliver
+                        world-class digital products.</p>
+                </div>
+            </div>
+        </section>
+        <!-- Selected Case Studies -->
+        <section class="max-w-7xl mx-auto px-8 stack-lg">
+            <div class="flex justify-between items-end mb-12">
+                <div>
+                    <h2 class="font-display-md text-display-md text-primary">선별된 프로젝트</h2>
+                    <p class="font-body-md text-body-md text-on-surface-variant mt-2">목적과 성과로 정의된 작업 모음입니다.</p>
+                </div>
+                <a class="font-label-lg text-label-lg text-primary flex items-center gap-2 hover:underline"
+                    href="#">포트폴리오 아카이브 보기
+                    <span class="material-symbols-outlined text-[18px]">open_in_new</span></a>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <!-- Project Card 1 -->
+                <div class="group cursor-pointer">
+                    <div
+                        class="aspect-video w-full rounded-2xl overflow-hidden mb-6 bg-surface-container transition-all group-hover:scale-[1.01] quiet-luxury-shadow">
+                        <img alt="SaaS Platform Design"
+                            class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
+                            data-alt="Modern desktop interface for a financial analytics dashboard with clean typography and subtle teal accents on a dark background"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuD2Kqq9Roksk4jGg5SJD59W1AeaxIHbkBFm4UXddiaLQ7_t2Sl6KV-_dWlloB_O9yt6UK9ktAzY0d7mbUufhSAOPqXiTLCeJAsevvkC_NM6rF9bOX8KG9gUVnB6_1CsrMmQYZmfaktx6I2WP_MSQuAN5DYkyHuXXICdV_nJNwahgf0vEdwXaOS7yXSrO9weT2v2jPFB4Go-btI5E9FXi69z7XmLEZHpfCAvDXnIkEp62_eCPqGeeStbUK5-V7To1vd_qEB1j72BjA" />
+                    </div>
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="font-headline-md text-headline-md text-primary">핀테크 대시보드</h3>
+                            <p class="font-body-md text-body-md text-on-surface-variant mt-1">SaaS 인터페이스 및 브랜드 아이덴티티</p>
+                        </div>
+                        <span
+                            class="font-label-md text-label-md text-secondary border border-outline-variant px-3 py-1 rounded-full uppercase">2023</span>
+                    </div>
+                </div>
+                <!-- Project Card 2 -->
+                <div class="group cursor-pointer">
+                    <div
+                        class="aspect-video w-full rounded-2xl overflow-hidden mb-6 bg-surface-container transition-all group-hover:scale-[1.01] quiet-luxury-shadow">
+                        <img alt="Luxury Watch Landing Page"
+                            class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
+                            data-alt="Elegant product showcase for a high-end watch with dramatic lighting, deep shadows, and premium white space"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuADrCzgsNSzw2HCZ02mixarAfV-Qy_aSXvH6gi40tdrqeJb8SCiq8sjH_Cuin5Nko1gOi9mi6rLdnFy9O1FBDAQyZLN8ZUfRoOjOEZubNsxQ9qtjVINhWdyQxDdSo3R8QCmNbta5i4ofyFRLAkFSJK_eiYYdGg8QuxGjDKIvEkPEFD-V0hAV55YbYxI2qH6yGa9xq9ayBKrXm1fphpKC_Ce5Z6VelcUMh-fnRS_cq1DwBUUwe3vXwLaeOtZ2S3Wk8KESp_6Ql3U0A" />
+                    </div>
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="font-headline-md text-headline-md text-primary">아우라 타임피스</h3>
+                            <p class="font-body-md text-body-md text-on-surface-variant mt-1">이커머스 경험</p>
+                        </div>
+                        <span
+                            class="font-label-md text-label-md text-secondary border border-outline-variant px-3 py-1 rounded-full uppercase">2024</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- CTA Section -->
+        <section class="max-w-7xl mx-auto px-8 mb-20">
+            <div class="bg-surface-container-high rounded-[32px] p-16 text-center space-y-8 relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-96 h-96 bg-primary-fixed/20 blur-3xl -z-10 rounded-full"></div>
+                <h2 class="font-display-md text-display-md text-primary">진행하고 싶은 프로젝트가 있으신가요?</h2>
+                <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto">현재 2024년 3분기 새로운 협업을 진행하고
+                    있습니다. 시간이 흘러도 변치 않는 가치를 지닌 결과물을 함께 만들어가요.</p>
+                <div class="pt-4">
+                    <button
+                        class="bg-primary text-on-primary px-12 py-5 rounded-full font-label-lg text-label-lg shadow-xl hover:bg-primary/90 transition-all">상담
+                        예약하기</button>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- Footer -->
+    <footer
+        class="w-full py-12 border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 font-inter text-sm antialiased mt-20">
+        <div class="flex flex-col md:flex-row justify-between items-center px-8 max-w-7xl mx-auto">
+            <div class="font-semibold text-emerald-900 dark:text-emerald-50 mb-6 md:mb-0">Portfolio</div>
+            <div class="flex gap-8 mb-6 md:mb-0">
+                <a class="text-slate-500 dark:text-slate-400 hover:text-emerald-600 dark:hover:text-emerald-300 transition-colors"
+                    href="#">링크드인</a>
+                <a class="text-slate-500 dark:text-slate-400 hover:text-emerald-600 dark:hover:text-emerald-300 transition-colors"
+                    href="#">깃허브</a>
+                <a class="text-slate-500 dark:text-slate-400 hover:text-emerald-600 dark:hover:text-emerald-300 transition-colors"
+                    href="#">드리블</a>
+                <a class="text-slate-500 dark:text-slate-400 hover:text-emerald-600 dark:hover:text-emerald-300 transition-colors"
+                    href="#">이메일</a>
+            </div>
+            <p class="text-slate-500 dark:text-slate-400">© 2024 Portfolio. 정교하게 제작되었습니다.</p>
+        </div>
+    </footer>
+</body>
+
+</html>
+
+<!-- 메인 홈 -->
+<!DOCTYPE html>
+
+<html class="light" lang="ko">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>소개 | 포트폴리오</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Noto+Serif:ital,wght@0,400;0,700;1,400&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-container": "#6b342d",
+                        "surface-container-highest": "#e1e3e4",
+                        "on-error": "#ffffff",
+                        "on-primary-fixed": "#002117",
+                        "on-tertiary": "#ffffff",
+                        "inverse-surface": "#2e3132",
+                        "surface-tint": "#2b6954",
+                        "on-secondary-fixed": "#141b2b",
+                        "background": "#f8f9fa",
+                        "on-primary-container": "#80bea6",
+                        "tertiary-fixed": "#ffdad5",
+                        "secondary-fixed": "#dce2f7",
+                        "primary-fixed": "#b0f0d6",
+                        "on-surface": "#191c1d",
+                        "surface-container-low": "#f3f4f5",
+                        "outline": "#707974",
+                        "tertiary-fixed-dim": "#ffb4a9",
+                        "on-primary-fixed-variant": "#0b513d",
+                        "error": "#ba1a1a",
+                        "on-tertiary-fixed-variant": "#6e372f",
+                        "surface-variant": "#e1e3e4",
+                        "on-tertiary-container": "#ea9e93",
+                        "surface-bright": "#f8f9fa",
+                        "secondary-fixed-dim": "#c0c6db",
+                        "on-error-container": "#93000a",
+                        "secondary": "#575e70",
+                        "on-secondary": "#ffffff",
+                        "outline-variant": "#bfc9c3",
+                        "error-container": "#ffdad6",
+                        "inverse-primary": "#95d3ba",
+                        "on-primary": "#ffffff",
+                        "inverse-on-surface": "#f0f1f2",
+                        "surface-dim": "#d9dadb",
+                        "primary-container": "#064e3b",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-fixed-dim": "#95d3ba",
+                        "on-secondary-fixed-variant": "#404758",
+                        "surface": "#f8f9fa",
+                        "on-tertiary-fixed": "#380d08",
+                        "surface-container-high": "#e7e8e9",
+                        "secondary-container": "#d9dff5",
+                        "on-background": "#191c1d",
+                        "on-secondary-container": "#5c6274",
+                        "surface-container": "#edeeef",
+                        "primary": "#003527",
+                        "tertiary": "#4f1f19",
+                        "on-surface-variant": "#404944"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-max-width": "1200px",
+                        "stack-lg": "80px",
+                        "gutter": "32px",
+                        "unit": "8px",
+                        "stack-sm": "16px",
+                        "margin-x": "64px",
+                        "stack-md": "32px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Noto Serif"],
+                        "label-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "body-lg": ["Noto Serif"],
+                        "label-lg": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "display-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "label-md": ["12px", { "lineHeight": "1", "fontWeight": "500" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "headline-md": ["24px", { "lineHeight": "1.4", "fontWeight": "600" }],
+                        "body-lg": ["20px", { "lineHeight": "1.7", "fontWeight": "400" }],
+                        "label-lg": ["14px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "display-lg": ["64px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "display-md": ["48px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700" }]
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .skill-chip {
+            background-color: #ECFDF5;
+            color: #064e3b;
+        }
+    </style>
+</head>
+
+<body class="bg-background text-on-background font-body-md selection:bg-primary-fixed selection:text-on-primary-fixed">
+    <!-- TopNavBar -->
+    <nav
+        class="fixed top-0 w-full z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-100 dark:border-slate-800 shadow-sm">
+        <div class="flex justify-between items-center h-20 px-8 max-w-7xl mx-auto font-inter tracking-tight">
+            <span class="text-xl font-bold text-emerald-900 dark:text-emerald-50">포트폴리오</span>
+            <div class="hidden md:flex space-x-8">
+                <a class="text-slate-600 dark:text-slate-400 hover:text-emerald-800 dark:hover:text-emerald-200 transition-colors"
+                    href="#">홈</a>
+                <a class="text-emerald-700 dark:text-emerald-400 border-b-2 border-emerald-700 pb-1" href="#">소개</a>
+                <a class="text-slate-600 dark:text-slate-400 hover:text-emerald-800 dark:hover:text-emerald-200 transition-colors"
+                    href="#">프로젝트</a>
+                <a class="text-slate-600 dark:text-slate-400 hover:text-emerald-800 dark:hover:text-emerald-200 transition-colors"
+                    href="#">연락처</a>
+            </div>
+            <button
+                class="bg-primary text-white px-6 py-2 rounded font-label-lg hover:opacity-90 active:scale-95 transition-all">문의하기</button>
+        </div>
+    </nav>
+    <main class="pt-32 pb-20">
+        <!-- Hero / Intro Section -->
+        <section class="max-w-7xl mx-auto px-8 mb-[80px]">
+            <div class="grid grid-cols-12 gap-8 items-end">
+                <div class="col-span-12 md:col-span-7">
+                    <span class="font-label-lg text-secondary uppercase tracking-widest mb-4 block">디자이너 &amp;
+                        엔지니어</span>
+                    <h1 class="font-display-lg text-primary mb-6">정교함으로 디지털 경험을 제작합니다.</h1>
+                    <p class="font-body-lg text-on-surface-variant max-w-2xl">저는 뉴욕을 기반으로 활동하는 다학제적 디자이너로, 시간이 흘러도 변치 않는
+                        기능적이고 아름다운 인터페이스를 구축하는 데 집중하고 있습니다.</p>
+                </div>
+                <div
+                    class="col-span-12 md:col-span-5 aspect-square relative overflow-hidden rounded-xl shadow-2xl shadow-primary/5">
+                    <img alt="Portrait of the designer"
+                        class="object-cover w-full h-full grayscale hover:grayscale-0 transition-all duration-700"
+                        data-alt="Close-up professional portrait of a designer in a minimalist studio setting with soft natural window lighting and a neutral background"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtlElQg06Qlti2lSVwJHy0O1ojj1k5NaVw3yetlH3ARXDyMGrALv6fmLhS60LGibFT8GE4AKRAKbvF-65r9jY-u7lTagYgPYWeUd47kjApNd6Fxgm-4PhvIuTLc5IJkKoHpStU07TuDqog9huVP6tf1l_OtQxjVzRzfk2NpuS_ZOl1Rtqcl7sxQII-qnjuLJLWA693png_NmsAnUaS1XcSJ9joEHQucyYhO1Gx2eg-LnMCZnVVOncbClYWjxL0R4_CqotBI1cRJA" />
+                </div>
+            </div>
+        </section>
+        <!-- My Story Section -->
+        <section class="max-w-7xl mx-auto px-8 mb-[80px]">
+            <div class="grid grid-cols-12 gap-8">
+                <div class="col-span-12 md:col-span-4">
+                    <h2 class="font-headline-lg text-primary sticky top-32">저의 이야기</h2>
+                </div>
+                <div class="col-span-12 md:col-span-8 space-y-8">
+                    <p class="font-body-lg text-on-surface leading-relaxed">저의 여정은 논리와 미학의 교차점에서 시작되었습니다. 컴퓨터 과학 배경과 편집
+                        디자인에 대한 평생의 열정으로, 저는 창의적인 비전과 기술적 실현 가능성 사이의 가교 역할을 하는 디자인 시스템 구축에서 저만의 강점을 찾았습니다.</p>
+                    <p class="font-body-lg text-on-surface leading-relaxed">지난 8년 동안 스타트업부터 포춘 500대 기업에 이르기까지 다양한 고객과
+                        협업하며 복잡한 문제를 직관적인 사용자 여정으로 변환하는 작업을 도왔습니다. 저는 좋은 디자인이란 조용한 것이라고 믿습니다. 디자인은 배경에서 매끄럽게 작동하며 사용자의
+                        주의를 끌지 않고도 사용자에게 힘을 실어주어야 합니다.</p>
+                    <div class="grid grid-cols-2 gap-8 pt-8 border-t border-outline-variant">
+                        <div>
+                            <span class="font-label-lg text-secondary block mb-2">협업 상태</span>
+                            <span class="font-headline-md text-on-surface">현재 프로젝트 의뢰 가능</span>
+                        </div>
+                        <div>
+                            <span class="font-label-lg text-secondary block mb-2">협업 상태</span>
+                            <span class="font-headline-md text-on-surface">현재 프로젝트 의뢰 가능</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Skills Area (Bento Grid Style) -->
+        <section class="max-w-7xl mx-auto px-8 mb-[80px]">
+            <h2 class="font-headline-lg text-primary mb-12">전문 분야</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- UI/UX Design -->
+                <div
+                    class="bg-surface-container p-8 rounded-xl border border-outline-variant/30 hover:border-primary/30 transition-all group">
+                    <span
+                        class="material-symbols-outlined text-4xl text-primary mb-6 group-hover:scale-110 transition-transform block"
+                        data-icon="web_layers">layers</span>
+                    <h3 class="font-headline-md mb-4">UI/UX 디자인</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-chip px-3 py-1 rounded-full font-label-md">피그마</span>
+                        <span class="skill-chip px-3 py-1 rounded-full font-label-md">프로토타이핑</span>
+                        <span class="skill-chip px-3 py-1 rounded-full font-label-md">디자인 시스템</span>
+                    </div>
+                </div>
+                <!-- Development -->
+                <div
+                    class="bg-surface-container p-8 rounded-xl border border-outline-variant/30 hover:border-primary/30 transition-all group">
+                    <span
+                        class="material-symbols-outlined text-4xl text-primary mb-6 group-hover:scale-110 transition-transform block"
+                        data-icon="code">code</span>
+                    <h3 class="font-headline-md mb-4">엔지니어링</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-chip px-3 py-1 rounded-full font-label-md">리액트</span>
+                        <span class="skill-chip px-3 py-1 rounded-full font-label-md">테일윈드 CSS</span>
+                        <span class="skill-chip px-3 py-1 rounded-full font-label-md">타입스크립트</span>
+                    </div>
+                </div>
+                <!-- Strategy -->
+                <div
+                    class="bg-surface-container p-8 rounded-xl border border-outline-variant/30 hover:border-primary/30 transition-all group">
+                    <span
+                        class="material-symbols-outlined text-4xl text-primary mb-6 group-hover:scale-110 transition-transform block"
+                        data-icon="auto_awesome">auto_awesome</span>
+                    <h3 class="font-headline-md mb-4">제품 전략</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-chip px-3 py-1 rounded-full font-label-md">사용자 조사</span>
+                        <span class="skill-chip px-3 py-1 rounded-full font-label-md">A/B 테스트</span>
+                        <span class="skill-chip px-3 py-1 rounded-full font-label-md">워크숍</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Experience Timeline -->
+        <section class="max-w-7xl mx-auto px-8 mb-[80px]">
+            <div class="grid grid-cols-12 gap-8">
+                <div class="col-span-12 md:col-span-4">
+                    <h2 class="font-headline-lg text-primary">경력</h2>
+                </div>
+                <div class="col-span-12 md:col-span-8">
+                    <div class="space-y-12">
+                        <!-- Item 1 -->
+                        <div class="relative pl-8 border-l border-emerald-900/10">
+                            <div class="absolute -left-[5px] top-0 w-2 h-2 bg-primary rounded-full"></div>
+                            <div class="flex flex-col md:flex-row md:justify-between mb-2">
+                                <h3 class="font-headline-md text-on-surface">시니어 프로덕트 디자이너</h3>
+                                <span class="font-label-lg text-secondary">2021 — 현재</span>
+                            </div>
+                            <span class="font-label-md text-primary uppercase tracking-wider mb-4 block">스튜디오 알파</span>
+                            <p class="font-body-md text-on-surface-variant">글로벌 핀테크 플랫폼의 핵심 기능 디자인을 주도하고 있습니다. 4명의 디자이너
+                                팀을 관리하며 엔지니어링 팀과 긴밀히 협력하여 수백만 명이 사용하는 영향력 있는 기능을 출시합니다.</p>
+                        </div>
+                        <!-- Item 2 -->
+                        <div class="relative pl-8 border-l border-emerald-900/10">
+                            <div class="absolute -left-[5px] top-0 w-2 h-2 bg-outline-variant rounded-full"></div>
+                            <div class="flex flex-col md:flex-row md:justify-between mb-2">
+                                <h3 class="font-headline-md text-on-surface">UI 디자이너</h3>
+                                <span class="font-label-lg text-secondary">2018 — 2021</span>
+                            </div>
+                            <span class="font-label-md text-primary uppercase tracking-wider mb-4 block">디자인 코</span>
+                            <p class="font-body-md text-on-surface-variant">포춘 500대 기업 고객을 위한 포괄적인 디자인 시스템을 개발했습니다. 웹
+                                접근성과 React 기반의 컴포넌트 중심 아키텍처에 집중했습니다.</p>
+                        </div>
+                        <!-- Item 3 -->
+                        <div class="relative pl-8 border-l border-emerald-900/10">
+                            <div class="absolute -left-[5px] top-0 w-2 h-2 bg-outline-variant rounded-full"></div>
+                            <div class="flex flex-col md:flex-row md:justify-between mb-2">
+                                <h3 class="font-headline-md text-on-surface">주니어 프론트엔드 개발자</h3>
+                                <span class="font-label-lg text-secondary">2016 — 2018</span>
+                            </div>
+                            <span class="font-label-md text-primary uppercase tracking-wider mb-4 block">크리에이티브
+                                랩스</span>
+                            <p class="font-body-md text-on-surface-variant">수상 경력이 있는 마케팅 대행사를 위해 픽셀 단위까지 완벽한 인터페이스를
+                                구현했습니다. CSS 애니메이션 및 반응형 레이아웃을 전문으로 담당했습니다.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- Footer -->
+    <footer
+        class="bg-white dark:bg-slate-950 w-full py-12 border-t border-slate-200 dark:border-slate-800 font-inter text-sm antialiased">
+        <div class="flex flex-col md:flex-row justify-between items-center px-8 max-w-7xl mx-auto">
+            <div class="mb-6 md:mb-0">
+                <span class="font-semibold text-emerald-900 dark:text-emerald-50 block mb-2">포트폴리오</span>
+                <p class="text-slate-500 dark:text-slate-400">© 2024 포트폴리오. 정교함으로 구축되었습니다.</p>
+            </div>
+            <div class="flex space-x-8">
+                <a class="text-slate-500 dark:text-slate-400 hover:text-emerald-600 dark:hover:text-emerald-300 transition-colors"
+                    href="#">링크드인</a>
+                <a class="text-slate-500 dark:text-slate-400 hover:text-emerald-600 dark:hover:text-emerald-300 transition-colors"
+                    href="#">깃허브</a>
+                <a class="text-slate-500 dark:text-slate-400 hover:text-emerald-600 dark:hover:text-emerald-300 transition-colors"
+                    href="#">드리블</a>
+                <a class="text-slate-500 dark:text-slate-400 hover:text-emerald-600 dark:hover:text-emerald-300 transition-colors"
+                    href="#">이메일</a>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
+
+<!-- 소개 (About) -->
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Noto+Serif:wght@400;700&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-container": "#6b342d",
+                        "surface-container-highest": "#e1e3e4",
+                        "on-error": "#ffffff",
+                        "on-primary-fixed": "#002117",
+                        "on-tertiary": "#ffffff",
+                        "inverse-surface": "#2e3132",
+                        "surface-tint": "#2b6954",
+                        "on-secondary-fixed": "#141b2b",
+                        "background": "#f8f9fa",
+                        "on-primary-container": "#80bea6",
+                        "tertiary-fixed": "#ffdad5",
+                        "secondary-fixed": "#dce2f7",
+                        "primary-fixed": "#b0f0d6",
+                        "on-surface": "#191c1d",
+                        "surface-container-low": "#f3f4f5",
+                        "outline": "#707974",
+                        "tertiary-fixed-dim": "#ffb4a9",
+                        "on-primary-fixed-variant": "#0b513d",
+                        "error": "#ba1a1a",
+                        "on-tertiary-fixed-variant": "#6e372f",
+                        "surface-variant": "#e1e3e4",
+                        "on-tertiary-container": "#ea9e93",
+                        "surface-bright": "#f8f9fa",
+                        "secondary-fixed-dim": "#c0c6db",
+                        "on-error-container": "#93000a",
+                        "secondary": "#575e70",
+                        "on-secondary": "#ffffff",
+                        "outline-variant": "#bfc9c3",
+                        "error-container": "#ffdad6",
+                        "inverse-primary": "#95d3ba",
+                        "on-primary": "#ffffff",
+                        "inverse-on-surface": "#f0f1f2",
+                        "surface-dim": "#d9dadb",
+                        "primary-container": "#064e3b",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-fixed-dim": "#95d3ba",
+                        "on-secondary-fixed-variant": "#404758",
+                        "surface": "#f8f9fa",
+                        "on-tertiary-fixed": "#380d08",
+                        "surface-container-high": "#e7e8e9",
+                        "secondary-container": "#d9dff5",
+                        "on-background": "#191c1d",
+                        "on-secondary-container": "#5c6274",
+                        "surface-container": "#edeeef",
+                        "primary": "#003527",
+                        "tertiary": "#4f1f19",
+                        "on-surface-variant": "#404944"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-max-width": "1200px",
+                        "stack-lg": "80px",
+                        "gutter": "32px",
+                        "unit": "8px",
+                        "stack-sm": "16px",
+                        "margin-x": "64px",
+                        "stack-md": "32px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Noto Serif"],
+                        "label-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "body-lg": ["Noto Serif"],
+                        "label-lg": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "display-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "label-md": ["12px", { "lineHeight": "1", "fontWeight": "500" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "headline-md": ["24px", { "lineHeight": "1.4", "fontWeight": "600" }],
+                        "body-lg": ["20px", { "lineHeight": "1.7", "fontWeight": "400" }],
+                        "label-lg": ["14px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "display-lg": ["64px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "display-md": ["48px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .project-card-shadow {
+            box-shadow: 0 10px 40px -10px rgba(0, 53, 39, 0.06);
+        }
+
+        .project-card-shadow:hover {
+            box-shadow: 0 20px 50px -12px rgba(0, 53, 39, 0.12);
+        }
+    </style>
+</head>
+
+<body class="bg-background text-on-background font-body-md selection:bg-primary-fixed selection:text-on-primary-fixed">
+    <!-- TopNavBar -->
+    <header
+        class="fixed top-0 w-full z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-100 dark:border-slate-800 shadow-sm">
+        <nav class="flex justify-between items-center h-20 px-8 max-w-7xl mx-auto font-inter tracking-tight">
+            <div class="text-xl font-bold text-emerald-900 dark:text-emerald-50">Portfolio</div>
+            <div class="hidden md:flex items-center space-x-8">
+                <a class="text-slate-600 dark:text-slate-400 hover:text-emerald-800 dark:hover:text-emerald-200 transition-colors"
+                    href="#">홈</a>
+                <a class="text-slate-600 dark:text-slate-400 hover:text-emerald-800 dark:hover:text-emerald-200 transition-colors"
+                    href="#">소개</a>
+                <a class="text-emerald-700 dark:text-emerald-400 border-b-2 border-emerald-700 pb-1" href="#">프로젝트</a>
+                <a class="text-slate-600 dark:text-slate-400 hover:text-emerald-800 dark:hover:text-emerald-200 transition-colors"
+                    href="#">연락처</a>
+            </div>
+            <button
+                class="bg-primary text-on-primary px-6 py-2.5 rounded-full font-label-lg hover:opacity-90 active:scale-95 transition-all duration-300">문의하기</button>
+        </nav>
+    </header>
+    <main class="pt-32 pb-20">
+        <!-- Header Section -->
+        <section class="max-w-7xl mx-auto px-8 mb-20">
+            <div class="max-w-2xl">
+                <h1 class="font-display-md text-display-md text-primary mb-6">선정된 프로젝트</h1>
+                <p class="font-body-lg text-body-lg text-on-surface-variant">정교함, 기능성, 그리고 미학적 탁월함에 집중한 디지털 경험 컬렉션입니다. 각
+                    프로젝트는 의도적인 디자인을 통해 해결된 고유한 도전을 나타냅니다.</p>
+            </div>
+        </section>
+        <!-- Projects Grid -->
+        <section class="max-w-7xl mx-auto px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project Card 1 -->
+                <div
+                    class="group bg-surface-container-lowest rounded-xl overflow-hidden project-card-shadow transition-all duration-500 hover:-translate-y-2 flex flex-col">
+                    <div class="aspect-[4/3] overflow-hidden relative">
+                        <img alt="Data Dashboard"
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                            data-alt="Modern data visualization dashboard with clean typography, emerald green accents, and professional dark interface on a sleek monitor"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuAoUbAujoUDSN-Lq49FMOWJxWH6KnofaLWzY7DYb68ekeCotByPQRTfd8RacjlCxoGS-1FQdFmKqNnC_xijGSkB2NWAbzM3PKnOZrx28BMpQiTgNxIK3AcNHOY9EF-4BXXa_mQCPDYEHQepUpBPPUTv3GQnnTFclWkXb_FTUdMJxwKw_dN3EPN5K3J7QGeU37tKk6rxkEw9mBz22SC9mFRDRkbBzA2r70Ytm27h4pi0qCo0cPi9PleYAvVNYcnbqcp1O4C77KosYA" />
+                        <div
+                            class="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                        </div>
+                    </div>
+                    <div class="p-8 flex-grow">
+                        <div class="flex gap-2 mb-4">
+                            <span
+                                class="px-3 py-1 bg-primary-fixed text-on-primary-fixed-variant font-label-md text-label-md rounded-full">핀테크</span>
+                            <span
+                                class="px-3 py-1 bg-surface-container-high text-on-surface-variant font-label-md text-label-md rounded-full">서비스형
+                                소프트웨어</span>
+                        </div>
+                        <h3 class="font-headline-md text-headline-md text-primary mb-3">Lumina Analytics</h3>
+                        <p class="font-body-md text-body-md text-on-surface-variant mb-6">실시간 시장 분석 및 기관 거래를 위해 설계된 고성능
+                            데이터 시각화 플랫폼입니다.</p>
+                        <a class="inline-flex items-center gap-2 font-label-lg text-label-lg text-primary group/link"
+                            href="#">상세 보기 <span
+                                class="material-symbols-outlined transition-transform duration-300 group-hover/link:translate-x-1"
+                                data-icon="arrow_forward">arrow_forward</span></a>
+                    </div>
+                </div>
+                <!-- Project Card 2 -->
+                <div
+                    class="group bg-surface-container-lowest rounded-xl overflow-hidden project-card-shadow transition-all duration-500 hover:-translate-y-2 flex flex-col">
+                    <div class="aspect-[4/3] overflow-hidden relative">
+                        <img alt="Editorial Site"
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                            data-alt="Editorial website layout on a tablet showing elegant serif typography, large whitespace, and high-fashion black and white photography"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuAorMq767nn_VJjrKNFMqRJ2eSS4JwCgo6fAld6pDP7b2BtdHAC2u6MYiv8gv1wWQh_GiWALPHzCMMiKRhH9aZft052NlOkN5vT8HCriJFBIoz2X1rJi33PpT0ZEzij5ibg8_BdS9ZMr4hjCP1kObQIZTuVJIm8hFIdgV5PuxTvb4yhc3IGYAdXqA632YRVRwwWvf0LqwvKStMs9eNE3B2BJRk1N3q9cRJu8749yw6wpZH553H9yEuszGlTVzfqoCDymN-_UI5RQg" />
+                        <div
+                            class="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                        </div>
+                    </div>
+                    <div class="p-8 flex-grow">
+                        <div class="flex gap-2 mb-4">
+                            <span
+                                class="px-3 py-1 bg-primary-fixed text-on-primary-fixed-variant font-label-md text-label-md rounded-full">디자인</span>
+                            <span
+                                class="px-3 py-1 bg-surface-container-high text-on-surface-variant font-label-md text-label-md rounded-full">에디토리얼</span>
+                        </div>
+                        <h3 class="font-headline-md text-headline-md text-primary mb-3">The Narrative</h3>
+                        <p class="font-body-md text-body-md text-on-surface-variant mb-6">심층적인 콘텐츠를 통해 미니멀리즘 건축과 지속 가능한
+                            삶의 접점을 탐구하는 디지털 저널입니다.</p>
+                        <a class="inline-flex items-center gap-2 font-label-lg text-label-lg text-primary group/link"
+                            href="#">상세 보기 <span
+                                class="material-symbols-outlined transition-transform duration-300 group-hover/link:translate-x-1"
+                                data-icon="arrow_forward">arrow_forward</span></a>
+                    </div>
+                </div>
+                <!-- Project Card 3 -->
+                <div
+                    class="group bg-surface-container-lowest rounded-xl overflow-hidden project-card-shadow transition-all duration-500 hover:-translate-y-2 flex flex-col">
+                    <div class="aspect-[4/3] overflow-hidden relative">
+                        <img alt="Mobile App"
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                            data-alt="Clean mobile app interface on a smartphone with soft shadows, organic shapes, and a palette of muted emerald and slate tones"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtpa79quM2p8omZx2zffSfjs5M4kRJdD72Zk5XASpBNDYi3ioj4S_xVAdRr7cgUujLyNKS0lnwYCnq4e0UXEsG7Z6f5GGtVa2cIBJ63QoYWJA5QhBYl2XJaQrElQfWW-o6P2JOeFZia4ev98pHukA391YyhzXMqjQWHlE25_OkNygBL2vA5ilp9nit4biN47Oyr_If7XgKSlktyt1r1blZYHI01lnuieIZ0-jSalTpwB4mjSFtSYEYch4337eTlLqjSyhUMKLEaQ" />
+                        <div
+                            class="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                        </div>
+                    </div>
+                    <div class="p-8 flex-grow">
+                        <div class="flex gap-2 mb-4">
+                            <span
+                                class="px-3 py-1 bg-primary-fixed text-on-primary-fixed-variant font-label-md text-label-md rounded-full">iOS</span>
+                            <span
+                                class="px-3 py-1 bg-surface-container-high text-on-surface-variant font-label-md text-label-md rounded-full">라이프스타일</span>
+                        </div>
+                        <h3 class="font-headline-md text-headline-md text-primary mb-3">Zenith Wellness</h3>
+                        <p class="font-body-md text-body-md text-on-surface-variant mb-6">생체 인식 데이터를 사용하여 창의적인 전문가에게 최적의
+                            집중 시간을 제안하는 마음챙김 및 생산성 앱입니다.</p>
+                        <a class="inline-flex items-center gap-2 font-label-lg text-label-lg text-primary group/link"
+                            href="#">상세 보기 <span
+                                class="material-symbols-outlined transition-transform duration-300 group-hover/link:translate-x-1"
+                                data-icon="arrow_forward">arrow_forward</span></a>
+                    </div>
+                </div>
+                <!-- Project Card 4 -->
+                <div
+                    class="group bg-surface-container-lowest rounded-xl overflow-hidden project-card-shadow transition-all duration-500 hover:-translate-y-2 flex flex-col">
+                    <div class="aspect-[4/3] overflow-hidden relative">
+                        <img alt="E-commerce Experience"
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                            data-alt="Luxury e-commerce website product page showing high-end leather goods with dramatic lighting and refined typography"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuANVc1tr1bxMIRx3fFHxM6O0xw6fxZsyFAi-xH7os1WNlwHoNssTK4ua-z5oPS6ohyltJHeauaGkAJVrPnDcvEnTcQi-TVFAyFzlbDcVJwvIZHAZR5mfYId7kYaiXFYrzGzVHdXbmoc4bruh-lZke2O2Ar-2nYACvyXJOGqX9mT-500q40GromaVAAvfnApruisekoZYrwftQAPhyfDRtmxbBlBxWkZxYGhJ_HnVwogC8BWMQzDAIVwcYGOiwhqRQPw8EmVRnr_Ng" />
+                        <div
+                            class="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                        </div>
+                    </div>
+                    <div class="p-8 flex-grow">
+                        <div class="flex gap-2 mb-4">
+                            <span
+                                class="px-3 py-1 bg-primary-fixed text-on-primary-fixed-variant font-label-md text-label-md rounded-full">커머스</span>
+                            <span
+                                class="px-3 py-1 bg-surface-container-high text-on-surface-variant font-label-md text-label-md rounded-full">UI/UX</span>
+                        </div>
+                        <h3 class="font-headline-md text-headline-md text-primary mb-3">Arlo Atelier</h3>
+                        <p class="font-body-md text-body-md text-on-surface-variant mb-6">고해상도 질감 미리보기와 스토리텔링에 집중한 수제 가죽
+                            제품 브랜드의 몰입형 디지털 스토어입니다.</p>
+                        <a class="inline-flex items-center gap-2 font-label-lg text-label-lg text-primary group/link"
+                            href="#">상세 보기 <span
+                                class="material-symbols-outlined transition-transform duration-300 group-hover/link:translate-x-1"
+                                data-icon="arrow_forward">arrow_forward</span></a>
+                    </div>
+                </div>
+                <!-- Project Card 5 -->
+                <div
+                    class="group bg-surface-container-lowest rounded-xl overflow-hidden project-card-shadow transition-all duration-500 hover:-translate-y-2 flex flex-col">
+                    <div class="aspect-[4/3] overflow-hidden relative">
+                        <img alt="Developer Tool"
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                            data-alt="Software code on a screen with syntax highlighting in emerald and slate colors, clean and professional development environment"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBQOd0hXBJ1VRxNgKGUVXho4cohZrPV8azyHrZAimsiposcgMrg3AisQx6UmJG_VkiLEh3w51ELAd8Tm8Px_l7xI_ohoIdhO84PtjqnabZAjIUPFkjER63FIkSPMBvA8v3fD4on8Vj2qDOFRwq0AjsWKY4F3mi9ebFkWlIV0RzQhexcczbcjHs7bxwePLJG-ex0OgpZFncwYq57aQgGvuSiG7ei3_3zJXDcrPz5TVD867QLvj2zenEht_2sUyg92oh3qGeXJiIR9Q" />
+                        <div
+                            class="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                        </div>
+                    </div>
+                    <div class="p-8 flex-grow">
+                        <div class="flex gap-2 mb-4">
+                            <span
+                                class="px-3 py-1 bg-primary-fixed text-on-primary-fixed-variant font-label-md text-label-md rounded-full">개발도구</span>
+                            <span
+                                class="px-3 py-1 bg-surface-container-high text-on-surface-variant font-label-md text-label-md rounded-full">B2B</span>
+                        </div>
+                        <h3 class="font-headline-md text-headline-md text-primary mb-3">Nexus CLI</h3>
+                        <p class="font-body-md text-body-md text-on-surface-variant mb-6">클라우드 인프라 관리를 위한 명령줄 인터페이스 및 문서
+                            스위트로, 개발 워크플로우를 최적화합니다.</p>
+                        <a class="inline-flex items-center gap-2 font-label-lg text-label-lg text-primary group/link"
+                            href="#">상세 보기 <span
+                                class="material-symbols-outlined transition-transform duration-300 group-hover/link:translate-x-1"
+                                data-icon="arrow_forward">arrow_forward</span></a>
+                    </div>
+                </div>
+                <!-- Project Card 6 -->
+                <div
+                    class="group bg-surface-container-lowest rounded-xl overflow-hidden project-card-shadow transition-all duration-500 hover:-translate-y-2 flex flex-col">
+                    <div class="aspect-[4/3] overflow-hidden relative">
+                        <img alt="Corporate Identity"
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                            data-alt="Branding collateral including stationery and business cards with a minimalist emerald green logo and premium paper textures"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuA3_uPU_Wy14zRLvnPu8QGj4BzjA3ljZH7TKk-CUHtH5GOBPSuG3tFTWG4rsX5Yv-9Yc9SOGRTBY2BN9E_mdfMmLfLNYjbuUhexE4vFNW6m9d0VBU11NwdrlxK4bCTqsXKeZ4G5A3YZhk1L-buRs7fxQrFLS8nPyWCocvsdF3NkkG7VHLtNEpikxq5aB6hw1e27Kl8Tvw--SZnnQfUe18EWipxSxjcWvc-l2DuKLsmG-qay6xPDLb0gBvMTRTTZlhyq0SrJExi_zw" />
+                        <div
+                            class="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                        </div>
+                    </div>
+                    <div class="p-8 flex-grow">
+                        <div class="flex gap-2 mb-4">
+                            <span
+                                class="px-3 py-1 bg-primary-fixed text-on-primary-fixed-variant font-label-md text-label-md rounded-full">브랜딩</span>
+                            <span
+                                class="px-3 py-1 bg-surface-container-high text-on-surface-variant font-label-md text-label-md rounded-full">아이덴티티</span>
+                        </div>
+                        <h3 class="font-headline-md text-headline-md text-primary mb-3">Vanguard Systems</h3>
+                        <p class="font-body-md text-body-md text-on-surface-variant mb-6">신뢰와 기술적 정밀함을 강조하는 글로벌 사이버 보안
+                            기업의 전체 브랜드 아이덴티티 및 비주얼 언어 개편입니다.</p>
+                        <a class="inline-flex items-center gap-2 font-label-lg text-label-lg text-primary group/link"
+                            href="#">상세 보기 <span
+                                class="material-symbols-outlined transition-transform duration-300 group-hover/link:translate-x-1"
+                                data-icon="arrow_forward">arrow_forward</span></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- CTA Section -->
+        <section class="max-w-7xl mx-auto px-8 mt-32 text-center">
+            <div class="bg-primary-container p-16 rounded-2xl">
+                <h2 class="font-display-md text-display-md text-on-primary-container mb-6">프로젝트 협업이 필요하신가요?</h2>
+                <p class="font-body-lg text-body-lg text-on-primary-container/80 mb-10 max-w-xl mx-auto">현재 다음 분기의 새로운
+                    기회를 찾고 있습니다. 함께 특별한 것을 만들어 봅시다.</p>
+                <button
+                    class="bg-white text-primary px-10 py-4 rounded-full font-label-lg text-label-lg hover:bg-surface-container transition-colors active:scale-95 duration-200">연락하기</button>
+            </div>
+        </section>
+    </main>
+    <!-- Footer -->
+    <footer class="w-full py-12 border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
+        <div
+            class="flex flex-col md:flex-row justify-between items-center px-8 max-w-7xl mx-auto font-inter text-sm antialiased">
+            <div class="font-semibold text-emerald-900 dark:text-emerald-50 mb-6 md:mb-0">포트폴리오</div>
+            <div class="flex space-x-8 mb-6 md:mb-0 text-slate-500 dark:text-slate-400">
+                <a class="hover:text-emerald-600 dark:hover:text-emerald-300 transition-colors" href="#">링크드인</a>
+                <a class="hover:text-emerald-600 dark:hover:text-emerald-300 transition-colors" href="#">깃허브</a>
+                <a class="hover:text-emerald-600 dark:hover:text-emerald-300 transition-colors" href="#">드리블</a>
+                <a class="hover:text-emerald-600 dark:hover:text-emerald-300 transition-colors" href="#">이메일</a>
+            </div>
+            <div class="text-slate-500 dark:text-slate-400">© 2024 포트폴리오. 정교하게 제작되었습니다.</div>
+        </div>
+    </footer>
+</body>
+
+</html>
+
+<!-- 포트폴리오 (Projects) -->
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Noto+Serif:wght@400;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-container": "#6b342d",
+                        "surface-container-highest": "#e1e3e4",
+                        "on-error": "#ffffff",
+                        "on-primary-fixed": "#002117",
+                        "on-tertiary": "#ffffff",
+                        "inverse-surface": "#2e3132",
+                        "surface-tint": "#2b6954",
+                        "on-secondary-fixed": "#141b2b",
+                        "background": "#f8f9fa",
+                        "on-primary-container": "#80bea6",
+                        "tertiary-fixed": "#ffdad5",
+                        "secondary-fixed": "#dce2f7",
+                        "primary-fixed": "#b0f0d6",
+                        "on-surface": "#191c1d",
+                        "surface-container-low": "#f3f4f5",
+                        "outline": "#707974",
+                        "tertiary-fixed-dim": "#ffb4a9",
+                        "on-primary-fixed-variant": "#0b513d",
+                        "error": "#ba1a1a",
+                        "on-tertiary-fixed-variant": "#6e372f",
+                        "surface-variant": "#e1e3e4",
+                        "on-tertiary-container": "#ea9e93",
+                        "surface-bright": "#f8f9fa",
+                        "secondary-fixed-dim": "#c0c6db",
+                        "on-error-container": "#93000a",
+                        "secondary": "#575e70",
+                        "on-secondary": "#ffffff",
+                        "outline-variant": "#bfc9c3",
+                        "error-container": "#ffdad6",
+                        "inverse-primary": "#95d3ba",
+                        "on-primary": "#ffffff",
+                        "inverse-on-surface": "#f0f1f2",
+                        "surface-dim": "#d9dadb",
+                        "primary-container": "#064e3b",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-fixed-dim": "#95d3ba",
+                        "on-secondary-fixed-variant": "#404758",
+                        "surface": "#f8f9fa",
+                        "on-tertiary-fixed": "#380d08",
+                        "surface-container-high": "#e7e8e9",
+                        "secondary-container": "#d9dff5",
+                        "on-background": "#191c1d",
+                        "on-secondary-container": "#5c6274",
+                        "surface-container": "#edeeef",
+                        "primary": "#003527",
+                        "tertiary": "#4f1f19",
+                        "on-surface-variant": "#404944"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-max-width": "1200px",
+                        "stack-lg": "80px",
+                        "gutter": "32px",
+                        "unit": "8px",
+                        "stack-sm": "16px",
+                        "margin-x": "64px",
+                        "stack-md": "32px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Noto Serif"],
+                        "label-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "body-lg": ["Noto Serif"],
+                        "label-lg": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "display-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "label-md": ["12px", { "lineHeight": "1", "fontWeight": "500" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "headline-md": ["24px", { "lineHeight": "1.4", "fontWeight": "600" }],
+                        "body-lg": ["20px", { "lineHeight": "1.7", "fontWeight": "400" }],
+                        "label-lg": ["14px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "display-lg": ["64px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "display-md": ["48px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700" }]
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .quiet-luxury-shadow {
+            box-shadow: 0 10px 40px -10px rgba(43, 105, 84, 0.06);
+        }
+    </style>
+</head>
+
+<body class="bg-background text-on-background selection:bg-primary-fixed selection:text-on-primary-fixed">
+    <!-- TopNavBar -->
+    <nav class="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-slate-100 shadow-sm">
+        <div class="flex justify-between items-center h-20 px-8 max-w-7xl mx-auto">
+            <div class="text-xl font-bold text-emerald-900 font-headline-md">Portfolio</div>
+            <div class="hidden md:flex items-center gap-8">
+                <a class="text-slate-600 hover:text-emerald-800 transition-colors font-label-lg" href="#">홈</a>
+                <a class="text-slate-600 hover:text-emerald-800 transition-colors font-label-lg" href="#">소개</a>
+                <a class="text-slate-600 hover:text-emerald-800 transition-colors font-label-lg" href="#">프로젝트</a>
+                <a class="text-emerald-700 border-b-2 border-emerald-700 pb-1 font-label-lg" href="#">연락처</a>
+            </div>
+            <button
+                class="bg-primary-container text-on-primary-container px-6 py-2.5 rounded-full font-label-lg hover:scale-95 transition-all duration-300">문의하기</button>
+        </div>
+    </nav>
+    <main class="pt-40 pb-20 px-8 max-w-7xl mx-auto">
+        <!-- Header Section -->
+        <header class="mb-20 text-left">
+            <h1 class="font-display-md text-primary mb-4">연락하기</h1>
+            <p class="font-body-lg text-secondary max-w-2xl">함께하고 싶은 프로젝트가 있거나 궁금한 점이 있으신가요? 언제든 편하게 연락해 주세요.</p>
+        </header>
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+            <!-- Contact Details Column (Asymmetric Layout) -->
+            <div class="lg:col-span-4 space-y-12">
+                <div class="space-y-8">
+                    <div class="group">
+                        <p class="font-label-lg text-outline mb-2 uppercase tracking-widest">이메일</p>
+                        <a class="font-headline-md text-primary hover:text-on-primary-container transition-colors"
+                            href="mailto:hello@portfolio.design">
+                            hello@portfolio.design
+                        </a>
+                    </div>
+                    <div class="group">
+                        <p class="font-label-lg text-outline mb-2 uppercase tracking-widest">전화번호</p>
+                        <p class="font-headline-md text-primary">+1 (555) 000-0000</p>
+                    </div>
+                    <div class="group">
+                        <p class="font-label-lg text-outline mb-2 uppercase tracking-widest">위치</p>
+                        <p class="font-headline-md text-primary">San Francisco, CA</p>
+                    </div>
+                </div>
+                <div class="pt-8 border-t border-outline-variant/30">
+                    <p class="font-label-lg text-outline mb-6 uppercase tracking-widest">소셜 미디어</p>
+                    <div class="flex gap-6">
+                        <a class="w-12 h-12 rounded-full border border-outline-variant flex items-center justify-center text-primary hover:bg-primary-fixed hover:border-primary-fixed transition-all duration-300"
+                            href="#">
+                            <span class="material-symbols-outlined">link</span>
+                        </a>
+                        <a class="w-12 h-12 rounded-full border border-outline-variant flex items-center justify-center text-primary hover:bg-primary-fixed hover:border-primary-fixed transition-all duration-300"
+                            href="#">
+                            <span class="material-symbols-outlined">code</span>
+                        </a>
+                        <a class="w-12 h-12 rounded-full border border-outline-variant flex items-center justify-center text-primary hover:bg-primary-fixed hover:border-primary-fixed transition-all duration-300"
+                            href="#">
+                            <span class="material-symbols-outlined">alternate_email</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="relative overflow-hidden rounded-xl aspect-[4/3] quiet-luxury-shadow">
+                    <img class="w-full h-full object-cover"
+                        data-alt="Modern minimalist office space with floor-to-ceiling windows, warm wooden accents, and soft morning sunlight"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuD2kIZEaMRKmW_wCs7AIKwIjlgFa0nL9YHc3rDEhJFi0uSijjxoBalJYZzBO5IQuyAN8nNix2oUXeaiAF_pskVNfwBLmDzTK1WpVwugVCbhryiR0CobWjW9gMDMCLj2GdtL3Kcn9KHHLmaR87XQUhwAgZq_Gq4tHcl5uxtuUJ1DeCtgEIJVuORdfM0eYtaoOJOHhfoRV4utiT6IU1n2j1QETnaUbHU7YOYZI8Xnq_TMiWi4oM-fEP03sAG7cQQ_VnspXokUU240wQ" />
+                    <div class="absolute inset-0 bg-primary/5"></div>
+                </div>
+            </div>
+            <!-- Contact Form Column -->
+            <div class="lg:col-span-8 bg-surface-container-lowest p-10 lg:p-16 rounded-xl quiet-luxury-shadow">
+                <form class="space-y-10">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                        <div class="relative group">
+                            <label
+                                class="font-label-lg text-outline mb-2 block transition-colors group-focus-within:text-primary"
+                                for="name">성함</label>
+                            <input
+                                class="w-full bg-transparent border-0 border-b border-outline-variant px-0 py-3 focus:ring-0 focus:border-primary text-body-md transition-all"
+                                id="name" name="name" placeholder="Jane Doe" type="text" />
+                        </div>
+                        <div class="relative group">
+                            <label
+                                class="font-label-lg text-outline mb-2 block transition-colors group-focus-within:text-primary"
+                                for="email">이메일 주소</label>
+                            <input
+                                class="w-full bg-transparent border-0 border-b border-outline-variant px-0 py-3 focus:ring-0 focus:border-primary text-body-md transition-all"
+                                id="email" name="email" placeholder="jane@example.com" type="email" />
+                        </div>
+                    </div>
+                    <div class="relative group">
+                        <label
+                            class="font-label-lg text-outline mb-2 block transition-colors group-focus-within:text-primary"
+                            for="message">메시지 내용</label>
+                        <textarea
+                            class="w-full bg-transparent border-0 border-b border-outline-variant px-0 py-3 focus:ring-0 focus:border-primary text-body-md transition-all resize-none"
+                            id="message" name="message" placeholder="Tell me about your project..." rows="5"></textarea>
+                    </div>
+                    <div class="pt-6">
+                        <button
+                            class="group flex items-center gap-4 bg-primary text-on-primary px-10 py-5 rounded-lg font-label-lg hover:bg-primary-container transition-all duration-300"
+                            type="submit">메시지 보내기 <span
+                                class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+    <!-- Footer -->
+    <footer class="w-full py-12 border-t border-slate-200 mt-20">
+        <div class="flex flex-col md:flex-row justify-between items-center px-8 max-w-7xl mx-auto text-sm font-inter">
+            <div class="font-semibold text-emerald-900 mb-4 md:mb-0">© 2024 Portfolio. 정성을 다해 제작되었습니다.</div>
+            <div class="flex gap-8">
+                <a class="text-slate-500 hover:text-emerald-600 transition-colors" href="#">링크드인</a>
+                <a class="text-slate-500 hover:text-emerald-600 transition-colors" href="#">깃허브</a>
+                <a class="text-slate-500 hover:text-emerald-600 transition-colors" href="#">드리블</a>
+                <a class="text-slate-500 hover:text-emerald-600 transition-colors" href="#">이메일</a>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
