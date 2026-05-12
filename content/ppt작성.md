@@ -1,5 +1,5 @@
 ---
-title: PPT 작성 가이드
+title: 장표 작성 사이트
 date: 2025-06-09
 tags:
   - 디자인
