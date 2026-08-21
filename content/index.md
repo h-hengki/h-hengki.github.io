@@ -1,4 +1,4 @@
 
 page.hengki.net
 
-![[hengki.png]]
+![[/images/hengki.png]]
