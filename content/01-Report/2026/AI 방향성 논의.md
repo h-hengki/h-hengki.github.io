@@ -49,16 +49,16 @@
   
 GMES·BESTERP 두 시스템의 Oracle DB를 한 화면에서 조회·분석할 수 있는 내부 도구.  
   
-* ** Interface 상태 확인** : 인터페이스별 실행 이력과 처리 결과를 실시간 조회  
-* ** DB 함수 분석 (AI)** : PL/SQL 함수 로직을 AI가 단계별로 트레이스·해설  
-* ** TDS 빌더 (AI)** : SQL 실행 결과를 분석해 C# Typed DataSet(.xsd)에 컬럼·설명을 자동 생성 
+* Interface 상태 확인 : 인터페이스별 실행 이력과 처리 결과를 실시간 조회  
+* DB 함수 분석 (AI) : PL/SQL 함수 로직을 AI가 단계별로 트레이스·해설  
+* TDS 빌더 (AI) : SQL 실행 결과를 분석해 C# Typed DataSet(.xsd)에 컬럼·설명을 자동 생성 
 * SQL 리스트 변환, DB 환경 전환 등 부가 기능 포함  
 
 * 소개 자료 : [[mes2-operconsole.html]]
 * 접속 경로 : https://mes-test.seahbesteel.co.kr/mes2
 
 
-### **2. FlowCore MES - 레거시 화면 암묵지 문서화 도구**  
+### 2. FlowCore MES - 레거시 화면 암묵지 문서화 도구  
   
 오래된 MES/ERP 화면은 코드만으로는 "왜 이렇게 만들었는지", "어떤 업무 맥락에서 쓰이는지" 파악이 어렵고, 이 지식은 담당자 개인에게만 남아 있는 경우가 많음. 
 
@@ -68,7 +68,7 @@ FlowCore MES는 화면을 선택하면 관련 소스와 DB 구조를 자동으�
 - 프로세스 분석 : 여러 화면을 업무 흐름(플로우차트)으로 엮어 종합 분석  
 - 용어집 : 사내 업무 용어를 팀 공용 사전으로 축적  
 - 암묵지 QnA : 쌓인 분석 문서 전체를 근거로 화면을 넘나드는 질의응답  
-- 데이터 챗봇(개발중) : BigQuery 원천 데이터에 자연어로 직접 질의**  
+- 데이터 챗봇(개발중) : BigQuery 원천 데이터에 자연어로 직접 질의  
 
 - 소개 자료 : ![[FlowCore2_intro.pdf]]
 - 기능 매뉴얼 : ![[FlowCore2_Function.pdf]]
