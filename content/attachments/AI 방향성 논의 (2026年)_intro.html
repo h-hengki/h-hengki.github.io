@@ -1,0 +1,466 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>운영콘솔</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+  :root{
+    color-scheme: light dark;
+    --bg:#f0f3f9;
+    --surface:#ffffff;
+    --surface-2:#e8edf6;
+    --ink:#0c1526;
+    --ink-soft:#57647a;
+    --line:#dbe3ee;
+    --accent:#0055ff;
+    --accent-deep:#001a3d;
+    --accent-soft:#e4ecff;
+    --status-prod:#c8392f;
+    --status-qa:#b8790a;
+    --status-ok:#187a4f;
+    --ai-1:#8b5cf6;
+    --ai-2:#d9459b;
+    --shadow: 0 1px 2px rgba(9,20,44,.04), 0 10px 24px -14px rgba(9,20,44,.18);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#070c16;
+      --surface:#101a2c;
+      --surface-2:#16233a;
+      --ink:#e7edf8;
+      --ink-soft:#8d9bb4;
+      --line:#223252;
+      --accent:#5b8dff;
+      --accent-deep:#bcd3ff;
+      --accent-soft:rgba(91,141,255,.14);
+      --status-prod:#ff7266;
+      --status-qa:#f0ac3f;
+      --status-ok:#3fcb8c;
+      --ai-1:#a382ff;
+      --ai-2:#ef6cbd;
+      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 14px 30px -16px rgba(0,0,0,.6);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#070c16;
+    --surface:#101a2c;
+    --surface-2:#16233a;
+    --ink:#e7edf8;
+    --ink-soft:#8d9bb4;
+    --line:#223252;
+    --accent:#5b8dff;
+    --accent-deep:#bcd3ff;
+    --accent-soft:rgba(91,141,255,.14);
+    --status-prod:#ff7266;
+    --status-qa:#f0ac3f;
+    --status-ok:#3fcb8c;
+    --ai-1:#a382ff;
+    --ai-2:#ef6cbd;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 14px 30px -16px rgba(0,0,0,.6);
+  }
+
+  *{box-sizing:border-box;}
+  html,body{margin:0;}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:"IBM Plex Sans KR","Noto Sans KR",-apple-system,sans-serif;
+    padding:0 20px 96px;
+  }
+  h1,h2,h3{text-wrap:balance; margin:0; font-family:"IBM Plex Sans KR",sans-serif;}
+  p{margin:0; line-height:1.65;}
+  .mono{font-family:"IBM Plex Mono",ui-monospace,monospace;}
+
+  .wrap{max-width:920px; margin:0 auto;}
+
+  /* ---------- top status bar ---------- */
+  .topbar{
+    display:flex; align-items:center; gap:10px;
+    padding:16px 4px 14px;
+    color:var(--ink-soft);
+    font-family:"IBM Plex Mono",monospace;
+    font-size:11.5px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    border-bottom:1px solid var(--line);
+  }
+  .dot{width:7px; height:7px; border-radius:50%; background:var(--status-ok); box-shadow:0 0 0 3px color-mix(in srgb, var(--status-ok) 22%, transparent); flex-shrink:0;}
+  @media (prefers-reduced-motion: no-preference){
+    .dot{animation: pulse 2.4s ease-in-out infinite;}
+  }
+  @keyframes pulse{ 0%,100%{opacity:1;} 50%{opacity:.45;} }
+  .topbar .sep{opacity:.4;}
+  .topbar .push{margin-left:auto;}
+
+  /* ---------- hero ---------- */
+  .hero{
+    padding:56px 4px 40px;
+    display:flex; flex-direction:column; gap:18px;
+    background-image:
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size:34px 34px;
+    background-position:center top;
+    -webkit-mask-image: linear-gradient(to bottom, black, black 70%, transparent 100%);
+            mask-image: linear-gradient(to bottom, black, black 70%, transparent 100%);
+  }
+  .eyebrow{
+    font-family:"IBM Plex Mono",monospace;
+    font-size:12px; letter-spacing:.1em; text-transform:uppercase;
+    color:var(--accent); font-weight:600;
+  }
+  .hero h1{
+    font-size:clamp(34px, 6vw, 54px);
+    font-weight:700; letter-spacing:-.02em; color:var(--ink);
+  }
+  .hero .lede{
+    max-width:56ch; color:var(--ink-soft); font-size:16.5px;
+  }
+  .stat-row{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:1px;
+    background:var(--line); border:1px solid var(--line); border-radius:10px;
+    overflow:hidden; margin-top:8px;
+  }
+  .stat{
+    background:var(--surface); padding:16px 14px; display:flex; flex-direction:column; gap:4px;
+  }
+  .stat b{font-size:24px; font-family:"IBM Plex Mono",monospace; font-variant-numeric:tabular-nums; color:var(--ink);}
+  .stat span{font-size:11.5px; color:var(--ink-soft);}
+  @media (max-width:640px){ .stat-row{grid-template-columns:repeat(2,1fr);} }
+
+  /* ---------- section label ---------- */
+  .section-head{
+    display:flex; align-items:baseline; gap:10px; margin:64px 4px 20px;
+  }
+  .section-head .mono{font-size:12px; color:var(--ink-soft); letter-spacing:.08em;}
+  .section-head h2{font-size:20px; font-weight:700;}
+  .section-head::after{content:""; flex:1; height:1px; background:var(--line); align-self:center;}
+
+  /* ---------- module cards ---------- */
+  .module{
+    display:grid; grid-template-columns:1.05fr 1fr; gap:28px;
+    background:var(--surface); border:1px solid var(--line); border-radius:14px;
+    padding:26px; margin:0 0 18px; box-shadow:var(--shadow);
+  }
+  @media (max-width:760px){ .module{grid-template-columns:1fr;} }
+
+  .module-id{
+    font-family:"IBM Plex Mono",monospace; font-size:12px; color:var(--ink-soft);
+    letter-spacing:.08em; margin-bottom:10px; display:flex; gap:8px; align-items:center;
+  }
+  .module-id .n{color:var(--accent); font-weight:600;}
+  .m-title{display:flex; align-items:center; gap:10px; margin-bottom:10px;}
+  .icon-box{
+    width:34px; height:34px; border-radius:9px; background:var(--accent-soft); color:var(--accent);
+    display:flex; align-items:center; justify-content:center; flex-shrink:0;
+  }
+  .icon-box svg{width:19px; height:19px;}
+  .m-title h3{font-size:19px; font-weight:700;}
+  .ai-badge{
+    font-family:"IBM Plex Mono",monospace; font-size:10px; font-weight:600; letter-spacing:.04em;
+    color:#fff; background:linear-gradient(120deg,var(--ai-1),var(--ai-2));
+    padding:2px 8px 2px 6px; border-radius:999px; display:inline-flex; align-items:center; gap:3px;
+  }
+  .m-desc{color:var(--ink-soft); font-size:14.5px; margin-bottom:16px;}
+  .feat-list{list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:9px;}
+  .feat-list li{
+    padding-left:16px; position:relative; font-size:13.5px; color:var(--ink); line-height:1.55;
+  }
+  .feat-list li::before{
+    content:""; position:absolute; left:0; top:7px; width:6px; height:6px; border-radius:1.5px;
+    background:var(--accent); transform:rotate(45deg);
+  }
+
+  .mock{
+    background:var(--surface-2); border:1px solid var(--line); border-radius:10px;
+    padding:14px; display:flex; flex-direction:column; gap:10px; font-size:12px;
+    min-width:0;
+  }
+  .mock-bar{display:flex; gap:5px;}
+  .mock-bar i{width:7px; height:7px; border-radius:50%; background:var(--line);}
+
+  /* mock: table */
+  .mtable{width:100%; border-collapse:collapse; font-family:"IBM Plex Mono",monospace; font-size:11px;}
+  .mtable th{text-align:left; color:var(--ink-soft); font-weight:500; padding:4px 6px; border-bottom:1px solid var(--line);}
+  .mtable td{padding:5px 6px; border-bottom:1px solid var(--line); color:var(--ink); font-variant-numeric:tabular-nums;}
+  .mtable tr:last-child td{border-bottom:none;}
+  .pill{display:inline-flex; align-items:center; gap:5px; font-size:10.5px;}
+  .pill i{width:6px; height:6px; border-radius:50%;}
+  .ok i{background:var(--status-ok);} .ok{color:var(--status-ok);}
+  .err i{background:var(--status-prod);} .err{color:var(--status-prod);}
+
+  /* mock: code */
+  .code{font-family:"IBM Plex Mono",monospace; font-size:11px; line-height:1.8; color:var(--ink-soft);}
+  .code .ln{color:var(--ink-soft); opacity:.55; display:inline-block; width:16px;}
+  .code .hl{background:var(--accent-soft); display:block; margin:0 -6px; padding:0 6px; border-radius:4px; color:var(--ink);}
+  .trace{
+    margin-top:2px; padding-top:10px; border-top:1px dashed var(--line);
+    font-family:"IBM Plex Mono",monospace; font-size:11px; color:var(--ink-soft);
+  }
+  .trace b{color:var(--accent);}
+
+  /* mock: converter */
+  .swap{display:flex; align-items:center; gap:8px;}
+  .swap .box{flex:1; background:var(--surface); border:1px solid var(--line); border-radius:8px; padding:8px; font-family:"IBM Plex Mono",monospace; font-size:11px; color:var(--ink); word-break:break-all;}
+  .swap .arrow{color:var(--accent); flex-shrink:0;}
+
+  /* mock: file tree */
+  .tree{font-family:"IBM Plex Mono",monospace; font-size:11.5px; display:flex; flex-direction:column; gap:6px;}
+  .tree .row{display:flex; align-items:center; gap:7px; color:var(--ink);}
+  .tree .row.sub{padding-left:18px; color:var(--ink-soft);}
+  .cap-table{width:100%; border-collapse:collapse; font-family:"IBM Plex Mono",monospace; font-size:10.5px; margin-top:2px;}
+  .cap-table td{padding:4px 6px; border-bottom:1px solid var(--line);}
+  .cap-table tr:last-child td{border-bottom:none;}
+  .cap-table td:first-child{color:var(--ink-soft);}
+
+  /* mock: settings */
+  .env-list{display:flex; flex-direction:column; gap:6px;}
+  .env-row{
+    display:flex; align-items:center; gap:8px; padding:7px 9px; border-radius:7px;
+    border:1px solid var(--line); font-family:"IBM Plex Mono",monospace; font-size:11px; color:var(--ink-soft);
+  }
+  .env-row.active{border-color:var(--accent); background:var(--accent-soft); color:var(--ink); font-weight:600;}
+  .env-row i{width:8px; height:8px; border-radius:50%; flex-shrink:0;}
+
+  /* ---------- env table ---------- */
+  .env-table{width:100%; border-collapse:collapse; margin-top:4px;}
+  .env-table th{
+    text-align:left; font-size:11.5px; letter-spacing:.05em; text-transform:uppercase;
+    color:var(--ink-soft); font-weight:600; padding:10px 12px; border-bottom:1px solid var(--line);
+  }
+  .env-table td{padding:12px; border-bottom:1px solid var(--line); font-size:13.5px;}
+  .env-table tr:last-child td{border-bottom:none;}
+  .swatch{display:inline-block; width:9px; height:9px; border-radius:2px; margin-right:8px;}
+  .env-table .key{font-family:"IBM Plex Mono",monospace; font-size:12.5px; color:var(--ink-soft);}
+
+  /* ---------- footer ---------- */
+  .stack-row{display:flex; flex-wrap:wrap; gap:8px; margin-top:16px;}
+  .chip{
+    font-family:"IBM Plex Mono",monospace; font-size:11.5px; color:var(--ink-soft);
+    border:1px solid var(--line); padding:5px 10px; border-radius:999px; background:var(--surface);
+  }
+  footer{
+    margin-top:72px; padding-top:22px; border-top:1px solid var(--line);
+    display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:16px;
+  }
+  footer .who{font-size:13px; color:var(--ink-soft);}
+  footer .who b{color:var(--ink); font-weight:600;}
+
+  .access{
+    display:inline-flex; align-items:center; gap:9px;
+    margin-top:20px; padding:10px 16px; border-radius:9px;
+    background:var(--accent-soft); border:1px solid color-mix(in srgb, var(--accent) 35%, var(--line));
+    font-family:"IBM Plex Mono",monospace; font-size:13px; color:var(--accent);
+    text-decoration:none; width:fit-content; max-width:100%;
+  }
+  .access span.lbl{
+    font-family:"IBM Plex Sans KR",sans-serif; color:var(--ink-soft); font-size:11.5px;
+  }
+  .access b{font-weight:600; word-break:break-all;}
+  .access svg{flex-shrink:0; width:14px; height:14px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="topbar">
+    <span class="dot"></span>
+    <span>SYSTEM OPERATIONAL</span>
+    <span class="sep">/</span>
+    <span>ORACLE · GMES / BESTERP</span>
+    <span class="push">VNTG MES2팀</span>
+  </div>
+
+  <section class="hero">
+    <div class="eyebrow">Internal Tool Overview</div>
+    <h1>운영콘솔</h1>
+    <p class="lede">GMES·BESTERP 두 시스템의 Oracle DB를 하나의 화면에서 조회하고, 인터페이스 상태를 점검하고, PL/SQL 로직을 분석하고, C# TDS 파일을 자동으로 채워주는 MES2팀 내부 운영 도구입니다.</p>
+    <div class="stat-row">
+      <div class="stat"><b>05</b><span>메뉴 구성</span></div>
+      <div class="stat"><b>02</b><span>AI 탑재 메뉴</span></div>
+      <div class="stat"><b>06</b><span>DB 접속 환경</span></div>
+      <div class="stat"><b>02</b><span>연동 시스템 (GMES·BESTERP)</span></div>
+    </div>
+    <a class="access" href="https://mes-test.seahbesteel.co.kr/mes2" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><line x1="3" y1="12" x2="21" y2="12"/><path d="M12 3c2.5 2.6 4 6 4 9s-1.5 6.4-4 9c-2.5-2.6-4-6-4-9s1.5-6.4 4-9z"/></svg>
+      <span class="lbl">접속 경로</span>
+      <b>mes-test.seahbesteel.co.kr/mes2</b>
+    </a>
+  </section>
+
+  <!-- ============ MODULE 01 : IF-STATUS ============ -->
+  <div class="section-head"><span class="mono">MODULES</span><h2>화면 소개</h2></div>
+
+  <article class="module">
+    <div>
+      <div class="module-id"><span class="n">01</span> / IF-STATUS</div>
+      <div class="m-title">
+        <span class="icon-box">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><polyline points="1,13 6,13 9,4 14,21 17,13 23,13"/></svg>
+        </span>
+        <h3>Interface 상태 확인</h3>
+      </div>
+      <p class="m-desc">GMES·BESTERP 인터페이스별 실행 이력과 최근 처리 결과를 한 화면에서 확인합니다.</p>
+      <ul class="feat-list">
+        <li>IF_ID · IF_STATE · 처리 건수 등 실행 이력 컬럼 조회</li>
+        <li>최근 실행일시·에러 건수로 이상 유무 즉시 파악</li>
+        <li>현재 접속된 DB 환경 뱃지가 함께 표시</li>
+      </ul>
+    </div>
+    <div class="mock">
+      <div class="mock-bar"><i></i><i></i><i></i></div>
+      <table class="mtable">
+        <tr><th>IF_ID</th><th>IF_STATE</th><th>건수</th></tr>
+        <tr><td>IF-2201</td><td><span class="pill ok"><i></i>정상</span></td><td>128,402</td></tr>
+        <tr><td>IF-3110</td><td><span class="pill err"><i></i>오류</span></td><td>0</td></tr>
+        <tr><td>IF-1044</td><td><span class="pill ok"><i></i>정상</span></td><td>54,110</td></tr>
+      </table>
+    </div>
+  </article>
+
+  <!-- ============ MODULE 02 : FUNCTION-ANALYZER ============ -->
+  <article class="module">
+    <div>
+      <div class="module-id"><span class="n">02</span> / FUNCTION-ANALYZER</div>
+      <div class="m-title">
+        <span class="icon-box">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4c-2 0-3 1-3 3v3c0 1.3-1 2-2 2 1 0 2 .7 2 2v3c0 2 1 3 3 3"/><path d="M15 4c2 0 3 1 3 3v3c0 1.3 1 2 2 2-1 0-2 .7-2 2v3c0 2-1 3-3 3"/></svg>
+        </span>
+        <h3>DB 함수 분석</h3>
+        <span class="ai-badge">✦ AI</span>
+      </div>
+      <p class="m-desc">Oracle PL/SQL 함수 소스를 조회하고, AI가 인자·리턴 타입과 실행 흐름을 단계별로 트레이스합니다.</p>
+      <ul class="feat-list">
+        <li>함수 시그니처(인자 · IN/OUT · 기본값) 자동 파싱</li>
+        <li>소스 라인별 변수 값 변화를 단계별로 트레이스</li>
+        <li>Gemini 기반 로직 해설 자동 생성</li>
+      </ul>
+    </div>
+    <div class="mock">
+      <div class="mock-bar"><i></i><i></i><i></i></div>
+      <div class="code">
+        <span class="ln">12</span>IF v_status = 'Y' THEN<br>
+        <span class="hl"><span class="ln">13</span>&nbsp;&nbsp;v_total := v_total + p_amt;</span><br>
+        <span class="ln">14</span>END IF;
+      </div>
+      <div class="trace"><b>STEP 03</b> · v_total: 128,400 → 133,650</div>
+    </div>
+  </article>
+
+  <!-- ============ MODULE 03 : LIST-CONVERTER ============ -->
+  <article class="module">
+    <div>
+      <div class="module-id"><span class="n">03</span> / LIST-CONVERTER</div>
+      <div class="m-title">
+        <span class="icon-box">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><polyline points="17,3 21,7 17,11"/><line x1="21" y1="7" x2="6" y2="7"/><polyline points="7,13 3,17 7,21"/><line x1="3" y1="17" x2="18" y2="17"/></svg>
+        </span>
+        <h3>SQL 리스트 변환</h3>
+      </div>
+      <p class="m-desc">쉼표로 나열된 값 목록을 SQL IN절이나 원하는 코드 포맷으로 즉시 변환합니다.</p>
+      <ul class="feat-list">
+        <li>텍스트 붙여넣기만으로 실시간 변환 미리보기 제공</li>
+        <li>숫자·문자 리스트 모두 지원, 따옴표 자동 처리</li>
+        <li>변환 결과 원클릭 복사</li>
+      </ul>
+    </div>
+    <div class="mock">
+      <div class="mock-bar"><i></i><i></i><i></i></div>
+      <div class="swap">
+        <div class="box">1001, 1002,<br>1003</div>
+        <span class="arrow">→</span>
+        <div class="box">'1001','1002',<br>'1003'</div>
+      </div>
+    </div>
+  </article>
+
+  <!-- ============ MODULE 04 : TDS-BUILDER ============ -->
+  <article class="module">
+    <div>
+      <div class="module-id"><span class="n">04</span> / TDS-BUILDER</div>
+      <div class="m-title">
+        <span class="icon-box">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="4" width="19" height="16" rx="2"/><line x1="2.5" y1="10" x2="21.5" y2="10"/><line x1="9" y1="4" x2="9" y2="20"/><line x1="15.5" y1="4" x2="15.5" y2="20"/></svg>
+        </span>
+        <h3>TDS 빌더</h3>
+        <span class="ai-badge">✦ AI</span>
+      </div>
+      <p class="m-desc">SQL 실행 결과를 분석해 Visual Studio C# Typed DataSet(.xsd)에 DataTable과 컬럼 Caption을 자동으로 채워 넣습니다.</p>
+      <ul class="feat-list">
+        <li>SQL 실행 → 컬럼명·타입 자동 추출 후 xs:decimal/xs:string 매핑</li>
+        <li>AI가 원본 테이블을 역추적해 컬럼 설명(Caption) 자동 완성</li>
+        <li>기존 XSD 미리보기에서 Caption 인라인 편집 · 엑셀 복사</li>
+        <li>로컬 XSD 파일을 브라우저에서 바로 저장</li>
+      </ul>
+    </div>
+    <div class="mock">
+      <div class="mock-bar"><i></i><i></i><i></i></div>
+      <div class="tree">
+        <div class="row">📄 MesDataSet.xsd</div>
+        <div class="row sub">▤ TB_LOT_HIST <span style="opacity:.6">(신규)</span></div>
+      </div>
+      <table class="cap-table">
+        <tr><td>LOT_NO</td><td>로트번호</td></tr>
+        <tr><td>EQP_ID</td><td>설비ID</td></tr>
+      </table>
+    </div>
+  </article>
+
+  <!-- ============ MODULE 05 : SETTINGS ============ -->
+  <article class="module">
+    <div>
+      <div class="module-id"><span class="n">05</span> / SETTINGS</div>
+      <div class="m-title">
+        <span class="icon-box">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="6" x2="20" y2="6"/><circle cx="9" cy="6" r="2" fill="currentColor" stroke="none"/><line x1="4" y1="12" x2="20" y2="12"/><circle cx="16" cy="12" r="2" fill="currentColor" stroke="none"/><line x1="4" y1="18" x2="20" y2="18"/><circle cx="11" cy="18" r="2" fill="currentColor" stroke="none"/></svg>
+        </span>
+        <h3>설정</h3>
+      </div>
+      <p class="m-desc">조회 대상 DB 환경을 운영 · 품질 · Reader 계정 중에서 전환합니다.</p>
+      <ul class="feat-list">
+        <li>환경별 색상 뱃지로 현재 접속 환경을 항상 표시</li>
+        <li>전환 즉시 모든 메뉴의 조회 대상에 반영</li>
+        <li>선택값은 쿠키에 저장되어 다음 접속 시 유지</li>
+      </ul>
+    </div>
+    <div class="mock">
+      <div class="mock-bar"><i></i><i></i><i></i></div>
+      <div class="env-list">
+        <div class="env-row"><i style="background:var(--status-prod)"></i>운영계 · GMES</div>
+        <div class="env-row active"><i style="background:var(--status-qa)"></i>품질계 · GMES</div>
+        <div class="env-row"><i style="background:var(--accent)"></i>GMES · Reader</div>
+      </div>
+    </div>
+  </article>
+
+  <!-- ============ DB ENV TABLE ============ -->
+  <div class="section-head"><span class="mono">REFERENCE</span><h2>DB 접속 환경</h2></div>
+  <table class="env-table">
+    <tr><th>환경</th><th>설명</th><th>키</th></tr>
+    <tr><td><span class="swatch" style="background:var(--status-prod)"></span>운영계 · GMES</td><td>GMES 운영 데이터베이스</td><td class="key">prod-gmes</td></tr>
+    <tr><td><span class="swatch" style="background:var(--status-prod)"></span>운영계 · BESTERP</td><td>BESTERP 운영 데이터베이스</td><td class="key">prod-besterp</td></tr>
+    <tr><td><span class="swatch" style="background:var(--status-qa)"></span>품질계 · GMES</td><td>GMES QA 데이터베이스</td><td class="key">qa-gmes</td></tr>
+    <tr><td><span class="swatch" style="background:var(--status-qa)"></span>품질계 · BESTERP</td><td>BESTERP QA 데이터베이스</td><td class="key">qa-besterp</td></tr>
+    <tr><td><span class="swatch" style="background:var(--accent)"></span>GMES · Reader</td><td>읽기 전용 조회 계정</td><td class="key">gmes_reader</td></tr>
+    <tr><td><span class="swatch" style="background:var(--accent)"></span>BESTERP · Reader</td><td>읽기 전용 조회 계정</td><td class="key">besterp_reader</td></tr>
+  </table>
+
+  <footer>
+    <div>
+      <div class="who"><b>운영콘솔</b> · VNTG MES2팀 내부 도구</div>
+      <div class="stack-row">
+        <span class="chip">Next.js 16</span>
+        <span class="chip">React 19</span>
+        <span class="chip">Oracle DB</span>
+        <span class="chip">Gemini AI</span>
+      </div>
+    </div>
+    <div class="who">문의 · MES2팀</div>
+  </footer>
+
+</div>
+</body>
+</html>
