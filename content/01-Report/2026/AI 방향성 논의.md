@@ -54,8 +54,8 @@ GMES·BESTERP 두 시스템의 Oracle DB를 한 화면에서 조회·분석할 �
 * ** TDS 빌더 (AI)** : SQL 실행 결과를 분석해 C# Typed DataSet(.xsd)에 컬럼·설명을 자동 생성 
 * SQL 리스트 변환, DB 환경 전환 등 부가 기능 포함  
 
-> 소개 자료 : [[mes2-operconsole.html]]
-> 접속 경로 : https://mes-test.seahbesteel.co.kr/mes2
+* 소개 자료 : [[mes2-operconsole.html]]
+* 접속 경로 : https://mes-test.seahbesteel.co.kr/mes2
 
 
 ### **2. FlowCore MES - 레거시 화면 암묵지 문서화 도구**  
@@ -70,11 +70,9 @@ FlowCore MES는 화면을 선택하면 관련 소스와 DB 구조를 자동으�
 - 암묵지 QnA : 쌓인 분석 문서 전체를 근거로 화면을 넘나드는 질의응답  
 - 데이터 챗봇(개발중) : BigQuery 원천 데이터에 자연어로 직접 질의**  
 
-> 소개 자료 : ![[FlowCore2_intro.pdf]]
-> 기능 매뉴얼 : ![[FlowCore2_Function.pdf]]
-> 접속 경로 : http://172.17.40.215:8088
-
-
+- 소개 자료 : ![[FlowCore2_intro.pdf]]
+- 기능 매뉴얼 : ![[FlowCore2_Function.pdf]]
+- 접속 경로 : http://172.17.40.215:8088
 
 ***
 ## PC팀
