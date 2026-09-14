@@ -82,27 +82,28 @@ FlowCore MES는 화면을 선택하면 관련 소스와 DB 구조를 자동으�
 ### 사내 매뉴얼 RAG 챗봇 구축
 - 참여자 : 박광준, 김성훈, 채희민, 이수종
 - 주제 : 사내 매뉴얼 RAG 챗봇 구축
+- 2026년 KPI 
 - 산출물
 	- 자연어(평소 말투)로 질문 시 AI가 연관 문서를 즉각 검색 및 답변 제공가능한 쳇봇.
 	- 답변에 원본 이미지와 출처 문서를 함께 제시.
 	- 매뉴얼을 GitLab에 올리면 자동 반영.
-
-> 소개 자료 : https://docs.google.com/presentation/d/1DmJPrnDcFqGFxfOU5D02lNYGtyyIwQwD/edit?slide=id.p49#slide=id.p49
-> 접속 경로 : http://chat.l2/
+- 소개 자료 
+	- https://docs.google.com/presentation/d/1DmJPrnDcFqGFxfOU5D02lNYGtyyIwQwD
+- 접속 경로 : http://chat.l2/
 
 
 ### AI를 활용한 Level2 레거시 UI 웹 전환 POC 및 API 파이프라인 구축
 - 참여자 : 김태표, 김경원, 서영은, 홍현기
 - 주제 : AI 모델링 데이터 파이프라인 구축 및 AI를 활용한 기존 Level2(WPF, WinForm) 화면의 웹 전환 POC
+- 2026년 KPI 
 - 산출물 
 	- 외부 AI 분석 및 내부 데이터 연동을 위한 표준 REST API 서비스 (인증 및 보안 적용)
 	- 구축된 API를 기반으로, AI를 활용해 기존 화면(WPF, WinForm)을 웹으로 전환 구현한 'Level2 실시간 조업 모니터링 및 실적 대시보드' (POC)
-
-> 접속 경로 
-> 	API 문서 : http://172.31.209.71:9080/apidocs/
-> 	Level2 UI POC 
-> 		: http://app.seahbesteel.co.kr:8004/SMRTWEB002/eaf
-> 		: http://app.seahbesteel.co.kr:8004/SMRTWEB002/eafmon
+- 접속 경로 
+	- API 문서 : http://172.31.209.71:9080/apidocs/
+	- Level2 UI POC 
+		- http://app.seahbesteel.co.kr:8004/SMRTWEB002/eaf
+		- http://app.seahbesteel.co.kr:8004/SMRTWEB002/eafmon
 
 
 
