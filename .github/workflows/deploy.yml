@@ -30,6 +30,8 @@ jobs:
         run: npx quartz build
       - name: Copy CNAME into build output
         run: cp CNAME public/CNAME
+      - name: Copy standalone apps into build output
+        run: cp -r apps public/apps
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

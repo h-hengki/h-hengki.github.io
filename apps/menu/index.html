@@ -1,0 +1,1060 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<title>세아베스틸 식단표</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  /* Layout: a menu board. Day strip on top, one card per meal below, a week table on demand. */
+  :root {
+    color-scheme: light;
+    --bg: #eceff4;
+    --surface: #ffffff;
+    --surface-2: #f5f7fa;
+    --ink: #161f2c;
+    --ink-soft: #5d6a7c;
+    --line: #d7dde7;
+    --accent: #cf4f1d;
+    --accent-ink: #ffffff;
+    --accent-soft: #fbe8de;
+    --ok: #1f7a4d;
+    --warn: #b06b00;
+    --bad: #b8322a;
+    --meal-1: #b8780e;
+    --meal-2: #2a7a4c;
+    --meal-3: #4b55a6;
+    --meal-x: #6b7380;
+    --shadow: 0 1px 2px rgba(22, 31, 44, .05), 0 10px 26px -16px rgba(22, 31, 44, .25);
+    --font-display: "Gowun Batang", "Noto Serif KR", "Apple SD Gothic Neo", serif;
+    --font-body: "IBM Plex Sans KR", "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      color-scheme: dark;
+      --bg: #0f141b;
+      --surface: #171e28;
+      --surface-2: #1e2733;
+      --ink: #e7ecf3;
+      --ink-soft: #97a3b5;
+      --line: #2a3545;
+      --accent: #f2773f;
+      --accent-ink: #1a0d06;
+      --accent-soft: rgba(242, 119, 63, .16);
+      --ok: #4ccb8a;
+      --warn: #f2b84b;
+      --bad: #ff8077;
+      --meal-1: #e6a93a;
+      --meal-2: #5fcf8e;
+      --meal-3: #9aa3ff;
+      --meal-x: #9aa4b2;
+      --shadow: 0 1px 2px rgba(0, 0, 0, .35), 0 14px 30px -18px rgba(0, 0, 0, .7);
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --bg: #0f141b;
+    --surface: #171e28;
+    --surface-2: #1e2733;
+    --ink: #e7ecf3;
+    --ink-soft: #97a3b5;
+    --line: #2a3545;
+    --accent: #f2773f;
+    --accent-ink: #1a0d06;
+    --accent-soft: rgba(242, 119, 63, .16);
+    --ok: #4ccb8a;
+    --warn: #f2b84b;
+    --bad: #ff8077;
+    --meal-1: #e6a93a;
+    --meal-2: #5fcf8e;
+    --meal-3: #9aa3ff;
+    --meal-x: #9aa4b2;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .35), 0 14px 30px -18px rgba(0, 0, 0, .7);
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    padding-inline: 16px;
+    padding-block: 0 48px;
+  }
+  button, input, textarea, select { font: inherit; color: inherit; }
+  button { cursor: pointer; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { transition: none !important; animation: none !important; }
+  }
+
+  .wrap { max-width: 1080px; margin: 0 auto; }
+
+  /* Header */
+  .top {
+    position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5;
+    background: var(--bg);
+    padding-block: 14px 10px;
+    display: flex; flex-wrap: wrap; align-items: flex-end; gap: 10px 16px;
+    border-bottom: 1px solid var(--line);
+  }
+  .brand { min-width: 0; flex: 1 1 240px; }
+  .brand .eyebrow {
+    font-family: var(--font-mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .brand h1 {
+    font-family: var(--font-display); font-weight: 700; font-size: clamp(22px, 3.4vw, 30px);
+    margin: 2px 0 0; line-height: 1.2; text-wrap: balance;
+  }
+  .brand h1 small { font-family: var(--font-body); font-weight: 500; font-size: 14px; color: var(--ink-soft); margin-left: 8px; }
+  .actions { display: flex; gap: 8px; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 8px 12px; border-radius: 8px; border: 1px solid var(--line);
+    background: var(--surface); color: var(--ink); font-weight: 500; font-size: 14px;
+    transition: border-color .15s, background .15s;
+  }
+  .btn:hover { border-color: var(--ink-soft); }
+  .btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+  .btn.ghost { background: transparent; }
+  .btn svg { width: 16px; height: 16px; }
+  .btn[aria-busy="true"] svg { animation: spin 1s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* Status line */
+  .status {
+    display: flex; flex-wrap: wrap; align-items: center; gap: 6px 14px;
+    padding-block: 10px 4px; font-size: 13px; color: var(--ink-soft);
+  }
+  .status .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--meal-x); display: inline-block; margin-right: 6px; vertical-align: 1px; }
+  .status[data-state="ok"] .dot { background: var(--ok); }
+  .status[data-state="warn"] .dot { background: var(--warn); }
+  .status[data-state="bad"] .dot { background: var(--bad); }
+  .status[data-state="busy"] .dot { background: var(--accent); }
+  .status .mono { font-family: var(--font-mono); font-size: 12px; }
+
+  /* Notice (errors, sample mode) */
+  .notice {
+    margin-block: 10px 4px; padding: 12px 14px; border-radius: 10px;
+    border: 1px solid var(--line); background: var(--surface);
+    border-left: 4px solid var(--warn);
+    display: grid; gap: 8px;
+  }
+  .notice[data-kind="bad"] { border-left-color: var(--bad); }
+  .notice[data-kind="info"] { border-left-color: var(--accent); }
+  .notice strong { font-weight: 600; }
+  .notice p { margin: 0; color: var(--ink-soft); font-size: 14px; }
+  .notice .row { display: flex; gap: 8px; flex-wrap: wrap; }
+  .notice code { font-family: var(--font-mono); font-size: 12px; background: var(--surface-2); padding: 1px 5px; border-radius: 4px; word-break: break-all; }
+
+  /* Day strip */
+  .days {
+    display: flex; gap: 8px; overflow-x: auto; padding-block: 12px 6px;
+    scrollbar-width: thin; scroll-snap-type: x proximity;
+  }
+  .day {
+    flex: 0 0 auto; min-width: 58px; scroll-snap-align: start;
+    display: grid; justify-items: center; gap: 2px;
+    padding: 8px 10px; border-radius: 10px; border: 1px solid var(--line);
+    background: var(--surface); color: var(--ink);
+    transition: border-color .15s, background .15s;
+  }
+  .day:hover { border-color: var(--ink-soft); }
+  .day .wd { font-size: 12px; color: var(--ink-soft); }
+  .day .dn { font-family: var(--font-mono); font-size: 18px; font-weight: 500; line-height: 1.1; font-variant-numeric: tabular-nums; }
+  .day .md { font-size: 11px; color: var(--ink-soft); }
+  .day[data-weekend="sat"] .wd, .day[data-weekend="sat"] .dn { color: var(--meal-3); }
+  .day[data-weekend="sun"] .wd, .day[data-weekend="sun"] .dn { color: var(--bad); }
+  .day[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: var(--bg); }
+  .day[aria-pressed="true"] .wd, .day[aria-pressed="true"] .md, .day[aria-pressed="true"] .dn { color: inherit; }
+  .day[data-today="true"] { box-shadow: inset 0 0 0 2px var(--accent); }
+
+  /* Toolbar below strip */
+  .bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; padding-block: 8px 14px; }
+  .bar h2 { font-family: var(--font-display); font-size: 20px; font-weight: 700; margin: 0; min-width: 0; }
+  .bar h2 .tag {
+    font-family: var(--font-body); font-size: 12px; font-weight: 600; color: var(--accent);
+    background: var(--accent-soft); padding: 2px 8px; border-radius: 999px; margin-left: 8px; vertical-align: 3px;
+  }
+  .seg { display: inline-flex; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; background: var(--surface); }
+  .seg button { padding: 6px 12px; border: 0; background: transparent; font-size: 13px; font-weight: 500; color: var(--ink-soft); }
+  .seg button[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
+
+  /* Meal cards */
+  .meals { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; }
+  .meal {
+    background: var(--surface); border: 1px solid var(--line); border-radius: 14px;
+    box-shadow: var(--shadow); padding: 16px 18px 18px; min-width: 0;
+    display: grid; gap: 12px; align-content: start;
+    border-top: 4px solid var(--meal-c, var(--meal-x));
+  }
+  .meal[data-meal="조식"] { --meal-c: var(--meal-1); }
+  .meal[data-meal="중식"] { --meal-c: var(--meal-2); }
+  .meal[data-meal="석식"] { --meal-c: var(--meal-3); }
+  .meal header { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+  .meal h3 { margin: 0; font-family: var(--font-display); font-size: 21px; font-weight: 700; color: var(--meal-c, var(--ink)); }
+  .meal h3 small { font-family: var(--font-mono); font-size: 11px; font-weight: 400; letter-spacing: .1em; color: var(--ink-soft); margin-left: 8px; }
+  .meal .kcal { font-family: var(--font-mono); font-size: 12px; color: var(--ink-soft); font-variant-numeric: tabular-nums; }
+  .section { display: grid; gap: 6px; }
+  .section + .section { border-top: 1px dashed var(--line); padding-top: 10px; }
+  .section .corner {
+    font-size: 12px; font-weight: 600; letter-spacing: .04em; color: var(--ink-soft);
+    display: flex; justify-content: space-between; gap: 8px;
+  }
+  .section ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
+  .section li { padding-left: 14px; position: relative; overflow-wrap: anywhere; }
+  .section li::before { content: ""; position: absolute; left: 0; top: .72em; width: 6px; height: 6px; border-radius: 50%; background: var(--line); }
+  .section li.main { font-size: 17px; font-weight: 600; }
+  .section li.main::before { background: var(--meal-c, var(--ink-soft)); }
+  .section li .note { color: var(--ink-soft); font-size: 13px; margin-left: 6px; }
+  .meal .empty { color: var(--ink-soft); font-size: 14px; }
+
+  /* Week table */
+  .week { overflow-x: auto; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); box-shadow: var(--shadow); }
+  .week table { border-collapse: collapse; min-width: 100%; }
+  .week th, .week td { padding: 10px 12px; vertical-align: top; text-align: left; border-bottom: 1px solid var(--line); border-right: 1px solid var(--line); min-width: 150px; }
+  .week th:first-child, .week td:first-child { position: sticky; left: 0; background: var(--surface-2); min-width: 72px; z-index: 1; font-weight: 600; }
+  .week thead th { background: var(--surface-2); font-weight: 600; font-size: 13px; }
+  .week thead th .dn { font-family: var(--font-mono); font-size: 16px; display: block; font-variant-numeric: tabular-nums; }
+  .week th[data-today="true"] { color: var(--accent); box-shadow: inset 0 -3px 0 var(--accent); }
+  .week td ul { list-style: none; margin: 0; padding: 0; font-size: 13px; display: grid; gap: 2px; }
+  .week td li.main { font-weight: 600; font-size: 14px; }
+  .week td .corner { font-size: 11px; color: var(--ink-soft); font-weight: 600; margin-top: 6px; }
+  .week td .corner:first-child { margin-top: 0; }
+  .week td .kcal { font-family: var(--font-mono); font-size: 11px; color: var(--ink-soft); margin-top: 4px; }
+  .week tr:last-child td { border-bottom: 0; }
+  .week th:last-child, .week td:last-child { border-right: 0; }
+  .week td[data-meal="조식"] .corner { color: var(--meal-1); }
+  .week td[data-meal="중식"] .corner { color: var(--meal-2); }
+  .week td[data-meal="석식"] .corner { color: var(--meal-3); }
+
+  /* Notes */
+  .notes { margin-top: 16px; font-size: 13px; color: var(--ink-soft); display: grid; gap: 4px; }
+  .notes p { margin: 0; white-space: pre-wrap; }
+
+  /* Empty state */
+  .blank {
+    border: 1px dashed var(--line); border-radius: 14px; padding: 36px 20px; text-align: center;
+    color: var(--ink-soft); display: grid; gap: 10px; justify-items: center;
+  }
+  .blank h2 { margin: 0; font-family: var(--font-display); color: var(--ink); font-size: 20px; }
+
+  footer.foot { margin-top: 28px; font-size: 12px; color: var(--ink-soft); display: flex; flex-wrap: wrap; gap: 6px 14px; }
+  footer.foot a { color: inherit; }
+
+  /* Settings dialog */
+  dialog {
+    border: 1px solid var(--line); border-radius: 16px; padding: 0; background: var(--surface); color: var(--ink);
+    width: min(680px, calc(100vw - 32px)); max-height: calc(100vh - 48px); box-shadow: var(--shadow);
+  }
+  dialog::backdrop { background: rgba(10, 14, 20, .5); }
+  .dlg-head { display: flex; justify-content: space-between; align-items: center; padding: 14px 18px; border-bottom: 1px solid var(--line); position: sticky; top: 0; background: var(--surface); z-index: 1; }
+  .dlg-head h2 { margin: 0; font-family: var(--font-display); font-size: 19px; }
+  .dlg-body { padding: 16px 18px 20px; display: grid; gap: 20px; }
+  fieldset { border: 0; padding: 0; margin: 0; display: grid; gap: 8px; min-width: 0; }
+  legend { font-weight: 600; padding: 0; margin-bottom: 4px; }
+  .hint { font-size: 13px; color: var(--ink-soft); margin: 0; }
+  .hint.warn { color: var(--warn); }
+  .field { display: flex; gap: 8px; flex-wrap: wrap; }
+  .field input[type="url"], textarea {
+    flex: 1 1 220px; min-width: 0; padding: 8px 10px; border-radius: 8px; border: 1px solid var(--line);
+    background: var(--surface-2); font-family: var(--font-mono); font-size: 13px;
+  }
+  textarea { width: 100%; min-height: 120px; resize: vertical; }
+  pre.raw {
+    margin: 0; padding: 10px 12px; border-radius: 8px; border: 1px solid var(--line); background: var(--surface-2);
+    font-family: var(--font-mono); font-size: 12px; max-height: 260px; overflow: auto; white-space: pre-wrap; word-break: break-all;
+  }
+  details summary { cursor: pointer; font-weight: 600; }
+  .map { display: grid; grid-template-columns: auto 1fr; gap: 4px 12px; font-size: 13px; }
+  .map dt { color: var(--ink-soft); }
+  .map dd { margin: 0; font-family: var(--font-mono); font-size: 12px; overflow-wrap: anywhere; }
+  .toast {
+    position: fixed; left: 50%; bottom: calc(20px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%);
+    background: var(--ink); color: var(--bg); padding: 8px 14px; border-radius: 999px; font-size: 13px;
+    box-shadow: var(--shadow); z-index: 20; transition: opacity .2s; max-width: calc(100vw - 32px);
+  }
+  .toast[hidden] { display: none; }
+
+  @media (max-width: 520px) {
+    body { font-size: 14px; }
+    .brand h1 small { display: block; margin-left: 0; margin-top: 2px; }
+    .meal { padding: 14px 14px 16px; }
+    .btn .lbl { display: none; }
+    .btn { padding: 8px 10px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="brand">
+      <div class="eyebrow">SeAH Besteel · Cafeteria</div>
+      <h1>세아베스틸 식단표 <small id="todayLabel"></small></h1>
+    </div>
+    <div class="actions">
+      <button class="btn" id="btnRefresh" type="button" aria-busy="false" title="데이터 새로고침">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-2.6-6.4"/><path d="M21 3v6h-6"/></svg>
+        <span class="lbl">새로고침</span>
+      </button>
+      <button class="btn" id="btnSettings" type="button" title="데이터 주소 설정 및 붙여넣기">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>
+        <span class="lbl">설정</span>
+      </button>
+    </div>
+  </header>
+
+  <div class="status" id="status" data-state="idle"><span><span class="dot"></span><span id="statusText">준비 중</span></span><span class="mono" id="statusTime"></span></div>
+  <div id="notice" hidden></div>
+
+  <nav class="days" id="days" aria-label="날짜 선택"></nav>
+
+  <div class="bar">
+    <h2 id="dayTitle"></h2>
+    <div class="seg" role="group" aria-label="보기 방식">
+      <button type="button" id="viewDay" aria-pressed="true">하루</button>
+      <button type="button" id="viewWeek" aria-pressed="false">주간</button>
+    </div>
+  </div>
+
+  <main id="main"></main>
+  <div class="notes" id="notes"></div>
+
+  <footer class="foot">
+    <span>데이터 출처: <span id="footSource" class="mono"></span></span>
+    <span>화면은 브라우저에서만 처리되며 서버로 아무것도 보내지 않습니다.</span>
+  </footer>
+</div>
+
+<dialog id="dlg" aria-labelledby="dlgTitle">
+  <div class="dlg-head">
+    <h2 id="dlgTitle">데이터 설정</h2>
+    <button class="btn ghost" type="button" id="btnClose">닫기</button>
+  </div>
+  <div class="dlg-body">
+    <fieldset>
+      <legend>식단표 JSON 주소</legend>
+      <div class="field">
+        <input type="url" id="srcUrl" autocomplete="off" spellcheck="false" placeholder="http://...">
+        <button class="btn primary" type="button" id="btnLoadUrl">불러오기</button>
+        <button class="btn" type="button" id="btnDefaultUrl">기본값</button>
+      </div>
+      <p class="hint">회사 네트워크(사내망)에서만 접근되는 주소입니다. 주소는 이 브라우저에만 저장됩니다.</p>
+      <p class="hint warn" id="mixedHint" hidden>이 화면은 HTTPS로 열려 있어 브라우저가 HTTP 주소 호출을 차단할 수 있습니다. 차단되면 아래 붙여넣기를 이용하거나, 이 파일을 내려받아 직접 열어 주세요.</p>
+    </fieldset>
+
+    <fieldset>
+      <legend>JSON 직접 붙여넣기</legend>
+      <p class="hint">주소를 새 탭에서 연 뒤 전체 선택(Ctrl+A), 복사(Ctrl+C)해서 아래에 붙여넣으면 바로 표시됩니다.</p>
+      <div class="field">
+        <a class="btn" id="openUrl" href="#" target="_blank" rel="noopener">주소 새 탭에서 열기</a>
+        <label class="btn" for="fileInput">파일 열기<input type="file" id="fileInput" accept=".json,.txt,application/json,text/plain" hidden></label>
+      </div>
+      <textarea id="pasteBox" placeholder='{"..."}  또는 식단 텍스트' spellcheck="false"></textarea>
+      <div class="field">
+        <button class="btn primary" type="button" id="btnApplyPaste">적용</button>
+        <button class="btn" type="button" id="btnSample">예시 데이터 보기</button>
+        <button class="btn" type="button" id="btnClearCache">저장된 데이터 지우기</button>
+      </div>
+    </fieldset>
+
+    <details>
+      <summary>인식 결과와 원본 데이터</summary>
+      <div style="display:grid; gap:12px; margin-top:10px">
+        <dl class="map" id="mapInfo"></dl>
+        <pre class="raw" id="rawView"></pre>
+      </div>
+    </details>
+  </div>
+</dialog>
+
+<div class="toast" id="toast" hidden role="status"></div>
+
+<script>
+/*@core-start*/
+(function (global) {
+  "use strict";
+
+  var MEAL_ORDER = ["조식", "중식", "석식", "야식", "간식"];
+  var MEAL_ALIASES = [
+    [/조식|아침|breakfast|morning|^bf$|^b$|^1$/i, "조식"],
+    [/중식|점심|lunch|^l$|^2$/i, "중식"],
+    [/석식|저녁|dinner|supper|evening|^d$|^3$/i, "석식"],
+    [/야식|midnight|night|^4$/i, "야식"],
+    [/간식|snack|dessert|디저트/i, "간식"],
+  ];
+  var MEAL_TIMES = { "조식": "07:00 - 08:30", "중식": "11:30 - 13:00", "석식": "17:30 - 19:00" };
+  var KEY = {
+    date: /date|^day$|_day$|^dt$|_dt$|ymd|일자|날짜|일시|^ilja$|^dd$|^dy$/i,
+    meal: /meal|gubun|gbn|type|구분|식사|time|^tm$|_tm$|시간|bld|sik/i,
+    menu: /menu|food|dish|식단|메뉴|content|cont|text|desc|내용|item|^name$|_name$|명$|msg|message|nm$/i,
+    corner: /corner|코너|course|코스|hall|식당|place|장소|restaurant|cafeteria|구내|line|라인|category|분류|rest/i,
+    kcal: /kcal|calorie|^cal$|칼로리|열량/i,
+    weekday: /week|yoil|요일|dow/i,
+    skip: /^id$|_id$|seq|순번|^no$|^rn$|^rownum$|regdt|reg_dt|upd|crt|mod_dt|_yn$|flag|code$|^cd$|_cd$|url|^img|image|src/i,
+  };
+
+  var SPLIT_RE = /\r?\n|<br\s*\/?>|[,，、|｜·•;]|\s\/\s|\//;
+
+  function isPlainObject(v) { return v !== null && typeof v === "object" && !Array.isArray(v); }
+
+  function pad(n) { return (n < 10 ? "0" : "") + n; }
+  function toISO(d) { return d.getFullYear() + "-" + pad(d.getMonth() + 1) + "-" + pad(d.getDate()); }
+  function todayISO() { return toISO(new Date()); }
+
+  function parseDate(v) {
+    if (v === null || v === undefined) return null;
+    if (v instanceof Date) return isNaN(v) ? null : toISO(v);
+    var s = String(v).trim();
+    if (!s) return null;
+    s = s.replace(/\([^)]*\)/g, " ").replace(/\s*(월|화|수|목|금|토|일)요일/g, " ").trim();
+    var m, y, mo, d;
+    if ((m = s.match(/^(\d{4})[-./](\d{1,2})[-./](\d{1,2})(?:[T\s]|$)/))) { y = +m[1]; mo = +m[2]; d = +m[3]; }
+    else if ((m = s.match(/^(\d{4})(\d{2})(\d{2})(?:\d{0,6})?$/))) { y = +m[1]; mo = +m[2]; d = +m[3]; }
+    else if ((m = s.match(/^(\d{4})\s*년\s*(\d{1,2})\s*월\s*(\d{1,2})\s*일?/))) { y = +m[1]; mo = +m[2]; d = +m[3]; }
+    else if ((m = s.match(/^(\d{1,2})\s*월\s*(\d{1,2})\s*일?/))) { y = new Date().getFullYear(); mo = +m[1]; d = +m[2]; }
+    else if ((m = s.match(/^(\d{1,2})[-./](\d{1,2})$/))) { y = new Date().getFullYear(); mo = +m[1]; d = +m[2]; }
+    else if ((m = s.match(/^(\d{2})(\d{2})(\d{2})$/)) && +m[2] >= 1 && +m[2] <= 12) { y = 2000 + +m[1]; mo = +m[2]; d = +m[3]; }
+    else return null;
+    if (mo < 1 || mo > 12 || d < 1 || d > 31 || y < 1990 || y > 2100) return null;
+    var dt = new Date(y, mo - 1, d);
+    if (dt.getMonth() !== mo - 1) return null;
+    return toISO(dt);
+  }
+
+  function mealOf(v, strict) {
+    if (v === null || v === undefined) return null;
+    var s = String(v).trim();
+    if (!s || s.length > 16) return null;
+    if (strict && /^\d+$/.test(s)) return null;
+    for (var i = 0; i < MEAL_ALIASES.length; i++) if (MEAL_ALIASES[i][0].test(s)) return MEAL_ALIASES[i][1];
+    return null;
+  }
+
+  function stripHtml(s) { return String(s).replace(/<br\s*\/?>/gi, "\n").replace(/<[^>]+>/g, ""); }
+
+  function cleanItem(s) {
+    return String(s).replace(/^\s*(?:[-*•·▶▪►‣◦]+|\d+[.)]|\(\d+\))\s*/, "").replace(/\s+/g, " ").trim();
+  }
+
+  function splitItems(v) {
+    if (v === null || v === undefined) return [];
+    if (Array.isArray(v)) {
+      var out = [];
+      v.forEach(function (x) { out = out.concat(splitItems(isPlainObject(x) ? objectText(x) : x)); });
+      return out;
+    }
+    if (isPlainObject(v)) return splitItems(objectText(v));
+    return stripHtml(v).split(SPLIT_RE).map(cleanItem).filter(function (x) { return x && !/^(?:[월화수목금토일]요일?|식단표?|메뉴|주간\s*식단|오늘의?\s*식단|-+|\.+)$/.test(x); });
+  }
+
+  function objectText(o) {
+    var parts = [];
+    Object.keys(o).forEach(function (k) {
+      var v = o[k];
+      if (typeof v === "string" || typeof v === "number") parts.push(String(v));
+      else if (Array.isArray(v)) parts.push(splitItems(v).join("\n"));
+    });
+    return parts.join("\n");
+  }
+
+  function kcalOf(v) {
+    if (v === null || v === undefined) return null;
+    var m = String(v).replace(/,/g, "").match(/(\d+(?:\.\d+)?)/);
+    return m ? Math.round(+m[1]) : null;
+  }
+
+  /* Walk the JSON and collect arrays of plain objects, scoring each by how menu-like it is. */
+  function collectArrays(node, path, acc, depth) {
+    if (depth > 8 || node === null || typeof node !== "object") return;
+    if (Array.isArray(node)) {
+      var objs = node.filter(isPlainObject);
+      if (objs.length && objs.length >= node.length * 0.6) acc.push({ path: path, rows: objs });
+      node.forEach(function (x, i) { collectArrays(x, path + "[" + i + "]", acc, depth + 1); });
+    } else {
+      Object.keys(node).forEach(function (k) { collectArrays(node[k], path ? path + "." + k : k, acc, depth + 1); });
+    }
+  }
+
+  function rowScore(row, depth) {
+    depth = depth || 0;
+    var s = 0, keys = Object.keys(row), child = 0;
+    var hasDate = false, hasMeal = false, hasMenu = false;
+    keys.forEach(function (k) {
+      var v = row[k];
+      if (v === null || v === undefined) return;
+      if (typeof v !== "object") {
+        if (KEY.date.test(k) && parseDate(v)) hasDate = true;
+        else if (parseDate(v) && String(v).length <= 24) hasDate = true;
+        if (mealOf(k) || (KEY.meal.test(k) && mealOf(v))) hasMeal = true;
+        if (KEY.menu.test(k) && typeof v === "string") hasMenu = true;
+      } else if (Array.isArray(v)) {
+        if (mealOf(k) || KEY.menu.test(k)) hasMenu = true;
+        if (depth < 2) v.filter(isPlainObject).slice(0, 5).forEach(function (c) { child = Math.max(child, rowScore(c, depth + 1)); });
+      } else if (depth < 2) {
+        if (mealOf(k)) hasMeal = true;
+        child = Math.max(child, rowScore(v, depth + 1));
+      }
+    });
+    if (hasDate) s += 3; if (hasMeal) s += 3; if (hasMenu) s += 2;
+    return s + child;
+  }
+
+  function scoreArray(rows) {
+    var n = Math.min(rows.length, 20), s = 0;
+    for (var i = 0; i < n; i++) s += rowScore(rows[i]);
+    return s / n;
+  }
+
+  function looksStructured(v) {
+    return typeof v === "string" && /(^|\n)\s*[\[【<#*]?\s*(?:오늘의?|금일|내일)?\s*(조식|중식|석식|야식|아침|점심|저녁|breakfast|lunch|dinner)/i.test(v) && /\n|:|：/.test(v);
+  }
+
+  /* Convert one row into entries: { date, meal, corner, items[], kcal } */
+  function rowEntries(row, inherit, mapping, depth) {
+    var entries = [];
+    var ctx = { date: inherit.date || null, meal: inherit.meal || null, corner: inherit.corner || null, kcal: inherit.kcal || null };
+    var leftovers = [];
+    var items = [];
+    var childRows = [];
+    var mealKeyed = [];
+    var structured = [];
+
+    Object.keys(row).forEach(function (k) {
+      var v = row[k];
+      if (v === null || v === undefined || v === "") return;
+      var mk = mealOf(k);
+      if (mk && (typeof v === "string" || Array.isArray(v) || isPlainObject(v))) { mealKeyed.push({ meal: mk, value: v, key: k }); return; }
+      if (KEY.skip.test(k) && !KEY.menu.test(k)) return;
+      if (typeof v !== "object") {
+        if (!ctx.date && KEY.date.test(k) && parseDate(v)) { ctx.date = parseDate(v); mapping.date = mapping.date || k; return; }
+        if (KEY.kcal.test(k) && kcalOf(v) !== null) { ctx.kcal = kcalOf(v); mapping.kcal = mapping.kcal || k; return; }
+        if (KEY.meal.test(k) && mealOf(v)) { ctx.meal = mealOf(v); mapping.meal = mapping.meal || k; return; }
+        if (KEY.corner.test(k)) { ctx.corner = String(v).trim(); mapping.corner = mapping.corner || k; return; }
+        if (KEY.weekday.test(k)) return;
+        if (KEY.menu.test(k)) { mapping.menu = mapping.menu || k; if (looksStructured(v)) structured.push(v); else items = items.concat(splitItems(v)); return; }
+        if (!ctx.date && parseDate(v) && String(v).length <= 24) { ctx.date = parseDate(v); mapping.date = mapping.date || k; return; }
+        if (!ctx.meal && mealOf(v, true)) { ctx.meal = mealOf(v, true); mapping.meal = mapping.meal || k; return; }
+        leftovers.push({ key: k, value: v });
+      } else if (Array.isArray(v)) {
+        var objs = v.filter(isPlainObject);
+        if (objs.length) childRows = childRows.concat(objs);
+        else { items = items.concat(splitItems(v)); mapping.menu = mapping.menu || k; }
+      } else {
+        childRows.push(v);
+      }
+    });
+
+    if (!items.length && !childRows.length && !mealKeyed.length && !structured.length) {
+      leftovers.forEach(function (lv) { mapping.menu = mapping.menu || lv.key; if (looksStructured(lv.value)) structured.push(lv.value); else items = items.concat(splitItems(lv.value)); });
+    }
+
+    if (items.length) entries.push({ date: ctx.date, meal: ctx.meal, corner: ctx.corner, items: items, kcal: ctx.kcal });
+    structured.forEach(function (txt) {
+      textEntries(txt, {}).forEach(function (e) {
+        entries.push({ date: e.date || ctx.date, meal: e.meal || ctx.meal, corner: e.corner || ctx.corner, items: e.items, kcal: e.kcal || ctx.kcal });
+      });
+    });
+
+    mealKeyed.forEach(function (mk) {
+      mapping.meal = mapping.meal || mk.key;
+      if (isPlainObject(mk.value)) {
+        var sub = rowEntries(mk.value, { date: ctx.date, meal: mk.meal, corner: ctx.corner }, mapping, depth + 1);
+        entries = entries.concat(sub);
+      } else {
+        var its = splitItems(mk.value);
+        if (its.length) entries.push({ date: ctx.date, meal: mk.meal, corner: ctx.corner, items: its, kcal: null });
+      }
+    });
+
+    if (depth < 4) childRows.forEach(function (c) {
+      entries = entries.concat(rowEntries(c, { date: ctx.date, meal: ctx.meal, corner: ctx.corner }, mapping, depth + 1));
+    });
+    return entries;
+  }
+
+  /* Plain text: lines with dates, meal headers, and dishes. */
+  function textEntries(text, mapping) {
+    var entries = [], date = null, meal = null, corner = null;
+    var lines = stripHtml(text).split(/\r?\n/);
+    mapping.mode = "text";
+    lines.forEach(function (raw) {
+      var line = raw.trim();
+      if (!line) return;
+      var dm = line.match(/^([\[【<\s]*)((?:\d{4}[-./년]\s*)?\d{1,2}\s*[-./월]\s*\d{1,2}\s*일?)(?:\s*\([^)]*\))?(?:\s*[월화수목금토일]요일)?/);
+      var d = dm ? parseDate(dm[2]) : null;
+      if (d) {
+        date = d; meal = null; corner = null;
+        var rest = line.slice(dm[0].length);
+        if (dm[1].trim()) rest = rest.replace(/^[^\]】>]*[\]】>]/, "");
+        rest = rest.replace(/^[\]】>\s:：\-~]+/, "").replace(/^(?:식단표?|메뉴|주간\s*식단|오늘의?\s*식단)\s*[:：\-]?\s*/, "");
+        if (!rest) return;
+        line = rest;
+      }
+      var hm = line.match(/^[\[【<#*\s]*(?:오늘의?|금일|내일|today)?\s*(조식|중식|석식|야식|간식|아침|점심|저녁|breakfast|lunch|dinner)\s*[\]】>]?\s*[:：\-]?\s*(.*)$/i);
+      if (hm) {
+        meal = mealOf(hm[1]); corner = null;
+        if (!hm[2].trim()) return;
+        line = hm[2];
+      }
+      var cm = line.match(/^[\[【<\s]*([A-Za-z0-9가-힣]{1,10}\s*(?:코너|식당|라인|Corner|Hall))\s*[\]】>]?\s*[:：\-]?\s*(.*)$/);
+      if (cm) {
+        corner = cm[1];
+        if (!cm[2].trim()) return;
+        line = cm[2];
+      }
+      var items = splitItems(line);
+      if (items.length) entries.push({ date: date, meal: meal, corner: corner, items: items, kcal: null });
+    });
+    return entries;
+  }
+
+  function kakaoTexts(json) {
+    var out = [];
+    var outputs = json && json.template && Array.isArray(json.template.outputs) ? json.template.outputs : null;
+    if (!outputs) return null;
+    function pick(o) {
+      if (!o) return;
+      if (o.simpleText && o.simpleText.text) out.push(o.simpleText.text);
+      if (o.textCard) { if (o.textCard.title) out.push(o.textCard.title); if (o.textCard.text) out.push(o.textCard.text); }
+      if (o.basicCard) { if (o.basicCard.title) out.push(o.basicCard.title); if (o.basicCard.description) out.push(o.basicCard.description); }
+      if (o.listCard) {
+        if (o.listCard.header && o.listCard.header.title) out.push(o.listCard.header.title);
+        (o.listCard.items || []).forEach(function (it) { out.push([it.title, it.description].filter(Boolean).join("\n")); });
+      }
+      if (o.carousel && Array.isArray(o.carousel.items)) o.carousel.items.forEach(function (it) {
+        out.push([it.title, it.description, it.text].filter(Boolean).join("\n"));
+      });
+    }
+    outputs.forEach(pick);
+    return out.length ? out.join("\n") : null;
+  }
+
+  function normalize(input) {
+    var mapping = { mode: "", array: "", date: "", meal: "", menu: "", corner: "", kcal: "" };
+    var json = input, text = null;
+    if (typeof input === "string") {
+      var t = input.trim();
+      try { json = JSON.parse(t); } catch (e) { json = null; text = t; }
+      if (typeof json === "string") { text = json; json = null; }
+    }
+    var entries = [];
+    var notes = [];
+
+    if (json !== null && json !== undefined && typeof json === "object") {
+      var kakao = kakaoTexts(json);
+      if (kakao) { mapping.mode = "kakao"; entries = textEntries(kakao, mapping); mapping.mode = "kakao"; }
+      else {
+        var arrays = [];
+        collectArrays(json, "", arrays, 0);
+        var best = null, bestScore = -1;
+        arrays.forEach(function (a) {
+          var sc = scoreArray(a.rows) + Math.min(a.rows.length, 30) / 100 - a.path.length / 1000;
+          if (sc > bestScore) { bestScore = sc; best = a; }
+        });
+        if (best && bestScore >= 1) {
+          mapping.mode = "array"; mapping.array = best.path || "(root)";
+          best.rows.forEach(function (r) { entries = entries.concat(rowEntries(r, {}, mapping, 0)); });
+        } else if (isPlainObject(json)) {
+          var keys = Object.keys(json);
+          var dateKeyed = keys.filter(function (k) { return parseDate(k); });
+          var mealKeyed = keys.filter(function (k) { return mealOf(k); });
+          if (dateKeyed.length) {
+            mapping.mode = "object-by-date";
+            dateKeyed.forEach(function (k) {
+              var v = json[k];
+              var rows = Array.isArray(v) ? v : [v];
+              rows.forEach(function (r) {
+                if (isPlainObject(r)) entries = entries.concat(rowEntries(r, { date: parseDate(k) }, mapping, 0));
+                else { var its = splitItems(r); if (its.length) entries.push({ date: parseDate(k), meal: null, corner: null, items: its, kcal: null }); }
+              });
+            });
+          } else if (mealKeyed.length) {
+            mapping.mode = "object-by-meal";
+            entries = rowEntries(json, {}, mapping, 0);
+          } else if (best) {
+            mapping.mode = "array"; mapping.array = best.path || "(root)";
+            best.rows.forEach(function (r) { entries = entries.concat(rowEntries(r, {}, mapping, 0)); });
+          } else if ((entries = rowEntries(json, {}, mapping, 0)).length) {
+            mapping.mode = "object";
+          } else {
+            var strs = [];
+            (function walk(n) {
+              if (typeof n === "string") strs.push(n);
+              else if (Array.isArray(n)) n.forEach(walk);
+              else if (isPlainObject(n)) Object.keys(n).forEach(function (k) { walk(n[k]); });
+            })(json);
+            entries = textEntries(strs.join("\n"), mapping);
+          }
+        } else if (Array.isArray(json)) {
+          entries = textEntries(json.map(function (x) { return typeof x === "string" ? x : JSON.stringify(x); }).join("\n"), mapping);
+        }
+      }
+    } else if (text) {
+      entries = textEntries(text, mapping);
+    }
+
+    var today = todayISO();
+    var undated = false;
+    var dayMap = {};
+    entries.forEach(function (e) {
+      if (!e.items || !e.items.length) return;
+      var date = e.date || today;
+      if (!e.date) undated = true;
+      var day = dayMap[date] || (dayMap[date] = { date: date, meals: {} });
+      var mealName = e.meal || "식단";
+      var meal = day.meals[mealName] || (day.meals[mealName] = { name: mealName, sections: {}, order: [], kcal: null });
+      var cname = e.corner || "";
+      if (!meal.sections[cname]) { meal.sections[cname] = { corner: cname, items: [], kcal: null }; meal.order.push(cname); }
+      var sec = meal.sections[cname];
+      e.items.forEach(function (it) { if (sec.items.indexOf(it) < 0) sec.items.push(it); });
+      if (e.kcal) { sec.kcal = sec.kcal || e.kcal; meal.kcal = meal.kcal || e.kcal; }
+    });
+
+    var days = Object.keys(dayMap).sort().map(function (k) {
+      var d = dayMap[k];
+      var meals = Object.keys(d.meals).map(function (m) {
+        var meal = d.meals[m];
+        return { name: meal.name, time: MEAL_TIMES[meal.name] || "", kcal: meal.kcal,
+          sections: meal.order.map(function (c) { return meal.sections[c]; }) };
+      });
+      meals.sort(function (a, b) { return mealRank(a.name) - mealRank(b.name); });
+      return { date: d.date, meals: meals };
+    });
+
+    if (undated) notes.push("날짜 정보가 없는 항목은 오늘 날짜로 표시했습니다.");
+    return { days: days, notes: notes, mapping: mapping, entryCount: entries.length };
+  }
+
+  function mealRank(name) { var i = MEAL_ORDER.indexOf(name); return i < 0 ? 50 : i; }
+
+  global.MenuCore = { normalize: normalize, parseDate: parseDate, mealOf: mealOf, splitItems: splitItems, todayISO: todayISO, toISO: toISO };
+})(typeof window !== "undefined" ? window : globalThis);
+/*@core-end*/
+</script>
+
+<script>
+(function () {
+  "use strict";
+  var Core = window.MenuCore;
+  var DEFAULT_URL = "http://app.seahbesteel.co.kr:8005/ETC001/chatbot?gbn=menu";
+  var LS_URL = "seah-menu:url", LS_DATA = "seah-menu:data", LS_VIEW = "seah-menu:view";
+  var WEEKDAYS = ["일", "월", "화", "수", "목", "금", "토"];
+
+  var $ = function (id) { return document.getElementById(id); };
+  var el = {
+    status: $("status"), statusText: $("statusText"), statusTime: $("statusTime"), notice: $("notice"),
+    days: $("days"), dayTitle: $("dayTitle"), main: $("main"), notes: $("notes"), todayLabel: $("todayLabel"),
+    footSource: $("footSource"), dlg: $("dlg"), srcUrl: $("srcUrl"), mixedHint: $("mixedHint"), openUrl: $("openUrl"),
+    pasteBox: $("pasteBox"), rawView: $("rawView"), mapInfo: $("mapInfo"), toast: $("toast"),
+    btnRefresh: $("btnRefresh"), viewDay: $("viewDay"), viewWeek: $("viewWeek"),
+  };
+
+  var state = { data: null, raw: "", source: "", fetchedAt: null, selected: null, view: "day", sample: false };
+
+  function lsGet(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
+  function lsSet(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+  function lsDel(k) { try { localStorage.removeItem(k); } catch (e) {} }
+
+  function currentUrl() {
+    var q = new URLSearchParams(location.search).get("src");
+    return q || lsGet(LS_URL) || DEFAULT_URL;
+  }
+  function isMixed(url) { return location.protocol === "https:" && /^http:\/\//i.test(url); }
+
+  function fmtDateLong(iso) {
+    var p = iso.split("-").map(Number);
+    var d = new Date(p[0], p[1] - 1, p[2]);
+    return p[0] + "년 " + p[1] + "월 " + p[2] + "일 " + WEEKDAYS[d.getDay()] + "요일";
+  }
+  function fmtTime(ts) {
+    var d = new Date(ts);
+    return ("0" + (d.getMonth() + 1)).slice(-2) + "/" + ("0" + d.getDate()).slice(-2) + " " + ("0" + d.getHours()).slice(-2) + ":" + ("0" + d.getMinutes()).slice(-2);
+  }
+  function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
+
+  function setStatus(stateName, text, time) {
+    el.status.dataset.state = stateName;
+    el.statusText.textContent = text;
+    el.statusTime.textContent = time || "";
+  }
+
+  function showNotice(kind, title, body, actions) {
+    el.notice.hidden = false;
+    el.notice.className = "notice";
+    el.notice.dataset.kind = kind;
+    var html = "<strong>" + esc(title) + "</strong>";
+    if (body) html += "<p>" + body + "</p>";
+    if (actions) html += '<div class="row">' + actions + "</div>";
+    el.notice.innerHTML = html;
+  }
+  function hideNotice() { el.notice.hidden = true; el.notice.innerHTML = ""; }
+
+  var toastTimer;
+  function toast(msg) {
+    el.toast.textContent = msg; el.toast.hidden = false;
+    clearTimeout(toastTimer); toastTimer = setTimeout(function () { el.toast.hidden = true; }, 2200);
+  }
+
+  /* ---------- data loading ---------- */
+  function applyRaw(raw, source, fetchedAt, opts) {
+    opts = opts || {};
+    var result = Core.normalize(raw);
+    if (!result.days.length) {
+      var err = new Error("식단 항목을 찾지 못했습니다.");
+      err.result = result; throw err;
+    }
+    state.data = result; state.raw = raw; state.source = source; state.fetchedAt = fetchedAt || Date.now();
+    state.sample = !!opts.sample;
+    if (!opts.sample) lsSet(LS_DATA, JSON.stringify({ raw: raw, source: source, fetchedAt: state.fetchedAt }));
+    pickSelected();
+    render();
+    return result;
+  }
+
+  function pickSelected() {
+    var days = state.data.days, today = Core.todayISO();
+    var found = null;
+    for (var i = 0; i < days.length; i++) if (days[i].date === today) { found = days[i].date; break; }
+    if (!found) for (var j = 0; j < days.length; j++) if (days[j].date > today) { found = days[j].date; break; }
+    if (!found) found = days[days.length - 1].date;
+    if (!state.selected || !days.some(function (d) { return d.date === state.selected; })) state.selected = found;
+  }
+
+  function explainFetchError(e, url) {
+    if (e && e.name === "AbortError") return "서버 응답이 너무 늦어 중단했습니다 (15초).";
+    if (e && /HTTP \d+/.test(e.message)) return "서버가 오류를 돌려주었습니다 (" + esc(e.message) + ").";
+    if (isMixed(url)) return "이 화면은 HTTPS로 열려 있고 데이터 주소는 HTTP라서 브라우저가 호출을 차단했습니다.";
+    return "서버에 연결하지 못했습니다. 사내망 접속 여부를 확인해 주세요. 사내망인데도 실패하면 서버가 브라우저 호출(CORS)을 허용하지 않는 경우입니다.";
+  }
+
+  function fetchMenu(manual) {
+    var url = currentUrl();
+    el.btnRefresh.setAttribute("aria-busy", "true");
+    setStatus("busy", "불러오는 중", "");
+    var ctrl = typeof AbortController !== "undefined" ? new AbortController() : null;
+    var timer = ctrl ? setTimeout(function () { ctrl.abort(); }, 15000) : null;
+    return fetch(url, { cache: "no-store", signal: ctrl ? ctrl.signal : undefined })
+      .then(function (res) {
+        if (!res.ok) throw new Error("HTTP " + res.status);
+        return res.text();
+      })
+      .then(function (txt) {
+        applyRaw(txt, url, Date.now());
+        hideNotice();
+        if (manual) toast("식단표를 새로 불러왔습니다");
+      })
+      .catch(function (e) {
+        var why = explainFetchError(e, url);
+        if (e && e.result) why = "응답은 받았지만 식단 항목을 찾지 못했습니다. 설정의 원본 데이터를 확인해 주세요.";
+        if (state.data && !state.sample) {
+          setStatus("warn", "새로고침 실패, 저장된 데이터 표시 중", state.fetchedAt ? "저장 " + fmtTime(state.fetchedAt) : "");
+          showNotice("warn", "최신 데이터를 가져오지 못했습니다", why, noticeActions(url));
+        } else {
+          setStatus("bad", "데이터를 불러오지 못했습니다", "");
+          showNotice("bad", "식단표를 가져오지 못했습니다", why + " 주소를 새 탭에서 연 뒤 내용을 복사해 설정 창에 붙여넣으면 바로 볼 수 있습니다.", noticeActions(url));
+          if (!state.data) loadSample(true);
+        }
+        if (e && e.result) { state.raw = state.raw || ""; el.rawView.textContent = ""; }
+      })
+      .finally(function () { if (timer) clearTimeout(timer); el.btnRefresh.setAttribute("aria-busy", "false"); if (state.data && !state.sample && el.status.dataset.state === "busy") okStatus(); });
+  }
+
+  function noticeActions(url) {
+    return '<a class="btn" href="' + esc(url) + '" target="_blank" rel="noopener">주소 새 탭에서 열기</a>' +
+      '<button class="btn primary" type="button" data-act="paste">JSON 붙여넣기</button>';
+  }
+
+  function okStatus() {
+    var src = state.source === "paste" ? "붙여넣기" : state.source === "file" ? "파일" : "서버";
+    setStatus("ok", src + " 데이터 " + state.data.days.length + "일분", "갱신 " + fmtTime(state.fetchedAt));
+  }
+
+  function loadSample(auto) {
+    var today = new Date();
+    var monday = new Date(today); monday.setDate(today.getDate() - ((today.getDay() + 6) % 7));
+    var menus = [
+      ["쌀밥", "소고기무국", "제육볶음", "계란말이", "시금치나물", "배추김치"],
+      ["흑미밥", "된장찌개", "고등어구이", "감자조림", "콩나물무침", "깍두기"],
+      ["쌀밥", "순두부찌개", "닭갈비", "어묵볶음", "오이무침", "배추김치"],
+      ["잡곡밥", "미역국", "돈까스", "양배추샐러드", "단무지", "배추김치"],
+      ["쌀밥", "육개장", "삼치구이", "두부조림", "도라지무침", "열무김치"],
+    ];
+    var dinners = [
+      ["쌀밥", "김치찌개", "불고기", "메추리알장조림", "상추쌈", "배추김치"],
+      ["쌀밥", "콩나물국", "오징어볶음", "호박전", "무생채", "깍두기"],
+      ["비빔밥", "유부장국", "탕수육", "단무지", "배추김치"],
+      ["쌀밥", "북어국", "닭볶음탕", "진미채무침", "배추김치"],
+      ["카레라이스", "계란국", "치킨너겟", "피클", "배추김치"],
+    ];
+    var rows = [];
+    for (var i = 0; i < 5; i++) {
+      var d = new Date(monday); d.setDate(monday.getDate() + i);
+      var iso = Core.toISO(d);
+      rows.push({ date: iso, meal: "조식", corner: "", menu: ["쌀밥", "시래기된장국", "스크램블에그", "소시지야채볶음", "김구이", "배추김치"].join(", "), kcal: 620 });
+      rows.push({ date: iso, meal: "중식", corner: "한식", menu: menus[i].join(", "), kcal: 780 + i * 15 });
+      rows.push({ date: iso, meal: "중식", corner: "일품", menu: ["치즈돈까스", "우동", "단무지", "양배추샐러드"].join(", "), kcal: 860 });
+      rows.push({ date: iso, meal: "석식", corner: "", menu: dinners[i].join(", "), kcal: 740 + i * 10 });
+    }
+    var raw = JSON.stringify({ result: rows }, null, 2);
+    applyRaw(raw, "sample", Date.now(), { sample: true });
+    setStatus("warn", "예시 데이터 표시 중", "");
+    if (!auto) { hideNotice(); showNotice("info", "예시 데이터입니다", "실제 식단이 아닙니다. 설정에서 주소를 불러오거나 JSON을 붙여넣으면 교체됩니다."); }
+  }
+
+  /* ---------- rendering ---------- */
+  function render() {
+    if (!state.data) return;
+    var days = state.data.days, today = Core.todayISO();
+    el.footSource.textContent = state.source === "sample" ? "예시 데이터" : state.source === "paste" ? "붙여넣은 데이터" : state.source === "file" ? "파일" : state.source;
+
+    el.days.innerHTML = days.map(function (d) {
+      var p = d.date.split("-").map(Number), dt = new Date(p[0], p[1] - 1, p[2]), wd = dt.getDay();
+      return '<button type="button" class="day" data-date="' + d.date + '" aria-pressed="' + (d.date === state.selected) + '"' +
+        ' data-today="' + (d.date === today) + '"' + (wd === 6 ? ' data-weekend="sat"' : wd === 0 ? ' data-weekend="sun"' : "") + ">" +
+        '<span class="wd">' + WEEKDAYS[wd] + '</span><span class="dn">' + p[2] + '</span><span class="md">' + p[1] + "월</span></button>";
+    }).join("");
+    var sel = el.days.querySelector('[aria-pressed="true"]');
+    if (sel && sel.scrollIntoView) { try { sel.scrollIntoView({ block: "nearest", inline: "center" }); } catch (e) {} }
+
+    el.viewDay.setAttribute("aria-pressed", state.view === "day");
+    el.viewWeek.setAttribute("aria-pressed", state.view === "week");
+
+    if (state.view === "week") renderWeek(days, today);
+    else renderDay(days, today);
+
+    el.notes.innerHTML = state.data.notes.map(function (n) { return "<p>" + esc(n) + "</p>"; }).join("");
+    el.rawView.textContent = state.raw.length > 20000 ? state.raw.slice(0, 20000) + "\n… (이하 생략)" : state.raw;
+    var m = state.data.mapping;
+    var pairs = [["인식 방식", m.mode || "-"], ["데이터 배열", m.array || "-"], ["날짜 필드", m.date || "-"], ["식사 구분 필드", m.meal || "-"], ["메뉴 필드", m.menu || "-"], ["코너 필드", m.corner || "-"], ["열량 필드", m.kcal || "-"], ["항목 수", String(state.data.entryCount)]];
+    el.mapInfo.innerHTML = pairs.map(function (p) { return "<dt>" + esc(p[0]) + "</dt><dd>" + esc(p[1]) + "</dd>"; }).join("");
+  }
+
+  function renderDay(days, today) {
+    var day = days.filter(function (d) { return d.date === state.selected; })[0] || days[0];
+    el.dayTitle.innerHTML = esc(fmtDateLong(day.date)) + (day.date === today ? '<span class="tag">오늘</span>' : "");
+    if (!day.meals.length) { el.main.innerHTML = '<div class="blank"><h2>등록된 식단이 없습니다</h2></div>'; return; }
+    el.main.innerHTML = '<div class="meals">' + day.meals.map(function (meal) {
+      var secs = meal.sections.map(function (s) {
+        var items = s.items.map(function (it, i) { return "<li" + (i === 0 ? ' class="main"' : "") + ">" + esc(it) + "</li>"; }).join("");
+        var head = (s.corner || s.kcal) ? '<div class="corner"><span>' + esc(s.corner || "") + "</span>" + (s.kcal && meal.sections.length > 1 ? "<span>" + s.kcal + " kcal</span>" : "") + "</div>" : "";
+        return '<div class="section">' + head + "<ul>" + items + "</ul></div>";
+      }).join("");
+      return '<article class="meal" data-meal="' + esc(meal.name) + '"><header><h3>' + esc(meal.name) + (meal.time ? "<small>" + meal.time + "</small>" : "") + "</h3>" +
+        (meal.kcal && meal.sections.length === 1 ? '<span class="kcal">' + meal.kcal + " kcal</span>" : "") + "</header>" + (secs || '<p class="empty">메뉴 정보 없음</p>') + "</article>";
+    }).join("") + "</div>";
+  }
+
+  function renderWeek(days, today) {
+    var shown = days;
+    if (days.length > 14) {
+      var idx = Math.max(0, days.findIndex(function (d) { return d.date === state.selected; }));
+      var start = Math.max(0, Math.min(idx - 3, days.length - 7));
+      shown = days.slice(start, start + 7);
+    }
+    var mealNames = [];
+    shown.forEach(function (d) { d.meals.forEach(function (m) { if (mealNames.indexOf(m.name) < 0) mealNames.push(m.name); }); });
+    mealNames.sort(function (a, b) { return rank(a) - rank(b); });
+    function rank(n) { var i = ["조식", "중식", "석식", "야식", "간식"].indexOf(n); return i < 0 ? 50 : i; }
+    var first = shown[0].date, last = shown[shown.length - 1].date;
+    el.dayTitle.innerHTML = esc(first.slice(5).replace("-", ".") + " ~ " + last.slice(5).replace("-", ".")) + '<span class="tag">주간</span>';
+    var head = "<tr><th>구분</th>" + shown.map(function (d) {
+      var p = d.date.split("-").map(Number), dt = new Date(p[0], p[1] - 1, p[2]);
+      return '<th data-today="' + (d.date === today) + '"><span class="dn">' + p[1] + "/" + p[2] + "</span>" + WEEKDAYS[dt.getDay()] + "요일</th>";
+    }).join("") + "</tr>";
+    var body = mealNames.map(function (name) {
+      return "<tr><td>" + esc(name) + "</td>" + shown.map(function (d) {
+        var meal = d.meals.filter(function (m) { return m.name === name; })[0];
+        if (!meal) return '<td data-meal="' + esc(name) + '"><span style="color:var(--ink-soft)">-</span></td>';
+        var html = meal.sections.map(function (s) {
+          return (s.corner ? '<div class="corner">' + esc(s.corner) + "</div>" : "") + "<ul>" +
+            s.items.map(function (it, i) { return "<li" + (i === 0 ? ' class="main"' : "") + ">" + esc(it) + "</li>"; }).join("") + "</ul>";
+        }).join("");
+        if (meal.kcal) html += '<div class="kcal">' + meal.kcal + " kcal</div>";
+        return '<td data-meal="' + esc(name) + '">' + html + "</td>";
+      }).join("") + "</tr>";
+    }).join("");
+    el.main.innerHTML = '<div class="week"><table><thead>' + head + "</thead><tbody>" + body + "</tbody></table></div>";
+  }
+
+  /* ---------- events ---------- */
+  el.days.addEventListener("click", function (e) {
+    var b = e.target.closest(".day"); if (!b) return;
+    state.selected = b.dataset.date; if (state.view === "week") state.view = "day"; render();
+  });
+  el.viewDay.addEventListener("click", function () { state.view = "day"; lsSet(LS_VIEW, "day"); render(); });
+  el.viewWeek.addEventListener("click", function () { state.view = "week"; lsSet(LS_VIEW, "week"); render(); });
+  el.btnRefresh.addEventListener("click", function () { fetchMenu(true); });
+
+  function openSettings() {
+    el.srcUrl.value = currentUrl();
+    el.openUrl.href = currentUrl();
+    el.mixedHint.hidden = !isMixed(currentUrl());
+    if (typeof el.dlg.showModal === "function") el.dlg.showModal(); else el.dlg.setAttribute("open", "");
+    setTimeout(function () { el.pasteBox.focus(); }, 50);
+  }
+  function closeSettings() { if (el.dlg.open) el.dlg.close(); else el.dlg.removeAttribute("open"); }
+  $("btnSettings").addEventListener("click", openSettings);
+  $("btnClose").addEventListener("click", closeSettings);
+  el.dlg.addEventListener("click", function (e) { if (e.target === el.dlg) closeSettings(); });
+  el.notice.addEventListener("click", function (e) { if (e.target.closest('[data-act="paste"]')) openSettings(); });
+  el.srcUrl.addEventListener("input", function () { el.mixedHint.hidden = !isMixed(el.srcUrl.value.trim()); el.openUrl.href = el.srcUrl.value.trim() || "#"; });
+
+  $("btnLoadUrl").addEventListener("click", function () {
+    var u = el.srcUrl.value.trim();
+    if (!u) return toast("주소를 입력해 주세요");
+    lsSet(LS_URL, u); closeSettings(); fetchMenu(true);
+  });
+  $("btnDefaultUrl").addEventListener("click", function () { el.srcUrl.value = DEFAULT_URL; lsDel(LS_URL); el.mixedHint.hidden = !isMixed(DEFAULT_URL); el.openUrl.href = DEFAULT_URL; toast("기본 주소로 되돌렸습니다"); });
+
+  function applyPasted(txt, source) {
+    if (!txt || !txt.trim()) return toast("붙여넣은 내용이 없습니다");
+    try {
+      applyRaw(txt, source, Date.now());
+      hideNotice(); okStatus(); closeSettings(); toast("식단표를 표시했습니다");
+    } catch (e) {
+      state.raw = txt; el.rawView.textContent = txt.slice(0, 20000);
+      var m = (e.result && e.result.mapping) || {};
+      el.mapInfo.innerHTML = "<dt>인식 방식</dt><dd>" + esc(m.mode || "-") + "</dd><dt>결과</dt><dd>식단 항목을 찾지 못했습니다</dd>";
+      toast("식단 항목을 찾지 못했습니다. 원본 데이터를 확인해 주세요.");
+    }
+  }
+  $("btnApplyPaste").addEventListener("click", function () { applyPasted(el.pasteBox.value, "paste"); });
+  el.pasteBox.addEventListener("paste", function () { setTimeout(function () { if (el.pasteBox.value.trim().length > 20) applyPasted(el.pasteBox.value, "paste"); }, 0); });
+  $("fileInput").addEventListener("change", function (e) {
+    var f = e.target.files && e.target.files[0]; if (!f) return;
+    var r = new FileReader();
+    r.onload = function () { applyPasted(String(r.result), "file"); };
+    r.readAsText(f);
+    e.target.value = "";
+  });
+  $("btnSample").addEventListener("click", function () { loadSample(false); closeSettings(); });
+  $("btnClearCache").addEventListener("click", function () { lsDel(LS_DATA); toast("저장된 데이터를 지웠습니다"); });
+
+  document.addEventListener("visibilitychange", function () {
+    if (document.visibilityState === "visible" && state.fetchedAt && !state.sample && Date.now() - state.fetchedAt > 30 * 60 * 1000) fetchMenu(false);
+  });
+
+  /* ---------- boot ---------- */
+  el.todayLabel.textContent = fmtDateLong(Core.todayISO());
+  var v = lsGet(LS_VIEW); if (v === "week" || new URLSearchParams(location.search).get("view") === "week") state.view = "week";
+  var cached = null;
+  try { cached = JSON.parse(lsGet(LS_DATA) || "null"); } catch (e) {}
+  if (cached && cached.raw) {
+    try { applyRaw(cached.raw, cached.source || "cache", cached.fetchedAt, {}); setStatus("warn", "저장된 데이터 표시 중", "저장 " + fmtTime(cached.fetchedAt)); } catch (e) { lsDel(LS_DATA); }
+  }
+  var params = new URLSearchParams(location.search);
+  if (params.get("nofetch") !== "1") fetchMenu(false);
+  else if (!state.data) loadSample(true);
+})();
+</script>
+</body>
+</html>
