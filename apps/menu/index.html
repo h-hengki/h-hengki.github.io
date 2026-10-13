@@ -162,10 +162,6 @@
     font-family: var(--font-body); font-size: 12px; font-weight: 600; color: var(--accent);
     background: var(--accent-soft); padding: 2px 8px; border-radius: 999px; margin-left: 8px; vertical-align: 3px;
   }
-  .seg { display: inline-flex; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; background: var(--surface); }
-  .seg button { padding: 6px 12px; border: 0; background: transparent; font-size: 13px; font-weight: 500; color: var(--ink-soft); }
-  .seg button:disabled { opacity: .4; cursor: default; }
-  .seg button + button { border-left: 1px solid var(--line); }
 
   /* Week table */
   .week { overflow-x: auto; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); box-shadow: var(--shadow); }
@@ -201,9 +197,6 @@
   }
   .blank h2 { margin: 0; font-family: var(--font-display); color: var(--ink); font-size: 20px; }
   .blank p { margin: 0; font-size: 14px; }
-
-  footer.foot { margin-top: 28px; font-size: 12px; color: var(--ink-soft); display: flex; flex-wrap: wrap; gap: 6px 14px; }
-  footer.foot a { color: inherit; }
 
   /* Settings dialog */
   dialog {
@@ -259,10 +252,6 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-2.6-6.4"/><path d="M21 3v6h-6"/></svg>
         <span class="lbl">새로고침</span>
       </button>
-      <button class="btn" id="btnSettings" type="button" title="데이터 주소 설정 및 붙여넣기">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>
-        <span class="lbl">설정</span>
-      </button>
     </div>
   </header>
 
@@ -271,20 +260,11 @@
 
   <div class="bar">
     <h2 id="dayTitle"></h2>
-    <div class="seg" role="group" aria-label="주 이동">
-      <button type="button" id="prevWeek" title="지난주">&lsaquo; 지난주</button>
-      <button type="button" id="thisWeek">이번주</button>
-      <button type="button" id="nextWeek" title="다음주">다음주 &rsaquo;</button>
-    </div>
   </div>
 
   <main id="main"></main>
   <div class="notes" id="notes"></div>
 
-  <footer class="foot">
-    <span>데이터 출처: <span id="footSource" class="mono"></span></span>
-    <span>화면은 브라우저에서만 처리되며 서버로 아무것도 보내지 않습니다.</span>
-  </footer>
 </div>
 
 <dialog id="dlg" aria-labelledby="dlgTitle">
@@ -301,6 +281,7 @@
         <button class="btn" type="button" id="btnDefaultUrl">기본값</button>
       </div>
       <p class="hint">회사 네트워크(사내망)에서만 접근되는 주소입니다. 주소는 이 브라우저에만 저장됩니다.</p>
+      <p class="hint warn" id="lastError" hidden></p>
       <p class="hint warn" id="mixedHint" hidden>이 화면은 HTTPS로 열려 있어 브라우저가 HTTP 주소 호출을 차단할 수 있습니다. 차단되면 아래 붙여넣기를 이용하거나, 이 파일을 내려받아 직접 열어 주세요.</p>
     </fieldset>
 
@@ -706,12 +687,12 @@
   var el = {
     status: $("status"), statusText: $("statusText"), statusTime: $("statusTime"), notice: $("notice"),
     dayTitle: $("dayTitle"), main: $("main"), notes: $("notes"), todayLabel: $("todayLabel"),
-    footSource: $("footSource"), dlg: $("dlg"), srcUrl: $("srcUrl"), mixedHint: $("mixedHint"), openUrl: $("openUrl"),
+    dlg: $("dlg"), srcUrl: $("srcUrl"), mixedHint: $("mixedHint"), openUrl: $("openUrl"),
     pasteBox: $("pasteBox"), rawView: $("rawView"), mapInfo: $("mapInfo"), toast: $("toast"),
-    btnRefresh: $("btnRefresh"), prevWeek: $("prevWeek"), thisWeek: $("thisWeek"), nextWeek: $("nextWeek"),
+    btnRefresh: $("btnRefresh"),
   };
 
-  var state = { data: null, raw: "", source: "", fetchedAt: null, weekStart: null, sample: false };
+  var state = { data: null, raw: "", source: "", fetchedAt: null, weekStart: null, sample: false, lastError: "" };
 
   function lsGet(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
   function lsSet(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
@@ -787,7 +768,7 @@
 
   function explainFetchError(e, url) {
     if (e && e.name === "AbortError") return "서버 응답이 너무 늦어 중단했습니다 (15초).";
-    if (e && /HTTP \d+/.test(e.message)) return "서버가 오류를 돌려주었습니다 (" + esc(e.message) + ").";
+    if (e && /HTTP \d+/.test(e.message)) return "서버가 오류를 돌려주었습니다 (" + e.message + ").";
     if (isMixed(url)) return "이 화면은 HTTPS로 열려 있고 데이터 주소는 HTTP라서 브라우저가 호출을 차단했습니다.";
     return "서버에 연결하지 못했습니다. 사내망 접속 여부를 확인해 주세요. 사내망인데도 실패하면 서버가 브라우저 호출(CORS)을 허용하지 않는 경우입니다.";
   }
@@ -805,28 +786,24 @@
       })
       .then(function (txt) {
         applyRaw(txt, url, Date.now());
+        state.lastError = "";
         hideNotice();
         if (manual) toast("식단표를 새로 불러왔습니다");
       })
       .catch(function (e) {
-        var why = explainFetchError(e, url);
-        if (e && e.result) why = "응답은 받았지만 식단 항목을 찾지 못했습니다. 설정의 원본 데이터를 확인해 주세요.";
+        /* Quiet failure: no error banner. The status line only says which data is on screen. */
+        hideNotice();
+        state.lastError = explainFetchError(e, url);
         if (state.data && !state.sample) {
-          setStatus("warn", "새로고침 실패, 저장된 데이터 표시 중", state.fetchedAt ? "저장 " + fmtTime(state.fetchedAt) : "");
-          showNotice("warn", "최신 데이터를 가져오지 못했습니다", why, noticeActions(url));
+          setStatus("warn", "저장된 데이터 표시 중", state.fetchedAt ? "저장 " + fmtTime(state.fetchedAt) : "");
+        } else if (state.data) {
+          setStatus("warn", "예시 데이터 표시 중", "");
         } else {
-          setStatus("bad", "데이터를 불러오지 못했습니다", "");
-          showNotice("bad", "식단표를 가져오지 못했습니다", why + " 주소를 새 탭에서 연 뒤 내용을 복사해 설정 창에 붙여넣으면 바로 볼 수 있습니다.", noticeActions(url));
-          if (!state.data) loadSample(true);
+          loadSample(true);
         }
-        if (e && e.result) { state.raw = state.raw || ""; el.rawView.textContent = ""; }
+        if (manual) toast("불러오지 못했습니다. 설정에서 JSON을 붙여넣을 수 있습니다.");
       })
       .finally(function () { if (timer) clearTimeout(timer); el.btnRefresh.setAttribute("aria-busy", "false"); if (state.data && !state.sample && el.status.dataset.state === "busy") okStatus(); });
-  }
-
-  function noticeActions(url) {
-    return '<a class="btn" href="' + esc(url) + '" target="_blank" rel="noopener">주소 새 탭에서 열기</a>' +
-      '<button class="btn primary" type="button" data-act="paste">JSON 붙여넣기</button>';
   }
 
   function okStatus() {
@@ -870,12 +847,8 @@
   function render() {
     if (!state.data) return;
     var days = state.data.days, today = Core.todayISO();
-    el.footSource.textContent = state.source === "sample" ? "예시 데이터" : state.source === "paste" ? "붙여넣은 데이터" : state.source === "file" ? "파일" : state.source;
 
     var start = state.weekStart, end = addDays(start, 6);
-    el.prevWeek.disabled = !days.some(function (d) { return d.date < start; });
-    el.nextWeek.disabled = !days.some(function (d) { return d.date > end; });
-    el.thisWeek.disabled = start === weekStartOf(today);
     renderWeek(daysInWeek(start), today, start, end);
 
     el.notes.innerHTML = state.data.notes.map(function (n) { return "<p>" + esc(n) + "</p>"; }).join("");
@@ -890,7 +863,7 @@
     el.dayTitle.innerHTML = esc(label) + (start === weekStartOf(today) ? '<span class="tag">이번주</span>' : "");
     if (!shown.length) {
       var all = state.data.days;
-      el.main.innerHTML = '<div class="blank"><h2>이번 주 식단이 아직 없습니다</h2><p>받은 데이터는 ' + esc(all[0].date) + " ~ " + esc(all[all.length - 1].date) + " 기간입니다. 위의 지난주/다음주로 이동해 보세요.</p></div>";
+      el.main.innerHTML = '<div class="blank"><h2>이번 주 식단이 아직 없습니다</h2><p>받은 데이터는 ' + esc(all[0].date) + " ~ " + esc(all[all.length - 1].date) + " 기간입니다.</p></div>";
       return;
     }
     var mealNames = [];
@@ -917,20 +890,18 @@
   }
 
   /* ---------- events ---------- */
-  el.prevWeek.addEventListener("click", function () { state.weekStart = addDays(state.weekStart, -7); render(); });
-  el.nextWeek.addEventListener("click", function () { state.weekStart = addDays(state.weekStart, 7); render(); });
-  el.thisWeek.addEventListener("click", function () { state.weekStart = weekStartOf(Core.todayISO()); render(); });
   el.btnRefresh.addEventListener("click", function () { fetchMenu(true); });
 
   function openSettings() {
     el.srcUrl.value = currentUrl();
     el.openUrl.href = currentUrl();
     el.mixedHint.hidden = !isMixed(currentUrl());
+    var le = $("lastError"); le.hidden = !state.lastError; le.textContent = state.lastError ? "마지막 불러오기 실패: " + state.lastError.replace(/&[a-z]+;/g, "") : "";
     if (typeof el.dlg.showModal === "function") el.dlg.showModal(); else el.dlg.setAttribute("open", "");
     setTimeout(function () { el.pasteBox.focus(); }, 50);
   }
   function closeSettings() { if (el.dlg.open) el.dlg.close(); else el.dlg.removeAttribute("open"); }
-  $("btnSettings").addEventListener("click", openSettings);
+  /* The settings dialog has no button; open it with ?setup=1 in the address. */
   $("btnClose").addEventListener("click", closeSettings);
   el.dlg.addEventListener("click", function (e) { if (e.target === el.dlg) closeSettings(); });
   el.notice.addEventListener("click", function (e) { if (e.target.closest('[data-act="paste"]')) openSettings(); });
@@ -981,6 +952,7 @@
   var params = new URLSearchParams(location.search);
   if (params.get("nofetch") !== "1") fetchMenu(false);
   else if (!state.data) loadSample(true);
+  if (params.get("setup") === "1") openSettings();
 })();
 </script>
 </body>
