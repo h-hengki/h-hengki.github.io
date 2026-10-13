@@ -129,18 +129,6 @@
   .btn[aria-busy="true"] svg { animation: spin 1s linear infinite; }
   @keyframes spin { to { transform: rotate(360deg); } }
 
-  /* Status line */
-  .status {
-    display: flex; flex-wrap: wrap; align-items: center; gap: 6px 14px;
-    padding-block: 10px 4px; font-size: 13px; color: var(--ink-soft);
-  }
-  .status .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--meal-x); display: inline-block; margin-right: 6px; vertical-align: 1px; }
-  .status[data-state="ok"] .dot { background: var(--ok); }
-  .status[data-state="warn"] .dot { background: var(--warn); }
-  .status[data-state="bad"] .dot { background: var(--bad); }
-  .status[data-state="busy"] .dot { background: var(--accent); }
-  .status .mono { font-family: var(--font-mono); font-size: 12px; }
-
   /* Notice (errors, sample mode) */
   .notice {
     margin-block: 10px 4px; padding: 12px 14px; border-radius: 10px;
@@ -249,7 +237,6 @@
     </div>
   </header>
 
-  <div class="status" id="status" data-state="idle"><span><span class="dot"></span><span id="statusText">준비 중</span></span><span class="mono" id="statusTime"></span></div>
   <div id="notice" hidden></div>
 
   <div class="bar">
@@ -679,7 +666,7 @@
 
   var $ = function (id) { return document.getElementById(id); };
   var el = {
-    status: $("status"), statusText: $("statusText"), statusTime: $("statusTime"), notice: $("notice"),
+    notice: $("notice"),
     dayTitle: $("dayTitle"), main: $("main"), notes: $("notes"), todayLabel: $("todayLabel"),
     dlg: $("dlg"), srcUrl: $("srcUrl"), mixedHint: $("mixedHint"), openUrl: $("openUrl"),
     pasteBox: $("pasteBox"), rawView: $("rawView"), mapInfo: $("mapInfo"), toast: $("toast"),
@@ -708,11 +695,7 @@
   }
   function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
 
-  function setStatus(stateName, text, time) {
-    el.status.dataset.state = stateName;
-    el.statusText.textContent = text;
-    el.statusTime.textContent = time || "";
-  }
+  function setStatus() { /* status line removed by request */ }
 
   function showNotice(kind, title, body, actions) {
     el.notice.hidden = false;
@@ -795,7 +778,7 @@
         }
         if (manual) toast("불러오지 못했습니다. 설정에서 JSON을 붙여넣을 수 있습니다.");
       })
-      .finally(function () { if (timer) clearTimeout(timer); if (state.data && !state.sample && el.status.dataset.state === "busy") okStatus(); });
+      .finally(function () { if (timer) clearTimeout(timer);  });
   }
 
   function okStatus() {
