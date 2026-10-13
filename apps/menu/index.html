@@ -247,12 +247,6 @@
       <div class="eyebrow">SeAH Besteel · Cafeteria</div>
       <h1>세아베스틸 식단표 <small id="todayLabel"></small></h1>
     </div>
-    <div class="actions">
-      <button class="btn" id="btnRefresh" type="button" aria-busy="false" title="데이터 새로고침">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-2.6-6.4"/><path d="M21 3v6h-6"/></svg>
-        <span class="lbl">새로고침</span>
-      </button>
-    </div>
   </header>
 
   <div class="status" id="status" data-state="idle"><span><span class="dot"></span><span id="statusText">준비 중</span></span><span class="mono" id="statusTime"></span></div>
@@ -689,7 +683,6 @@
     dayTitle: $("dayTitle"), main: $("main"), notes: $("notes"), todayLabel: $("todayLabel"),
     dlg: $("dlg"), srcUrl: $("srcUrl"), mixedHint: $("mixedHint"), openUrl: $("openUrl"),
     pasteBox: $("pasteBox"), rawView: $("rawView"), mapInfo: $("mapInfo"), toast: $("toast"),
-    btnRefresh: $("btnRefresh"),
   };
 
   var state = { data: null, raw: "", source: "", fetchedAt: null, weekStart: null, sample: false, lastError: "" };
@@ -775,7 +768,6 @@
 
   function fetchMenu(manual) {
     var url = currentUrl();
-    el.btnRefresh.setAttribute("aria-busy", "true");
     setStatus("busy", "불러오는 중", "");
     var ctrl = typeof AbortController !== "undefined" ? new AbortController() : null;
     var timer = ctrl ? setTimeout(function () { ctrl.abort(); }, 15000) : null;
@@ -803,7 +795,7 @@
         }
         if (manual) toast("불러오지 못했습니다. 설정에서 JSON을 붙여넣을 수 있습니다.");
       })
-      .finally(function () { if (timer) clearTimeout(timer); el.btnRefresh.setAttribute("aria-busy", "false"); if (state.data && !state.sample && el.status.dataset.state === "busy") okStatus(); });
+      .finally(function () { if (timer) clearTimeout(timer); if (state.data && !state.sample && el.status.dataset.state === "busy") okStatus(); });
   }
 
   function okStatus() {
@@ -890,7 +882,6 @@
   }
 
   /* ---------- events ---------- */
-  el.btnRefresh.addEventListener("click", function () { fetchMenu(true); });
 
   function openSettings() {
     el.srcUrl.value = currentUrl();
