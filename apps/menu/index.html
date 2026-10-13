@@ -155,30 +155,8 @@
   .notice .row { display: flex; gap: 8px; flex-wrap: wrap; }
   .notice code { font-family: var(--font-mono); font-size: 12px; background: var(--surface-2); padding: 1px 5px; border-radius: 4px; word-break: break-all; }
 
-  /* Day strip */
-  .days {
-    display: flex; gap: 8px; overflow-x: auto; padding-block: 12px 6px;
-    scrollbar-width: thin; scroll-snap-type: x proximity;
-  }
-  .day {
-    flex: 0 0 auto; min-width: 58px; scroll-snap-align: start;
-    display: grid; justify-items: center; gap: 2px;
-    padding: 8px 10px; border-radius: 10px; border: 1px solid var(--line);
-    background: var(--surface); color: var(--ink);
-    transition: border-color .15s, background .15s;
-  }
-  .day:hover { border-color: var(--ink-soft); }
-  .day .wd { font-size: 12px; color: var(--ink-soft); }
-  .day .dn { font-family: var(--font-mono); font-size: 18px; font-weight: 500; line-height: 1.1; font-variant-numeric: tabular-nums; }
-  .day .md { font-size: 11px; color: var(--ink-soft); }
-  .day[data-weekend="sat"] .wd, .day[data-weekend="sat"] .dn { color: var(--meal-3); }
-  .day[data-weekend="sun"] .wd, .day[data-weekend="sun"] .dn { color: var(--bad); }
-  .day[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: var(--bg); }
-  .day[aria-pressed="true"] .wd, .day[aria-pressed="true"] .md, .day[aria-pressed="true"] .dn { color: inherit; }
-  .day[data-today="true"] { box-shadow: inset 0 0 0 2px var(--accent); }
-
-  /* Toolbar below strip */
-  .bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; padding-block: 8px 14px; }
+  /* Toolbar */
+  .bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; padding-block: 14px 14px; }
   .bar h2 { font-family: var(--font-display); font-size: 20px; font-weight: 700; margin: 0; min-width: 0; }
   .bar h2 .tag {
     font-family: var(--font-body); font-size: 12px; font-weight: 600; color: var(--accent);
@@ -186,36 +164,8 @@
   }
   .seg { display: inline-flex; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; background: var(--surface); }
   .seg button { padding: 6px 12px; border: 0; background: transparent; font-size: 13px; font-weight: 500; color: var(--ink-soft); }
-  .seg button[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
-
-  /* Meal cards */
-  .meals { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; }
-  .meal {
-    background: var(--surface); border: 1px solid var(--line); border-radius: 14px;
-    box-shadow: var(--shadow); padding: 16px 18px 18px; min-width: 0;
-    display: grid; gap: 12px; align-content: start;
-    border-top: 4px solid var(--meal-c, var(--meal-x));
-  }
-  .meal[data-meal="조식"] { --meal-c: var(--meal-1); }
-  .meal[data-meal="중식"] { --meal-c: var(--meal-2); }
-  .meal[data-meal="석식"] { --meal-c: var(--meal-3); }
-  .meal header { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
-  .meal h3 { margin: 0; font-family: var(--font-display); font-size: 21px; font-weight: 700; color: var(--meal-c, var(--ink)); }
-  .meal h3 small { font-family: var(--font-mono); font-size: 11px; font-weight: 400; letter-spacing: .1em; color: var(--ink-soft); margin-left: 8px; }
-  .meal .kcal { font-family: var(--font-mono); font-size: 12px; color: var(--ink-soft); font-variant-numeric: tabular-nums; }
-  .section { display: grid; gap: 6px; }
-  .section + .section { border-top: 1px dashed var(--line); padding-top: 10px; }
-  .section .corner {
-    font-size: 12px; font-weight: 600; letter-spacing: .04em; color: var(--ink-soft);
-    display: flex; justify-content: space-between; gap: 8px;
-  }
-  .section ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
-  .section li { padding-left: 14px; position: relative; overflow-wrap: anywhere; }
-  .section li::before { content: ""; position: absolute; left: 0; top: .72em; width: 6px; height: 6px; border-radius: 50%; background: var(--line); }
-  .section li.main { font-size: 17px; font-weight: 600; }
-  .section li.main::before { background: var(--meal-c, var(--ink-soft)); }
-  .section li .note { color: var(--ink-soft); font-size: 13px; margin-left: 6px; }
-  .meal .empty { color: var(--ink-soft); font-size: 14px; }
+  .seg button:disabled { opacity: .4; cursor: default; }
+  .seg button + button { border-left: 1px solid var(--line); }
 
   /* Week table */
   .week { overflow-x: auto; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); box-shadow: var(--shadow); }
@@ -232,6 +182,10 @@
   .week td .kcal { font-family: var(--font-mono); font-size: 11px; color: var(--ink-soft); margin-top: 4px; }
   .week tr:last-child td { border-bottom: 0; }
   .week th:last-child, .week td:last-child { border-right: 0; }
+  .week td.mname[data-meal="조식"] { color: var(--meal-1); }
+  .week td.mname[data-meal="중식"] { color: var(--meal-2); }
+  .week td.mname[data-meal="석식"] { color: var(--meal-3); }
+  .week td.mname { font-family: var(--font-display); font-size: 16px; }
   .week td[data-meal="조식"] .corner { color: var(--meal-1); }
   .week td[data-meal="중식"] .corner { color: var(--meal-2); }
   .week td[data-meal="석식"] .corner { color: var(--meal-3); }
@@ -246,6 +200,7 @@
     color: var(--ink-soft); display: grid; gap: 10px; justify-items: center;
   }
   .blank h2 { margin: 0; font-family: var(--font-display); color: var(--ink); font-size: 20px; }
+  .blank p { margin: 0; font-size: 14px; }
 
   footer.foot { margin-top: 28px; font-size: 12px; color: var(--ink-soft); display: flex; flex-wrap: wrap; gap: 6px 14px; }
   footer.foot a { color: inherit; }
@@ -287,7 +242,6 @@
   @media (max-width: 520px) {
     body { font-size: 14px; }
     .brand h1 small { display: block; margin-left: 0; margin-top: 2px; }
-    .meal { padding: 14px 14px 16px; }
     .btn .lbl { display: none; }
     .btn { padding: 8px 10px; }
   }
@@ -315,13 +269,12 @@
   <div class="status" id="status" data-state="idle"><span><span class="dot"></span><span id="statusText">준비 중</span></span><span class="mono" id="statusTime"></span></div>
   <div id="notice" hidden></div>
 
-  <nav class="days" id="days" aria-label="날짜 선택"></nav>
-
   <div class="bar">
     <h2 id="dayTitle"></h2>
-    <div class="seg" role="group" aria-label="보기 방식">
-      <button type="button" id="viewDay" aria-pressed="true">하루</button>
-      <button type="button" id="viewWeek" aria-pressed="false">주간</button>
+    <div class="seg" role="group" aria-label="주 이동">
+      <button type="button" id="prevWeek" title="지난주">&lsaquo; 지난주</button>
+      <button type="button" id="thisWeek">이번주</button>
+      <button type="button" id="nextWeek" title="다음주">다음주 &rsaquo;</button>
     </div>
   </div>
 
@@ -746,19 +699,19 @@
   "use strict";
   var Core = window.MenuCore;
   var DEFAULT_URL = "http://app.seahbesteel.co.kr:8005/ETC001/chatbot?gbn=menu";
-  var LS_URL = "seah-menu:url", LS_DATA = "seah-menu:data", LS_VIEW = "seah-menu:view";
+  var LS_URL = "seah-menu:url", LS_DATA = "seah-menu:data";
   var WEEKDAYS = ["일", "월", "화", "수", "목", "금", "토"];
 
   var $ = function (id) { return document.getElementById(id); };
   var el = {
     status: $("status"), statusText: $("statusText"), statusTime: $("statusTime"), notice: $("notice"),
-    days: $("days"), dayTitle: $("dayTitle"), main: $("main"), notes: $("notes"), todayLabel: $("todayLabel"),
+    dayTitle: $("dayTitle"), main: $("main"), notes: $("notes"), todayLabel: $("todayLabel"),
     footSource: $("footSource"), dlg: $("dlg"), srcUrl: $("srcUrl"), mixedHint: $("mixedHint"), openUrl: $("openUrl"),
     pasteBox: $("pasteBox"), rawView: $("rawView"), mapInfo: $("mapInfo"), toast: $("toast"),
-    btnRefresh: $("btnRefresh"), viewDay: $("viewDay"), viewWeek: $("viewWeek"),
+    btnRefresh: $("btnRefresh"), prevWeek: $("prevWeek"), thisWeek: $("thisWeek"), nextWeek: $("nextWeek"),
   };
 
-  var state = { data: null, raw: "", source: "", fetchedAt: null, selected: null, view: "day", sample: false };
+  var state = { data: null, raw: "", source: "", fetchedAt: null, weekStart: null, sample: false };
 
   function lsGet(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
   function lsSet(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
@@ -820,13 +773,16 @@
     return result;
   }
 
+  function isoToDate(iso) { var p = iso.split("-").map(Number); return new Date(p[0], p[1] - 1, p[2]); }
+  function addDays(iso, n) { var d = isoToDate(iso); d.setDate(d.getDate() + n); return Core.toISO(d); }
+  function weekStartOf(iso) { var d = isoToDate(iso); return addDays(iso, -((d.getDay() + 6) % 7)); }
+  function daysInWeek(start) {
+    var end = addDays(start, 6);
+    return state.data.days.filter(function (d) { return d.date >= start && d.date <= end; });
+  }
   function pickSelected() {
-    var days = state.data.days, today = Core.todayISO();
-    var found = null;
-    for (var i = 0; i < days.length; i++) if (days[i].date === today) { found = days[i].date; break; }
-    if (!found) for (var j = 0; j < days.length; j++) if (days[j].date > today) { found = days[j].date; break; }
-    if (!found) found = days[days.length - 1].date;
-    if (!state.selected || !days.some(function (d) { return d.date === state.selected; })) state.selected = found;
+    /* Always open on the week that contains today. */
+    state.weekStart = weekStartOf(Core.todayISO());
   }
 
   function explainFetchError(e, url) {
@@ -916,20 +872,11 @@
     var days = state.data.days, today = Core.todayISO();
     el.footSource.textContent = state.source === "sample" ? "예시 데이터" : state.source === "paste" ? "붙여넣은 데이터" : state.source === "file" ? "파일" : state.source;
 
-    el.days.innerHTML = days.map(function (d) {
-      var p = d.date.split("-").map(Number), dt = new Date(p[0], p[1] - 1, p[2]), wd = dt.getDay();
-      return '<button type="button" class="day" data-date="' + d.date + '" aria-pressed="' + (d.date === state.selected) + '"' +
-        ' data-today="' + (d.date === today) + '"' + (wd === 6 ? ' data-weekend="sat"' : wd === 0 ? ' data-weekend="sun"' : "") + ">" +
-        '<span class="wd">' + WEEKDAYS[wd] + '</span><span class="dn">' + p[2] + '</span><span class="md">' + p[1] + "월</span></button>";
-    }).join("");
-    var sel = el.days.querySelector('[aria-pressed="true"]');
-    if (sel && sel.scrollIntoView) { try { sel.scrollIntoView({ block: "nearest", inline: "center" }); } catch (e) {} }
-
-    el.viewDay.setAttribute("aria-pressed", state.view === "day");
-    el.viewWeek.setAttribute("aria-pressed", state.view === "week");
-
-    if (state.view === "week") renderWeek(days, today);
-    else renderDay(days, today);
+    var start = state.weekStart, end = addDays(start, 6);
+    el.prevWeek.disabled = !days.some(function (d) { return d.date < start; });
+    el.nextWeek.disabled = !days.some(function (d) { return d.date > end; });
+    el.thisWeek.disabled = start === weekStartOf(today);
+    renderWeek(daysInWeek(start), today, start, end);
 
     el.notes.innerHTML = state.data.notes.map(function (n) { return "<p>" + esc(n) + "</p>"; }).join("");
     el.rawView.textContent = state.raw.length > 20000 ? state.raw.slice(0, 20000) + "\n… (이하 생략)" : state.raw;
@@ -938,40 +885,24 @@
     el.mapInfo.innerHTML = pairs.map(function (p) { return "<dt>" + esc(p[0]) + "</dt><dd>" + esc(p[1]) + "</dd>"; }).join("");
   }
 
-  function renderDay(days, today) {
-    var day = days.filter(function (d) { return d.date === state.selected; })[0] || days[0];
-    el.dayTitle.innerHTML = esc(fmtDateLong(day.date)) + (day.date === today ? '<span class="tag">오늘</span>' : "");
-    if (!day.meals.length) { el.main.innerHTML = '<div class="blank"><h2>등록된 식단이 없습니다</h2></div>'; return; }
-    el.main.innerHTML = '<div class="meals">' + day.meals.map(function (meal) {
-      var secs = meal.sections.map(function (s) {
-        var items = s.items.map(function (it, i) { return "<li" + (i === 0 ? ' class="main"' : "") + ">" + esc(it) + "</li>"; }).join("");
-        var head = (s.corner || s.kcal) ? '<div class="corner"><span>' + esc(s.corner || "") + "</span>" + (s.kcal && meal.sections.length > 1 ? "<span>" + s.kcal + " kcal</span>" : "") + "</div>" : "";
-        return '<div class="section">' + head + "<ul>" + items + "</ul></div>";
-      }).join("");
-      return '<article class="meal" data-meal="' + esc(meal.name) + '"><header><h3>' + esc(meal.name) + (meal.time ? "<small>" + meal.time + "</small>" : "") + "</h3>" +
-        (meal.kcal && meal.sections.length === 1 ? '<span class="kcal">' + meal.kcal + " kcal</span>" : "") + "</header>" + (secs || '<p class="empty">메뉴 정보 없음</p>') + "</article>";
-    }).join("") + "</div>";
-  }
-
-  function renderWeek(days, today) {
-    var shown = days;
-    if (days.length > 14) {
-      var idx = Math.max(0, days.findIndex(function (d) { return d.date === state.selected; }));
-      var start = Math.max(0, Math.min(idx - 3, days.length - 7));
-      shown = days.slice(start, start + 7);
+  function renderWeek(shown, today, start, end) {
+    var label = start.slice(5).replace("-", ".") + " ~ " + end.slice(5).replace("-", ".");
+    el.dayTitle.innerHTML = esc(label) + (start === weekStartOf(today) ? '<span class="tag">이번주</span>' : "");
+    if (!shown.length) {
+      var all = state.data.days;
+      el.main.innerHTML = '<div class="blank"><h2>이번 주 식단이 아직 없습니다</h2><p>받은 데이터는 ' + esc(all[0].date) + " ~ " + esc(all[all.length - 1].date) + " 기간입니다. 위의 지난주/다음주로 이동해 보세요.</p></div>";
+      return;
     }
     var mealNames = [];
     shown.forEach(function (d) { d.meals.forEach(function (m) { if (mealNames.indexOf(m.name) < 0) mealNames.push(m.name); }); });
     mealNames.sort(function (a, b) { return rank(a) - rank(b); });
     function rank(n) { var i = ["조식", "중식", "석식", "야식", "간식"].indexOf(n); return i < 0 ? 50 : i; }
-    var first = shown[0].date, last = shown[shown.length - 1].date;
-    el.dayTitle.innerHTML = esc(first.slice(5).replace("-", ".") + " ~ " + last.slice(5).replace("-", ".")) + '<span class="tag">주간</span>';
     var head = "<tr><th>구분</th>" + shown.map(function (d) {
       var p = d.date.split("-").map(Number), dt = new Date(p[0], p[1] - 1, p[2]);
       return '<th data-today="' + (d.date === today) + '"><span class="dn">' + p[1] + "/" + p[2] + "</span>" + WEEKDAYS[dt.getDay()] + "요일</th>";
     }).join("") + "</tr>";
     var body = mealNames.map(function (name) {
-      return "<tr><td>" + esc(name) + "</td>" + shown.map(function (d) {
+      return '<tr><td class="mname" data-meal="' + esc(name) + '">' + esc(name) + "</td>" + shown.map(function (d) {
         var meal = d.meals.filter(function (m) { return m.name === name; })[0];
         if (!meal) return '<td data-meal="' + esc(name) + '"><span style="color:var(--ink-soft)">-</span></td>';
         var html = meal.sections.map(function (s) {
@@ -986,12 +917,9 @@
   }
 
   /* ---------- events ---------- */
-  el.days.addEventListener("click", function (e) {
-    var b = e.target.closest(".day"); if (!b) return;
-    state.selected = b.dataset.date; if (state.view === "week") state.view = "day"; render();
-  });
-  el.viewDay.addEventListener("click", function () { state.view = "day"; lsSet(LS_VIEW, "day"); render(); });
-  el.viewWeek.addEventListener("click", function () { state.view = "week"; lsSet(LS_VIEW, "week"); render(); });
+  el.prevWeek.addEventListener("click", function () { state.weekStart = addDays(state.weekStart, -7); render(); });
+  el.nextWeek.addEventListener("click", function () { state.weekStart = addDays(state.weekStart, 7); render(); });
+  el.thisWeek.addEventListener("click", function () { state.weekStart = weekStartOf(Core.todayISO()); render(); });
   el.btnRefresh.addEventListener("click", function () { fetchMenu(true); });
 
   function openSettings() {
@@ -1045,7 +973,6 @@
 
   /* ---------- boot ---------- */
   el.todayLabel.textContent = fmtDateLong(Core.todayISO());
-  var v = lsGet(LS_VIEW); if (v === "week" || new URLSearchParams(location.search).get("view") === "week") state.view = "week";
   var cached = null;
   try { cached = JSON.parse(lsGet(LS_DATA) || "null"); } catch (e) {}
   if (cached && cached.raw) {
